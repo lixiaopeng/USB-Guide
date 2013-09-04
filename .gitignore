@@ -1,0 +1,5 @@
+*.log
+*.sublime-*
+
+/app/components/
+/node_modules/

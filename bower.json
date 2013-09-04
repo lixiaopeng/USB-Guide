@@ -1,0 +1,7 @@
+{
+    "name" : "USB-Guide",
+    "version" : "0.0.1",
+    "devDependencies" : {
+        "jquery" : "1.10.2"
+    }
+}
