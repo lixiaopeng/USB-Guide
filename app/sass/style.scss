@@ -1,0 +1,109 @@
+@import "../thirdparty/Adonis/sass/standardColors";
+@import "../thirdparty/Adonis/sass/reset";
+@import "../thirdparty/Adonis/sass/typography";
+@import "../thirdparty/Adonis/sass/button";
+@import "../thirdparty/Adonis/sass/form";
+
+@import "sprite/*.png";
+
+body {
+    background-color: #f8fafc;
+}
+
+.g-progress {
+    background-color: #efedeb;
+    border: 1px $componentBorderColor solid;
+    height: 8px;
+    padding: 1px;
+
+    .inner {
+        background-color: $standardColor;
+        height: 8px;
+        width: 100%;
+    }
+}
+
+.g-progress-running {
+    background-image: url(../images/progress.png);
+    height: 12px;
+}
+
+.g-ctn {
+    float: left;
+    height: 430px;
+    overflow: hidden;
+    position: relative;
+    width: 740px;
+}
+
+.g-tips {
+    text-align: center;
+}
+
+.g-fallback {
+    bottom: 20px;
+    position: absolute;
+    right: 20px;
+}
+
+.g-connecting-start {
+    .bg {
+        @include sprite-sprite(connecting);
+
+        height: sprite-sprite-height(connecting);
+        position: relative;
+        margin: 50px auto;
+        width: sprite-sprite-width(connecting);
+
+        .g-progress-running {
+            left: 115px;
+            position: absolute;
+            top: 140px;
+            width: 115px;
+        }
+    }
+}
+
+.g-downloading,
+.g-installing {
+    .bg {
+        @include sprite-sprite(device);
+
+        height: sprite-sprite-height(device);
+        overflow: hidden;
+        position: relative;
+        margin: 50px auto;
+        width: sprite-sprite-width(device);
+
+        .wording {
+            color: #fff;
+            font-size: 10px;
+            margin-top: 90px;
+            text-align: center;
+        }
+    }
+}
+
+.g-downloading {
+    .g-progress {
+        margin: 50px auto 20px;
+        width: 510px;
+    }
+}
+
+.g-installing-credit {
+    .bg {
+        @include sprite-sprite(credit);
+
+        height: sprite-sprite-height(credit);
+        margin: 50px auto;
+        width: sprite-sprite-width(credit);
+
+        .wording {
+            color: #fff;
+            font-size: 10px;
+            margin-top: 90px;
+            text-align: center;
+        }
+    }
+}

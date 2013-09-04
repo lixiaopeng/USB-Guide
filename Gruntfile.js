@@ -68,6 +68,7 @@ module.exports = function (grunt) {
                 cssDir : '<%= paths.tmp %>/stylesheets',
                 imagesDir : '<%= paths.app %>/sprites',
                 generatedImagesDir : '<%= paths.tmp %>/images',
+                httpGeneratedImagesPath: '../images',
                 relativeAssets : false
             },
             dist : {

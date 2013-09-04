@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>USB Guide</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+    <script type="text/template" id="connecting-start">
+        <div class="g-ctn g-connecting-start">
+            <div class="bg">
+                <div class="g-progress-running"></div>
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.CONNECTION_START %></div>
+        </div>
+    </script>
+    <script type="text/template" id="downloading">
+        <div class="g-ctn g-downloading">
+            <div class="bg">
+                <div class="wording">Downloading</div>
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.DOWNLOADING_TIP %></div>
+            <div class="g-progress">
+                <div class="inner"></div>
+            </div>
+            <div class="g-tips h6 w-text-info"><%= i18n.SPEED_TIP %></div>
+        </div>
+    </script>
+    <script type="text/template" id="installing">
+        <div class="g-ctn g-installing">
+            <div class="bg">
+                <div class="wording">Installing</div>
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.INSTALLING_TIP %></div>
+        </div>
+    </script>
+    <script type="text/template" id="installing-credit">
+        <div class="g-ctn g-installing-credit">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.CREDIT_TIP %></div>
+            <div class="g-fallback link button-fallback"><%= i18n.CREDIT_FALLBACK_TIP %></div>
+        </div>
+    </script>
+    <!-- build:js javascripts/usb-guide.js -->
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/underscore/underscore.js"></script>
+    <script data-main="javascripts/main.js" src="components/requirejs/require.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
