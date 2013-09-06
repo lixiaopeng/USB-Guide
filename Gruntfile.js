@@ -78,8 +78,8 @@ module.exports = function (grunt) {
             },
             source : {
                 options : {
-                    appDir : '<%= path.app %>/javascripts',
-                    dir :　'<%= path.dist %>/javascripts',
+                    appDir : '<%= paths.app %>/javascripts',
+                    dir :　'<%= paths.dist %>/javascripts',
                     optimize : 'uglify',
                     uglify : {
                         toplevel : true,
@@ -144,6 +144,7 @@ module.exports = function (grunt) {
                     cwd : '<%= paths.app %>',
                     dest : '<%= paths.dist %>',
                     src : [
+                        'javascripts/nls/*/*.js',
                         'images/{,*/}*.{webp,gif,png,jpg,jpeg}'
                     ]
                 }]
@@ -172,6 +173,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'compass:dist',
+        'copy',
         'useminPrepare',
         'concat',
         'uglify',
