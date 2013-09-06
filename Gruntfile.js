@@ -159,6 +159,22 @@ module.exports = function (grunt) {
                     dest : '<%= paths.dist %>/images'
                 }]
             }
+        },
+        replace: {
+            dist: {
+                options: {
+                    prefix : '//@@',
+                    variables: {
+                        'require.js' : '<%= grunt.file.read(paths.dist + "/components/requirejs/require.js") %>',
+                        'style.css' : '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>',
+                        // 'usb-guide.js' : grunt.file.read(pathConfig.dist + '/javascripts/usb-guide.js')
+                    }
+                },
+                files: [{
+                    src: ['<%= paths.dist %>/index.html'],
+                    dest: '<%= paths.dist %>/index.html'
+                }]
+            }
         }
     });
 
@@ -179,6 +195,7 @@ module.exports = function (grunt) {
         'uglify',
         'requirejs:dist',
         'htmlmin',
-        'usemin'
+        'usemin',
+        'replace'
     ]);
 };
