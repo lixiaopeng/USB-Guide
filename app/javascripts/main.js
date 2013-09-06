@@ -23,7 +23,6 @@ require([
     $,
     _
 ) {
-    console.log(lang);
     window.i18n = lang;
 
     var tplConnecting = _.template($('#connecting-start').html());
@@ -35,23 +34,19 @@ require([
     var tplInstalling = _.template($('#installing').html());
     var $domInstalling = $(tplInstalling({}));
 
-    var tplInstallingCredit = _.template($('#installing-credit').html());
-    var $domInstallingCredit = $(tplInstallingCredit({}));
+    window.show = function (id) {
+        var tpl = _.template($('#' + id).html());
+        var $dom = $(tpl({}));
+        $('.g-stage').append($dom);
 
-    $('body').append($domConnecting);
-    $('body').append($domDownloading);
-    $('body').append($domInstalling);
-    $('body').append($domInstallingCredit);
-
-
-
-    var next = function () {
-        $('.g-ctn').eq(0).animate({
-            'margin-left' : '-100%',
-            'opacity' : '0'
-        }, 1500, 'linear', function () {
-            $(this).remove();
-        });
+        if ($('.g-ctn').length > 1) {
+            $('.g-ctn:not(:last)').animate({
+                'margin-left' : '-100%',
+                'opacity' : '0'
+            }, 1500, 'linear', function () {
+                $('.g-ctn:not(:last)').remove();
+            });
+        }
     };
 
     var add = function (templateId, data) {

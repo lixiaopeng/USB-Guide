@@ -62,6 +62,36 @@ module.exports = function (grunt) {
             dist : ['<%= paths.tmp %>', '<%= paths.dist %>'],
             server : '<%= paths.tmp %>'
         },
+        requirejs : {
+            dist : {
+                options : {
+                    optimize : 'uglify',
+                    uglify : {
+                        toplevel : true,
+                        ascii_only : false,
+                        beautify : false
+                    },
+                    preserveLicenseComments : true,
+                    useStrict : false,
+                    wrap : true
+                }
+            },
+            source : {
+                options : {
+                    appDir : '<%= path.app %>/javascripts',
+                    dir :　'<%= path.dist %>/javascripts',
+                    optimize : 'uglify',
+                    uglify : {
+                        toplevel : true,
+                        ascii_only : false,
+                        beautify : false
+                    },
+                    preserveLicenseComments : true,
+                    useStrict : false,
+                    wrap : true
+                }
+            }
+        },
         compass : {
             options : {
                 sassDir : '<%= paths.app %>/sass',
@@ -145,6 +175,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concat',
         'uglify',
+        'requirejs:dist',
         'htmlmin',
         'usemin'
     ]);

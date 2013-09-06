@@ -8,6 +8,11 @@
 
 body {
     background-color: #f8fafc;
+    overflow: hidden;
+}
+
+.g-stage {
+    width: 200%;
 }
 
 .g-progress {
@@ -19,7 +24,7 @@ body {
     .inner {
         background-color: $standardColor;
         height: 8px;
-        width: 100%;
+        width: 50%;
     }
 }
 
