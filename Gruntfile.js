@@ -167,7 +167,7 @@ module.exports = function (grunt) {
                     variables: {
                         'require.js' : '<%= grunt.file.read(paths.dist + "/components/requirejs/require.js") %>',
                         'style.css' : '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>',
-                        // 'usb-guide.js' : grunt.file.read(pathConfig.dist + '/javascripts/usb-guide.js')
+                        'main.js' : grunt.file.read(pathConfig.dist + '/javascripts/main.js')
                     }
                 },
                 files: [{

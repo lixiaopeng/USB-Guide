@@ -1,38 +1,23 @@
 require.config({
     paths : {
         $ : '../components/jquery/jquery',
-        _ : '../components/underscore/underscore',
         i18n : '../components/requirejs-i18n/i18n'
     },
     shim: {
         $ : {
             exports : '$'
-        },
-        _ : {
-            exports : '_'
         }
     }
 });
 
 require([
     'i18n!nls/lang',
-    '$',
-    '_'
+    '$'
 ], function (
     lang,
-    $,
-    _
+    $
 ) {
     window.i18n = lang;
-
-    var tplConnecting = _.template($('#connecting-start').html());
-    var $domConnecting = $(tplConnecting({}));
-
-    var tplDownloading = _.template($('#downloading').html());
-    var $domDownloading = $(tplDownloading({}));
-
-    var tplInstalling = _.template($('#installing').html());
-    var $domInstalling = $(tplInstalling({}));
 
     window.show = function (id) {
         var tpl = _.template($('#' + id).html());
@@ -66,5 +51,7 @@ require([
         });
     };
 
-    animation();
+    $(function () {
+        animation();
+    });
 });
