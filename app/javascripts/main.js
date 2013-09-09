@@ -1,21 +1,27 @@
 require.config({
     paths : {
         $ : '../components/jquery/jquery',
-        i18n : '../components/requirejs-i18n/i18n'
+        i18n : '../components/requirejs-i18n/i18n',
+        _ : '../components/lodash/dist/lodash.underscore'
     },
     shim: {
         $ : {
             exports : '$'
+        },
+        _ : {
+            exports : '_'
         }
     }
 });
 
 require([
     'i18n!nls/lang',
-    '$'
+    '$',
+    '_'
 ], function (
     lang,
-    $
+    $,
+    _
 ) {
     window.i18n = lang;
 
