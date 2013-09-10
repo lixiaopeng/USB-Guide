@@ -29,7 +29,7 @@ require([
 ) {
     window.i18n = lang;
 
-    var show = function (id, data) {
+    window.show = function (id, data) {
         if ($('div#' + id).length === 0) {
             var tpl = _.template($('#' + id).html());
             var $dom = $(tpl({}));

@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         watch : {
             compass : {
                 files : ['<%= paths.app %>/{,*/}*/{,*/}*.{scss,png}'],
-                tasks : ['compass']
+                tasks : ['compass:server']
             },
             livereload: {
                 files: [
@@ -95,6 +95,8 @@ module.exports = function (grunt) {
             },
             server : {
                 options : {
+                    generatedImagesDir : '<%= paths.tmp %>/images',
+                    httpGeneratedImagesPath : '../../images',
                     debugInfo : true
                 }
             }
