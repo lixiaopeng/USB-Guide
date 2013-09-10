@@ -75,21 +75,6 @@ module.exports = function (grunt) {
                     useStrict : false,
                     wrap : true
                 }
-            },
-            source : {
-                options : {
-                    appDir : '<%= paths.app %>/javascripts',
-                    dir :　'<%= paths.dist %>/javascripts',
-                    optimize : 'uglify',
-                    uglify : {
-                        toplevel : true,
-                        ascii_only : false,
-                        beautify : false
-                    },
-                    preserveLicenseComments : true,
-                    useStrict : false,
-                    wrap : true
-                }
             }
         },
         compass : {
@@ -98,7 +83,7 @@ module.exports = function (grunt) {
                 cssDir : '<%= paths.tmp %>/stylesheets',
                 imagesDir : '<%= paths.app %>/sprites',
                 generatedImagesDir : '<%= paths.tmp %>/images',
-                httpGeneratedImagesPath: '../images',
+                httpGeneratedImagesPath: 'images',
                 relativeAssets : false
             },
             dist : {
@@ -167,7 +152,7 @@ module.exports = function (grunt) {
                     variables: {
                         'require.js' : '<%= grunt.file.read(paths.dist + "/components/requirejs/require.js") %>',
                         'style.css' : '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>',
-                        'main.js' : grunt.file.read(pathConfig.dist + '/javascripts/main.js')
+                        // 'main.js' : '<%= grunt.file.read(paths.dist + "/javascripts/main.js") %>'
                     }
                 },
                 files: [{
@@ -186,7 +171,7 @@ module.exports = function (grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('build', [
+    grunt.registerTask('prebuild', [
         'clean:dist',
         'compass:dist',
         'copy',
@@ -197,5 +182,15 @@ module.exports = function (grunt) {
         'htmlmin',
         'usemin',
         'replace'
+    ]);
+
+    grunt.registerTask('replace-main', function () {
+        var output = grunt.file.read(pathConfig.dist + '/index.html').replace('//@@main.js', grunt.file.read(pathConfig.dist + "/javascripts/main.js"));
+        grunt.file.write(pathConfig.dist + '/index.html', output);
+    });
+
+    grunt.registerTask('build', [
+        'prebuild',
+        'replace-main'
     ]);
 };

@@ -2,7 +2,7 @@ require.config({
     paths : {
         $ : '../components/jquery/jquery',
         i18n : '../components/requirejs-i18n/i18n',
-        _ : '../components/lodash/dist/lodash.underscore'
+        _ : '../components/underscore/underscore'
     },
     shim: {
         $ : {
@@ -17,26 +17,30 @@ require.config({
 require([
     'i18n!nls/lang',
     '$',
-    '_'
+    '_',
+    'STATE'
 ], function (
     lang,
     $,
-    _
+    _,
+    STATE
 ) {
     window.i18n = lang;
 
     window.show = function (id) {
-        var tpl = _.template($('#' + id).html());
-        var $dom = $(tpl({}));
-        $('.g-stage').append($dom);
+        if ($('div#' + id).length === 0) {
+            var tpl = _.template($('#' + id).html());
+            var $dom = $(tpl({}));
+            $('.g-stage').append($dom.attr('id', id));
 
-        if ($('.g-ctn').length > 1) {
-            $('.g-ctn:not(:last)').animate({
-                'margin-left' : '-100%',
-                'opacity' : '0'
-            }, 1500, 'linear', function () {
-                $('.g-ctn:not(:last)').remove();
-            });
+            if ($('.g-ctn').length > 1) {
+                $('.g-ctn:not(:last)').animate({
+                    'margin-left' : '-100%',
+                    'opacity' : '0'
+                }, 1500, 'linear', function () {
+                    $('.g-ctn:not(:last)').remove();
+                });
+            }
         }
     };
 
@@ -57,7 +61,35 @@ require([
         });
     };
 
-    $(function () {
+    window.call = function (obj) {
+        switch (obj.state) {
+        case STATE.INSTALL_DRIVER:
+            show('installing', obj);
+            break;
+        case STATE.DOWNLOADING_DRIVER:
+            show('downloading', obj);
+            break;
+        case STATE.OFFLINE:
+            show('offline', obj);
+            break;
+        case STATE.STORAGE_INSUFFICIENT:
+            show('storage_insufficient', obj);
+            break;
+        case STATE.ADB_DEBUG_CLOSE:
+            show('adbdebug_close', obj);
+            break;
+        default:
+            if (obj.state >= 0) {
+                show('connection-start', obj);
+            } else {
+                show('connection-error', obj);
+            }
+        }
+
         animation();
+    };
+
+    $(function () {
+        window.external.call('ready');
     });
 });
