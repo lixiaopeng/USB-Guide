@@ -29,7 +29,8 @@ body {
 }
 
 .g-progress-running {
-    background-image: url(../images/progress.png);
+    background-image: generated-image-url('progress.png');
+
     height: 12px;
 }
 
