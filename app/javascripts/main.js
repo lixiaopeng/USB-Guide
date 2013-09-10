@@ -18,16 +18,18 @@ require([
     'i18n!nls/lang',
     '$',
     '_',
-    'STATE'
+    'STATE',
+    'FormatString'
 ], function (
     lang,
     $,
     _,
-    STATE
+    STATE,
+    FormatString
 ) {
     window.i18n = lang;
 
-    window.show = function (id) {
+    var show = function (id, data) {
         if ($('div#' + id).length === 0) {
             var tpl = _.template($('#' + id).html());
             var $dom = $(tpl({}));
@@ -42,6 +44,8 @@ require([
                 });
             }
         }
+
+
     };
 
     var add = function (templateId, data) {
