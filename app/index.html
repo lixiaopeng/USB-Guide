@@ -47,6 +47,32 @@
             <div class="g-fallback link button-fallback"><%= i18n.CREDIT_FALLBACK_TIP %></div>
         </div>
     </script>
+    <script type="text/template" id="error">
+        <div class="g-ctn g-error">
+            <div class="bg">
+                <div class="tip w-text-secondary h5">
+                    <span><%= i18n.RESET_USB %></span>
+                    <span class="tip2"><%= i18n.RESTART_PHONE %></span>
+                    <span class="tip3"><%= i18n.RESTART_PC %></span>
+                </div>
+            </div>
+            <div class="g-fallback link button-fallback"><%= i18n.CREDIT_FALLBACK_TIP %></div>
+        </div>
+    </script>
+    <script type="text/template" id="error-storage">
+        <div class="g-ctn g-error-storage">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.ERROR_STORAGE %></div>
+            <button class="button-retry w-btn w-btn-primary w-btn-kaiju"><%= i18n.RETRY %></button>
+        </div>
+    </script>
+    <script type="text/template" id="error-debug">
+        <div class="g-ctn g-error-debug">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.USB_DEBUG %></div>
+            <div class="g-fallback link button-fallback"><%= i18n.USB_FALLBACK_TIP %></div>
+        </div>
+    </script>
     <!-- build:js javascripts/main.js -->
     <script data-main="javascripts/main" src="components/requirejs/require.js"></script>
     <!-- endbuild -->

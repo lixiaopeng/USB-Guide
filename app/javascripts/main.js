@@ -94,6 +94,7 @@ require([
     };
 
     $(function () {
+        show('error-debug');
         window.external.call('ready');
     });
 });

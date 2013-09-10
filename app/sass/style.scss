@@ -5,6 +5,7 @@
 @import "../thirdparty/Adonis/sass/form";
 
 @import "sprite/*.png";
+@import "compass/css3";
 
 body {
     background-color: #f8fafc;
@@ -43,7 +44,9 @@ body {
 }
 
 .g-tips {
+    line-height: 1.5em;
     text-align: center;
+    padding: 0 60px;
 }
 
 .g-fallback {
@@ -111,5 +114,53 @@ body {
             margin-top: 90px;
             text-align: center;
         }
+    }
+}
+
+.g-error {
+    .bg {
+        @include sprite-sprite(error);
+
+        height: sprite-sprite-height(error);
+        margin: 80px auto;
+        width: sprite-sprite-width(error);
+
+        .tip {
+            padding-top: 190px;
+
+            .tip2 {
+                margin-left: 60px;
+            }
+
+            .tip3 {
+                margin-left: 115px;
+            }
+        }
+    }
+}
+
+.g-error-storage {
+    text-align: center;
+
+    .bg {
+        @include sprite-sprite(storage);
+
+        height: sprite-sprite-height(storage);
+        margin: 60px auto;
+        width: sprite-sprite-width(storage);
+    }
+
+    .button-retry {
+        margin-top: 20px;
+    }
+}
+
+.g-error-debug {
+    .bg {
+        @include sprite-sprite(debug);
+
+        height: sprite-sprite-height(debug);
+        margin: 60px auto;
+        width: sprite-sprite-width(debug);
     }
 }
