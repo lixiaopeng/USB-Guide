@@ -45,10 +45,10 @@ require([
             }
         }
         if (id == "connecting-start") {
-            if (data.screen_name !== "") {
+            if (data.screen_name !== undefined && data.screen_name !== "") {
                 $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.screen_name));
-            } else if (data.brand !== "") {
-                $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.brand + "手机"));
+            } else if (data.screen_name !== undefined && data.brand_name !== "") {
+                $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.brand_name + "手机"));
             } else {
                 $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, "手机"));
             }
@@ -67,7 +67,7 @@ require([
             }
         }
         if (id === "installing") {
-            $(".g-tips.h5").html(FormatString(lang.INSTALLING_TIP));
+            // TODO
         }
         if (id === "offline") {
             // TODO
@@ -79,6 +79,9 @@ require([
             // TODO
         }
         if (id === "connecting-error") {
+            // TODO
+        }
+        if (id === "apk_install_cancel_by_user") {
             // TODO
         }
     };
@@ -102,6 +105,9 @@ require([
 
     window.call = function (obj) {
         switch (obj.state) {
+        case STATE.APK_INSTALL_CANCELED_BY_USER:
+            show('apk_install_cancel_by_user', obj);
+            break;
         case STATE.INSTALL_DRIVER:
             show('installing', obj);
             break;
@@ -126,6 +132,10 @@ require([
         }
         animation();
     };
+
+    $(document).on("click", "#fallback_tip",function(){
+        show('connecting-error', {});
+    })
 
     $(function () {
         window.external.call('ready');
