@@ -1,0 +1,611 @@
+@import "../thirdparty/Adonis/sass/standardColors";
+@import "../thirdparty/Adonis/sass/reset";
+@import "../thirdparty/Adonis/sass/layout";
+@import "../thirdparty/Adonis/sass/typography";
+@import "../thirdparty/Adonis/sass/form";
+
+@import "usb-debug/*.png";
+@import "compass/css3";
+@import "compass/css3/user-interface";
+
+.w-btn {
+    @include background-image(linear-gradient($btnBgColorFrom, $btnBgColorTo));
+    @include border-radius(3px);
+    @include filter-gradient($btnBgColorFrom, $btnBgColorTo);
+    @include inline-block();
+    @include single-box-shadow(#fff, 0, 1px, 0, false, true);
+    @include single-text-shadow(0, 1px, 0, false, #fff);
+
+    border: 1px $btnBorderColor solid;
+    color: $btnTextColor;
+    cursor: pointer;
+    height: 30px;
+    min-width: 60px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-user-select: none;
+
+    &:hover,
+    &.hover {
+        @include background-image(linear-gradient($btnHoverBgColorFrom, $btnHoverBgColorTo));
+
+        color: #000;
+        text-decoration: none;
+    }
+
+    &:active,
+    &.active {
+        @include background-image(linear-gradient($btnActiveBgColorFrom, $btnActiveBgColorTo));
+        @include filter-gradient($btnActiveBgColorFrom, $btnActiveBgColorTo);
+
+        color: #000;
+        text-decoration: none;
+    }
+
+    &:disabled,
+    &.disabled {
+        @include background-image(linear-gradient($btnBgColorFrom, $btnBgColorTo));
+        @include filter-gradient($btnBgColorFrom, $btnBgColorTo);
+
+        color: $btnTextColor;
+        opacity: $disabledOpacity;
+    }
+
+
+    &.w-btn-primary {
+        @include background-image(linear-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo));
+        @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
+        @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+        @include single-text-shadow(0, 1px, 0, false, rgba(0, 0, 0, .2));
+
+        border-color: $btnPrimaryBorderColor;
+        color: $btnPrimaryTextColor;
+
+        &:hover,
+        &.hover {
+            @include background-image(linear-gradient($btnPrimaryHoverBgColorFrom, $btnPrimaryHoverBgColorTo));
+            @include single-box-shadow(#79d367, 0, 1px, 0, false, true);
+        }
+
+        &:active,
+        &.active {
+            @include background-image(linear-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo));
+            @include filter-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo);
+            @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+        }
+
+
+        &:disabled,
+        &.disabled {
+            @include background-image(linear-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo));
+            @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
+            @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+
+            color: $btnPrimaryTextColor;
+        }
+    }
+}
+
+html,
+body,
+.wrap {
+    @include user-select(none);
+
+    height: 100%;
+    width: 100%;
+}
+
+.wrap {
+    background: url('../images/bg.png');
+    position: relative;
+
+    .w-ui-loading {
+        display: block;
+    }
+}
+
+.u-shadow {
+    @include single-box-shadow(#999, 0, 1px, 10px, false, false);
+}
+
+.u-header {
+    background-color: #484848;
+    color: #ebebeb;
+    height: 45px;
+    line-height: 45px;
+    overflow: visible;
+    position: relative;
+
+    .icon {
+        @include usb-debug-sprite(usb);
+        @include inline-block();
+
+        height: usb-debug-sprite-height(usb);
+        margin: 0 20px;
+        vertical-align: middle;
+        width: usb-debug-sprite-width(usb);
+    }
+
+    .title {
+        @include inline-block();
+
+        font-size: 14px;
+    }
+
+    .button-feedback {
+        background-image: none;
+        cursor: pointer;
+        padding: 0 15px;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        &.act {
+            background-color: #000;
+            border-bottom: 3px solid #62b600;
+            opacity: 1;
+        }
+    }
+}
+
+.u-footer {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+
+    .button-check-usb-debug {
+        float: right;
+        margin: 15px;
+    }
+}
+
+.u-select-view {
+    display: none;
+
+    .describe {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px 0;
+        width: 600px;
+    }
+
+    .select {
+        color: #505050;
+        list-style: none;
+        margin: 0 auto;
+        width: 600px;
+
+        li {
+            cursor: pointer;
+            float: left;
+            height: 120px;
+            overflow: hidden;
+            position: relative;
+            width: 120px;
+
+            .top {
+                background: #000;
+                border: 1px red solid;
+                height: 100%;
+                opacity: 0.06;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                -webkit-transition: opacity .2s;
+            }
+
+            .logo {
+                height: 50px;
+                margin: 20px auto 0;
+                width: 110px;
+
+                @each $logo in htc, huawei, lenovo, meizu, xiaomi,
+                        motorola, nexus, samsung, sony, zte, ktouch, vivo {
+                    &.#{$logo} {
+                        @include usb-debug-sprite(#{$logo});
+                    }
+                }
+            }
+
+            .system-logo {
+                height: 62px;
+                margin: 6px auto 0;
+                width: 110px;
+
+                @each $logo in gingerbread, ics, jeallybean, miuios, meizu {
+                    &.#{$logo} {
+                        @include usb-debug-sprite(#{$logo});
+                    }
+                }
+            }
+
+            .title {
+                @include single-text-shadow(0, 2px, 3px, false, rgba(0, 0, 0, .21));
+
+                margin-top: 5px;
+                text-align: center;
+            }
+
+            .check-course {
+                background-color: #000;
+                bottom: -25px;
+                color: #fff;
+                height: 25px;
+                line-height: 25px;
+                opacity: .7;
+                position: absolute;
+                text-align: center;
+                vertical-align: middle;
+                width: 100%;
+                -webkit-transition: all .2s linear;
+
+                .play {
+                    @include inline-block();
+                    @include usb-debug-sprite(play);
+
+                    height: 16px;
+                    margin-right: 5px;
+                    overflow: hidden;
+                    position: relative;
+                    top: 4px;
+                    vertical-align: top;
+                    width: 16px;
+                }
+
+                .info {
+                    @include inline-block();
+                }
+            }
+
+            &.hover {
+                .top {
+                    opacity: 0;
+                }
+
+                .check-course {
+                    bottom: 0;
+                }
+            }
+
+            &.system {
+                height: 110px;
+
+                .title {
+                    margin-top: 3px;
+                }
+
+                &.gingerbread, &.ics, &.jeallybean, &.meizu {
+                    background-color: #f9fbfc;
+                    background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
+                }
+
+                &.miuios {
+                    background-color: #ffa43b;
+                    background-image: -webkit-radial-gradient(85% 15%, #ffa43b 3%, #fa6b06 100%);
+                    color: white;
+                }
+            }
+
+            &.brand {
+                color: #fff;
+
+                &.nobrands {
+                    background-color: #f8f8f8;
+                    background-image: -webkit-radial-gradient(85% 15%, #f8f8f8 7%, #dfdfdf 100%);
+                    cursor: default;
+                }
+
+                &.samsung {
+                    background-color: #4ba1fe;
+                    background-image: -webkit-radial-gradient(85% 15%, #4ba1fe 0%, #375dbf 100%);
+                }
+
+                &.lenovo {
+                    background-color: #6c6c6c;
+                    background-image: -webkit-radial-gradient(85% 15%, #6c6c6c 19%, #4a4a4a 100%);
+                }
+
+                &.huawei,
+                &.ktouch {
+                    background-color: #f9fbfc;
+                    background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
+                    color: #505050;
+                }
+
+                &.xiaomi {
+                    background-color: #ffa43b;
+                    background-image: -webkit-radial-gradient(85% 15%, #ffa43b 3%, #fa6b06 100%);
+                }
+
+                &.sony {
+                    background-color: #6c6c6c;
+                    background-image: -webkit-radial-gradient(85% 15%, #6c6c6c 17%, #525252 100%);
+                }
+
+                &.zte {
+                    background-color: #47f7ff;
+                    background-image: -webkit-radial-gradient(85% 15%, #47f7ff 7%, #1498ef 100%);
+                }
+
+                &.htc {
+                    background-color: #22dc00;
+                    background-image: -webkit-radial-gradient(85% 15%, #afff5c 12%, #22dc00 100%);
+                }
+
+                &.motorola {
+                    background-color: #ff8063;
+                    background-image: -webkit-radial-gradient(85% 15%, #ff8063 0%, #dd3c44 100%);
+                }
+
+                &.vivo{
+                    background-color: #6ec8fb;
+                    background-image: -webkit-radial-gradient(85% 15%, #6ec8fb 7%, #0084ce 100%);
+                }
+            }
+        }
+    }
+}
+
+.u-feedback-ctn {
+    background: #fff;
+    display: none;
+    height: 390px;
+    margin: 15px auto;
+    padding: 15px;
+    position: relative;
+    width: 600px;
+
+    .number {
+        @include usb-debug-sprite(bullet_list);
+        @include inline-block();
+
+        color: #fff;
+        height: usb-debug-sprite-height(bullet_list);
+        line-height: 27px;
+        margin-right: 5px;
+        text-align: center;
+        vertical-align: middle;
+        width: usb-debug-sprite-width(bullet_list);
+    }
+
+    .describe,
+    .return {
+        @include inline-block();
+    }
+
+    .return {
+        position: absolute;
+        right: 15px;
+    }
+
+    .body {
+        margin-left: 35px;
+    }
+
+    .message {
+        margin-top: 20px;
+
+        .send-message {
+            height: 45px;
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    .href-container {
+        .href {
+            display: block;
+            line-height: 25px;
+
+            .img {
+                @include inline-block();
+                @include usb-debug-sprite(bullet_arrow);
+
+                height: usb-debug-sprite-height(bullet_arrow);
+                margin-right: 10px;
+                vertical-align: middle;
+                width: usb-debug-sprite-width(bullet_arrow);
+            }
+
+            .wording {
+                @include inline-block();
+
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.u-slider-view {
+    background: #fff;
+    display: none;
+    margin: 20px auto;
+    padding: 15px;
+    width: 600px;
+
+    .title {
+        height: 22px;
+    }
+
+    .describe {
+        float: left;
+    }
+
+    .button-more {
+        float: right;
+    }
+
+    .connect-error {
+        text-align: center;
+
+        .w-ui-loading {
+            top: 30%;
+        }
+
+        .error-des {
+            text-align: center;
+        }
+
+        .button-reload {
+            margin: 10px;
+        }
+    }
+
+    .slider-container {
+        display: none;
+        margin-top: 10px;
+        position: relative;
+
+        .button {
+            cursor: pointer;
+            height: 330px;
+            position: absolute;
+            width: 185px;
+            z-index: 10000;
+
+
+            .icon {
+                height: 42px;
+                position: absolute;
+                top: 139px;
+                width: 24px;
+            }
+
+            &.left {
+                left: 0;
+
+                .icon {
+                    @include usb-debug-sprite(switch_default);
+
+                    left: 10px;
+                }
+
+                // &:hover {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_hover);
+                //     }
+                // }
+
+                // &:active {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_press);
+                //     }
+                // }
+
+                // &[disabled] {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_disable);
+                //     }
+                // }
+            }
+
+            &.right {
+                right: 0;
+
+                .icon {
+                    @include usb-debug-sprite(switch_default);
+
+                    right: 10px;
+                }
+
+                // &:hover {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_hover);
+                //     }
+                // }
+
+                // &:active {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_press);
+                //     }
+                // }
+
+                // &[disabled] {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_disable);
+                //     }
+                // }
+            }
+        }
+    }
+
+    .warp {
+        display: block;
+        height: 330px;
+        position: relative;
+        white-space: nowrap;
+
+        .course-li {
+            @include inline-block;
+
+            position: absolute;
+
+            img {
+                -webkit-transition: all .3s linear;
+            }
+
+            &.init {
+                background: #fff;
+                left: 360px;
+
+                img {
+                    height: 270px;
+                    opacity: .6;
+                }
+            }
+
+            &.go-current {
+                img {
+                    height: 330px;
+                    opacity: 1;
+                }
+            }
+
+            &.go-before {
+                img {
+                    height: 270px;
+                    opacity: .6;
+                }
+            }
+        }
+    }
+
+    .navigation {
+        margin-top: 10px;
+        text-align: center;
+
+        .number {
+            @include inline-block;
+        }
+
+        .steps-describe {
+            margin-left: 5px;
+        }
+
+        .page {
+            color: #c0c0c0;
+            margin-left: 5px;
+        }
+    }
+
+    .ul-container {
+        overflow: hidden;
+        position: relative;
+
+        .pointer {
+            @include usb-debug-sprite(arrow);
+
+            display: none;
+            height: 95px;
+            position: absolute;
+            width: 70px;
+            z-index: 1000;
+        }
+    }
+}
+
+

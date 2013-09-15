@@ -96,19 +96,19 @@ module.exports = function (grunt) {
             server : {
                 options : {
                     generatedImagesDir : '<%= paths.tmp %>/images',
-                    httpGeneratedImagesPath : '../../images',
-                    debugInfo : true
+                    httpGeneratedImagesPath : '../images',
+                    debugInfo : false
                 }
             }
         },
         useminPrepare : {
-            html : ['<%= paths.app %>/index.html'],
+            html : ['<%= paths.app %>/*.html'],
             options : {
                 dest : '<%= paths.dist %>'
             }
         },
         usemin : {
-            html : ['<%= paths.dist %>/index.html'],
+            html : ['<%= paths.dist %>/*.html'],
             options : {
                 dirs : ['<%= paths.dist %>']
             }
