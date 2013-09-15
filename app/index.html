@@ -9,7 +9,7 @@
     //@@style.css
     </style>
 </head>
-<body>
+<body onselectstart="return false;">
     <div class="g-stage"></div>
     <script type="text/template" id="connecting-start">
         <div class="g-ctn g-connecting-start">
@@ -56,7 +56,6 @@
                     <span class="tip3"><%= i18n.RESTART_PC %></span>
                 </div>
             </div>
-            <div class="g-fallback link button-fallback"><%= i18n.CREDIT_FALLBACK_TIP %></div>
         </div>
     </script>
     <script type="text/template" id="storage_insufficient">
@@ -70,9 +69,17 @@
         <div class="g-ctn g-error-debug">
             <div class="bg"></div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.USB_DEBUG %></div>
-            <div class="g-fallback link button-fallback"><%= i18n.USB_FALLBACK_TIP %></div>
+            <div class="g-fallback link button-fallback" id="fallback_tip"><%= i18n.USB_FALLBACK_TIP %></div>
         </div>
     </script>
+    <script type="text/template" id="adbdebug_close">
+        <div class="g-ctn g-error-debug">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.USB_DEBUG %></div>
+            <div class="g-fallback link button-fallback" id="fallback_tip"><%= i18n.USB_FALLBACK_TIP %></div>
+        </div>
+    </script>
+
     <!-- build:js javascripts/main.js -->
     <script data-main="javascripts/main" src="components/requirejs/require.js"></script>
     <!-- endbuild -->

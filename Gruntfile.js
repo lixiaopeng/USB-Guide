@@ -187,7 +187,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('replace-main', function () {
-        var output = grunt.file.read(pathConfig.dist + '/index.html').replace('//@@main.js', grunt.file.read(pathConfig.dist + "/javascripts/main.js").replace('<script data-main="javascripts/main" src="components/requirejs/require.js"></script>', ''));
+        var output = grunt.file.read(pathConfig.dist + '/index.html').replace('//@@main.js', grunt.file.read(pathConfig.dist + "/javascripts/main.js"));
+        output.replace('<script data-main="javascripts/main" src="components/requirejs/require.js"></script>', '')
         grunt.file.write(pathConfig.dist + '/index.html', output);
     });
 
