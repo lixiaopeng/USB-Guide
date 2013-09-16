@@ -11,20 +11,20 @@ $(document).ready(function () {
         var Log = function (data) {
             data = data || {};
 
-            var url = "wdj://window/log.json",
-                datas = [],
-                d;
+            // var url = "wdj://window/log.json",
+            //     datas = [],
+            //     d;
 
-            for (d in data) {
-                if (data.hasOwnProperty(d)) {
-                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
-                }
-            }
-            url += '?' + datas.join('&');
+            // for (d in data) {
+            //     if (data.hasOwnProperty(d)) {
+            //         datas.push(d + '=' + window.encodeURIComponent(data[d]));
+            //     }
+            // }
+            // url += '?' + datas.join('&');
 
-            window.OneRingRequest('get', url, '', function (resp) {
-                return;
-            });
+            // window.OneRingRequest('get', url, '', function (resp) {
+            //     return;
+            // });
         };
 
         log = Log;
@@ -677,5 +677,9 @@ $(document).ready(function () {
             $container.append(selectView.render().$el);
         }
         selectView.$el.show();
+    });
+
+    $(document).render(function () {
+        window.external.call('ready');
     });
 });
