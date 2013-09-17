@@ -132,7 +132,7 @@ module.exports = function (grunt) {
                     dest : '<%= paths.dist %>',
                     src : [
                         'javascripts/nls/*/*.js',
-                        'images/{,*/}*.{webp,gif,png,jpg,jpeg}'
+                        'images/**/{,*/}*.{webp,gif,png,jpg,jpeg}'
                     ]
                 }]
             }
@@ -162,6 +162,18 @@ module.exports = function (grunt) {
                     dest: '<%= paths.dist %>/index.html'
                 }]
             }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= paths.dist %>/javascripts/usb-debug.js',
+                        '<%= paths.dist %>/stylesheets/usb-debug.css',
+                        '<%= paths.dist %>/stylesheets/ie6.css',
+                        '<%= paths.dist %>/stylesheets/ie7.css'
+                    ]
+                }
+            }
         }
     });
 
@@ -182,6 +194,7 @@ module.exports = function (grunt) {
         'uglify',
         'requirejs:dist',
         'htmlmin',
+        'rev',
         'usemin',
         'replace'
     ]);

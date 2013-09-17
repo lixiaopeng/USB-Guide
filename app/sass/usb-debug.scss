@@ -93,6 +93,7 @@ body,
     @include user-select(none);
 
     height: 100%;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -109,51 +110,22 @@ body,
     @include single-box-shadow(#999, 0, 1px, 10px, false, false);
 }
 
-.u-header {
-    background-color: #484848;
-    color: #ebebeb;
-    height: 45px;
-    line-height: 45px;
-    overflow: visible;
-    position: relative;
-
-    .icon {
-        @include usb-debug-sprite(usb);
-        @include inline-block();
-
-        height: usb-debug-sprite-height(usb);
-        margin: 0 20px;
-        vertical-align: middle;
-        width: usb-debug-sprite-width(usb);
-    }
-
-    .title {
-        @include inline-block();
-
-        font-size: 14px;
-    }
-
-    .button-feedback {
-        background-image: none;
-        cursor: pointer;
-        padding: 0 15px;
-        position: absolute;
-        right: 0;
-        top: 0;
-
-        &.act {
-            background-color: #000;
-            border-bottom: 3px solid #62b600;
-            opacity: 1;
-        }
-    }
-}
-
 .u-footer {
     bottom: 0;
     left: 0;
     position: absolute;
     width: 100%;
+
+    .button-feedback {
+        @include inline-block;
+
+        background-image: none;
+        cursor: pointer;
+        float: right;
+        height: 30px;
+        line-height: 30px;
+        margin: 15px;
+    }
 
     .button-check-usb-debug {
         float: right;
@@ -425,14 +397,18 @@ body,
     display: none;
     margin: 20px auto;
     padding: 15px;
+    position: relative;
     width: 600px;
 
     .title {
         height: 22px;
+        line-height: 22px;
     }
 
     .describe {
         float: left;
+        font-size: 16px;
+        line-height: 22px;
     }
 
     .button-more {
@@ -440,14 +416,26 @@ body,
     }
 
     .connect-error {
+        height: 369px;
         text-align: center;
 
         .w-ui-loading {
-            top: 30%;
+            left: 50%;
+            margin: -27px 0 0 -27px;
+            position: absolute;
+            top: 50%;
+
+            img {
+                @include inline-block;
+            }
         }
 
         .error-des {
+            bottom: 15px;
+            left: 0;
+            position: absolute;
             text-align: center;
+            width: 100%;
         }
 
         .button-reload {
@@ -490,11 +478,11 @@ body,
                     }
                 }
 
-                &:active {
-                    .icon {
-                        @include usb-debug-sprite(switch_press_left);
-                    }
-                }
+                // &:active {
+                //     .icon {
+                //         @include usb-debug-sprite(switch_press_left);
+                //     }
+                // }
 
                 &.dis {
                     .icon {
@@ -512,11 +500,11 @@ body,
                     right: 10px;
                 }
 
-                // &.hov {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_hover);
-                //     }
-                // }
+                &.hov {
+                    .icon {
+                        @include usb-debug-sprite(switch_hover);
+                    }
+                }
 
                 // &:active {
                 //     .icon {
@@ -524,11 +512,11 @@ body,
                 //     }
                 // }
 
-                // &.dis {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_disable);
-                //     }
-                // }
+                &.dis {
+                    .icon {
+                        @include usb-debug-sprite(switch_disable);
+                    }
+                }
             }
         }
     }

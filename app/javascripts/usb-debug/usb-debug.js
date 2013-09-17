@@ -1,5 +1,4 @@
 /*global $, _, document, window, alert*/
-var titleView;
 var selectView;
 var feedbackView;
 var sliderView;
@@ -28,50 +27,6 @@ $(document).ready(function () {
         };
 
         log = Log;
-    }(this));
-
-    (function () {
-        var TitleView = function () {
-            this.$el = $('<div>').addClass(this.className);
-            return this;
-        };
-
-        TitleView.prototype = {
-            className : 'u-header',
-            template : _.template($('#titleView').html()),
-            render : function () {
-                var self = this;
-
-                this.$el.html(this.template({}))
-                    .find('.button-feedback').on('click', function () {
-                        self.clickFeedBack();
-                        log({
-                            'event': 'ui.click.new_usb_debug_feedback'
-                        });
-                    });
-
-                if (window.DD_belatedPNG) {
-                    setTimeout(function () {
-                        window.DD_belatedPNG.fixPng(self.$el.find('.icon')[0]);
-                    });
-                }
-
-                return this;
-            },
-            clickFeedBack : function () {
-                var $btn = this.$el.find('.button-feedback');
-                if (!$btn.hasClass('act')) {
-                    $btn.addClass('act');
-                    $.event.trigger('FEEDBACK');
-                }
-            },
-            reset : function () {
-                var $btn = this.$el.find('.button-feedback');
-                $btn.removeClass('act');
-            }
-        };
-
-        titleView = new TitleView();
     }(this));
 
     (function () {
@@ -322,8 +277,8 @@ $(document).ready(function () {
                     });
                 });
 
-                this.$el.find('.reload').click(function () {
-                    self.$el.find('.connect-error .vbox').hide();
+                this.$el.find('.button-reload').click(function () {
+                    self.$el.find('.error-des').hide();
                     self.$el.find('.w-ui-loading').show();
                     self.start(self.type, self.version);
                 });
@@ -396,6 +351,7 @@ $(document).ready(function () {
                 self.$el.find('.describe').html(self.devInfo.name);
 
                 self.$el.find('.connect-error').show();
+                self.$el.find('.error-des').hide();
                 self.$el.find('.slider-container').hide();
 
                 this.preload(version, function () {
@@ -424,8 +380,7 @@ $(document).ready(function () {
                     self.initCss();
 
                 }, function () {
-                    self.$el.find('.connect-error').show();
-                    self.$el.find('.w-ui-loading').hide();
+                    self.$el.find('.error-des').show();
                 });
             },
             setNav : function (index) {
@@ -607,10 +562,10 @@ if (product_id) {
 }
 
 $(document).ready(function () {
-    $(document).on('mouseover', '.u-select-view .select li, .ul-container .button', function () {
+    $(document).on('mouseover', '.u-select-view .select li', function () {
         $(this).addClass('hover');
     });
-    $(document).on('mouseout', '.u-select-view .select li, .ul-container .button', function () {
+    $(document).on('mouseout', '.u-select-view .select li', function () {
         $(this).removeClass('hover');
     });
     $(document).on('mouseover', '.ul-container .button', function () {
@@ -633,8 +588,6 @@ $(document).ready(function () {
     var $container = $('.container');
     var currentView;
     var lastView;
-
-    $container.append(titleView.render().$el);
 
     if (version) {
         $container.append(sliderView.render().$el);
@@ -659,6 +612,13 @@ $(document).ready(function () {
         window.externalCall('', 'connection.detect_device', window.location.search);
     });
 
+    $('.button-feedback').on('click', function () {
+        $.event.trigger('FEEDBACK');
+        log({
+            'event': 'ui.click.new_usb_debug_feedback'
+        });
+    });
+
     $(document).bind('FEEDBACK', function () {
         currentView.$el.hide();
         lastView = currentView;
@@ -671,7 +631,6 @@ $(document).ready(function () {
         lastView.$el.show();
         currentView = lastView;
         lastView = feedbackView;
-        titleView.reset();
     });
 
     $(document).bind('SELECT', function (evt, type, version) {
@@ -694,9 +653,5 @@ $(document).ready(function () {
             $container.append(selectView.render().$el);
         }
         selectView.$el.show();
-    });
-
-    $(document).ready(function () {
-        window.external.call('ready');
     });
 });

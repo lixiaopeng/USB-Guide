@@ -16,13 +16,9 @@
             <div class="container"></div>
             <div class="u-footer w-cf">
                 <button class="w-btn w-btn-primary button-check-usb-debug">我已打开</button>
+                <div class="button-feedback link">还是连不上？我要反馈！</div>
             </div>
         </div>
-        <script type="text/template" id="titleView">
-            <div class="icon"></div>
-            <div class="title">请打开「USB 调试」开关</div>
-            <div class="button-feedback">还是连不上？我要反馈！</div>
-        </script>
         <script type="text/template" id="feedBackView">
             <div>
                 <span class="describe">还是连不上怎么办？试试下面的方法吧！</span>
@@ -101,19 +97,10 @@
             </div>
             <div class="container connect-error">
                 <div class="w-ui-loading" >
-                    <div class="anima">
-                        <div class="rotor rotor1"></div>
-                        <div class="rotor rotor2"></div>
-                        <div class="rotor rotor3"></div>
-                        <div class="rotor rotor4"></div>
-                        <div class="rotor rotor5"></div>
-                        <div class="rotor rotor6"></div>
-                        <div class="rotor rotor7"></div>
-                        <div class="rotor rotor8"></div>
-                    </div>
+                    <img src="images/loading.gif" alt="" />
                 </div>
-                <div class="vbox">
-                    <div class="error-des">貌似网络不给力，请稍后再试～</div>
+                <div class="error-des">
+                    <div>貌似网络不给力，请稍后再试～</div>
                     <button class="button-reload w-btn w-btn-primary">重试</button>
                 </div>
             </div>
@@ -143,8 +130,8 @@
         </script>
         <script type="text/javascript" src="components/jquery/jquery.js"></script>
         <script type="text/javascript" src="components/underscore/underscore.js"></script>
-        <script type="text/javascript" src="javascripts/usb-debug-new/usb-debug-new-device.js"></script>
-        <script type="text/javascript" src="javascripts/usb-debug-new/usb-debug-new.js"></script>
+        <script type="text/javascript" src="javascripts/usb-debug/usb-debug-device.js"></script>
+        <script type="text/javascript" src="javascripts/usb-debug/usb-debug.js"></script>
         <!-- endbuild -->
     </body>
 </html>

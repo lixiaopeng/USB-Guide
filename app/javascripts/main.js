@@ -121,7 +121,7 @@ require([
             show('storage_insufficient', obj);
             break;
         case STATE.ADB_DEBUG_CLOSE:
-            show('adbdebug_close', obj);
+            show('usb-guide', obj);
             break;
         default:
             if (obj.state >= 0) {
