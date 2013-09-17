@@ -436,15 +436,15 @@ $(document).ready(function () {
             },
             resetBtn : function () {
                 if (this.currentIndex === 0) {
-                    this.$leftButton.attr('disabled', true);
+                    this.$leftButton.toggleClass('dis', true);
                 } else {
-                    this.$leftButton.removeAttr('disabled');
+                    this.$leftButton.toggleClass('dis', false);
                 }
 
                 if (this.currentIndex === this.devInfo.steps.length - 1) {
-                    this.$rightButton.attr('disabled', true);
+                    this.$rightButton.toggleClass('dis', true);
                 } else {
-                    this.$rightButton.removeAttr('disabled');
+                    this.$rightButton.toggleClass('dis', false);
                 }
             },
             initCss : function () {
@@ -458,8 +458,8 @@ $(document).ready(function () {
                 });
 
                 this.currentIndex = 0;
-                this.$el.find('.left').attr('disabled', true);
-                this.$el.find('.right').attr('disabled', false);
+                this.$el.find('.left').toggleClass('dis', true);
+                this.$el.find('.right').toggleClass('dis', false);
 
                 $(this.lis[0]).removeClass('white').addClass('go-current').css({
                     left : 185
@@ -474,18 +474,19 @@ $(document).ready(function () {
                 var pos = this.devInfo.steps[index].pos;
 
                 var top = parseInt(pos.top, 10);
-                if (pos.hasOwnProperty('-webkit-transform')) {
+                if (this.devInfo.steps[index].direction === 'up') {
                     top = top - 15 + 'px';
-                    this.$arrow.show().css(pos).fadeIn(1000);
                 } else {
                     top = top + 15 + 'px';
-                    pos['-webkit-transform'] = 'none';
-                    this.$arrow.show().css(pos).fadeIn(1000);
-                    delete pos['-webkit-transform'];
                 }
-                this.$arrow.animate({
-                    top : top
-                }, 'slow');
+
+                this.$arrow.show()
+                    .css(pos)
+                    .fadeIn(1000)
+                    .toggleClass('up', this.devInfo.steps[index].direction === 'up')
+                    .animate({
+                        top : top
+                    }, 'slow');
             },
             moveRight: function () {
                 var self = this;
@@ -606,11 +607,27 @@ if (product_id) {
 }
 
 $(document).ready(function () {
-    $(document).on('mouseover', '.u-select-view .select li', function () {
+    $(document).on('mouseover', '.u-select-view .select li, .ul-container .button', function () {
         $(this).addClass('hover');
     });
-    $(document).on('mouseout', '.u-select-view .select li', function () {
+    $(document).on('mouseout', '.u-select-view .select li, .ul-container .button', function () {
         $(this).removeClass('hover');
+    });
+    $(document).on('mouseover', '.ul-container .button', function () {
+        $(this).addClass('hov');
+        if (window.DD_belatedPNG) {
+            $(this).find('.button .icon').each(function () {
+                window.DD_belatedPNG.fixPng(this);
+            });
+        }
+    });
+    $(document).on('mouseout', '.ul-container .button', function () {
+        $(this).removeClass('hov');
+        if (window.DD_belatedPNG) {
+            $(this).find('.button .icon').each(function () {
+                window.DD_belatedPNG.fixPng(this);
+            });
+        }
     });
 
     var $container = $('.container');
@@ -679,7 +696,7 @@ $(document).ready(function () {
         selectView.$el.show();
     });
 
-    $(document).render(function () {
+    $(document).ready(function () {
         window.external.call('ready');
     });
 });

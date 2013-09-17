@@ -479,28 +479,28 @@ body,
                 left: 0;
 
                 .icon {
-                    @include usb-debug-sprite(switch_default);
+                    @include usb-debug-sprite(switch_default_left);
 
                     left: 10px;
                 }
 
-                // &:hover {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_hover);
-                //     }
-                // }
+                &.hov {
+                    .icon {
+                        @include usb-debug-sprite(switch_hover_left);
+                    }
+                }
 
-                // &:active {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_press);
-                //     }
-                // }
+                &:active {
+                    .icon {
+                        @include usb-debug-sprite(switch_press_left);
+                    }
+                }
 
-                // &[disabled] {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_disable);
-                //     }
-                // }
+                &.dis {
+                    .icon {
+                        @include usb-debug-sprite(switch_disable_left);
+                    }
+                }
             }
 
             &.right {
@@ -512,7 +512,7 @@ body,
                     right: 10px;
                 }
 
-                // &:hover {
+                // &.hov {
                 //     .icon {
                 //         @include usb-debug-sprite(switch_hover);
                 //     }
@@ -524,7 +524,7 @@ body,
                 //     }
                 // }
 
-                // &[disabled] {
+                // &.dis {
                 //     .icon {
                 //         @include usb-debug-sprite(switch_disable);
                 //     }
@@ -600,12 +600,14 @@ body,
             @include usb-debug-sprite(arrow);
 
             display: none;
-            height: 95px;
+            height: usb-debug-sprite-height(arrow);
             position: absolute;
-            width: 70px;
+            width: usb-debug-sprite-width(arrow);
             z-index: 1000;
+
+            &.up {
+                @include usb-debug-sprite(arrow-up);
+            }
         }
     }
 }
-
-

@@ -4,39 +4,39 @@ var brandInfo = {
         steps : [{
             'des' : '点击设定进入系统设置',
             'pos' : {
-                left : '253px',
-                top : '118px'
+                left : '262px',
+                top : '135px'
             }
         }, {
             'des' : '选择开发者选项',
             'pos' : {
-                left : '200px',
-                top : '188px'
+                left : '209px',
+                top : '205px'
             }
         }, {
             'des' : '打开「开发者选项」',
+            'direction' : 'up',
             'pos' : {
-                left : '318px',
-                top : '48px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '329px',
+                top : '50px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '298px',
-                top : '102px'
+                left : '308px',
+                top : '119px'
             }
         }, {
             'des' : '勾选USB调试',
             'pos' : {
-                left : '336px',
-                top : '70px'
+                left : '345px',
+                top : '87px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '298px',
-                top : '108px'
+                left : '308px',
+                top : '125px'
             }
         }]
     },
@@ -45,33 +45,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '325px',
-                top : '300px'
+                left : '262px',
+                top : '213px'
             }
         }, {
             'des' : '点击「设置」',
             'pos' : {
-                left : '348px',
-                top : '122px'
+                left : '285px',
+                top : '40px'
             }
         }, {
             'des' : '点击「开发人员选项」',
             'pos' : {
-                left : '300px',
-                top : '245px'
+                left : '237px',
+                top : '163px'
             }
         }, {
             'des' : '打开「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '410px',
-                top : '173px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '346px',
+                top : '74px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '372px',
-                top : '212px'
+                left : '309px',
+                top : '130px'
             }
         }]
     },
@@ -80,33 +80,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入应用列表',
             'pos' : {
-                left : '402px',
-                top : '291px'
+                left : '338px',
+                top : '206px'
             }
         }, {
             'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '250px',
-                top : '156px'
+                left : '187px',
+                top : '71px'
             }
         }, {
             'des' : '点击「开发人员选项」',
             'pos' : {
-                left : '274px',
-                top : '283px'
+                left : '211px',
+                top : '198px'
             }
         }, {
             'des' : '勾选「usb调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '409px',
-                top : '166px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '343px',
+                top : '65px'
             }
         }, {
             'des' : '点击「确定」',
             'pos' : {
-                left : '374px',
-                top : '198px'
+                left : '311px',
+                top : '115px'
             }
         }]
     },
@@ -115,38 +115,38 @@ var brandInfo = {
         steps : [{
             'des' : '点击设定进入系统设置',
             'pos' : {
-                left : '300px',
-                top : '100px'
+                left : '238px',
+                top : '15px'
             }
         }, {
             'des' : '选择开发者选项',
             'pos' : {
-                left : '272px',
-                top : '295px'
+                left : '210px',
+                top : '210px'
             }
         }, {
             'des' : '选择USB调试',
             'pos' : {
-                left : '402px',
-                top : '208px'
+                left : '340px',
+                top : '123px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '370px',
-                top : '200px'
+                left : '308px',
+                top : '110px'
             }
         }, {
             'des' : '勾选USB调试',
             'pos' : {
-                left : '400px',
-                top : '210px'
+                left : '338px',
+                top : '130px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '370px',
-                top : '190px'
+                left : '308px',
+                top : '100px'
             }
         }]
     },
@@ -155,45 +155,45 @@ var brandInfo = {
         steps : [{
             'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '250px',
-                top : '170px'
+                left : '187px',
+                top : '81px'
             }
         }, {
             'des' : '选择「开发者选项」',
             'pos' : {
-                left : '272px',
-                top : '290px'
+                left : '209px',
+                top : '205px'
             }
         }, {
             'des' : '开启开发者选项',
+            'direction' : 'up',
             'pos' : {
-                left : '390px',
-                top : '188px',
-                '-webkit-transform' : 'rotate(180deg)'
+                left : '330px',
+                top : '93px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '372px',
-                top : '290px'
+                left : '307px',
+                top : '200px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'pos' : {
-                left : '390px',
-                top : '225px'
+                left : '333px',
+                top : '138px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '365px',
-                top : '290px'
+                left : '305px',
+                top : '205px'
             }
         }, {
             'des' : '勾选「一律允许」后确定',
             'pos' : {
-                left : '365px',
-                top : '290px'
+                left : '305px',
+                top : '205px'
             }
         }]
     },
@@ -202,33 +202,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入应用列表',
             'pos' : {
-                left : '323px',
-                top : '292px'
+                left : '260px',
+                top : '207px'
             }
         }, {
             'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '348px',
-                top : '160px'
+                left : '284px',
+                top : '75px'
             }
         }, {
             'des' : '点击「开发者选项」',
             'pos' : {
-                left : '274px',
-                top : '274px'
+                left : '209px',
+                top : '189px'
             }
         }, {
             'des' : '勾选「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '396px',
-                top : '174px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '330px',
+                top : '74px'
             }
         }, {
             'des' : '点击「确认」',
             'pos' : {
-                left : '300px',
-                top : '117px'
+                left : '305px',
+                top : '135px'
             }
         }]
     },
@@ -237,33 +237,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '325px',
-                top : '294px'
+                left : '261px',
+                top : '212px'
             }
         }, {
             'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '297px',
-                top : '210px'
+                left : '233px',
+                top : '138px'
             }
         }, {
             'des' : '点击「开发者选项」',
             'pos' : {
-                left : '274px',
-                top : '274px'
+                left : '212px',
+                top : '190px'
             }
         }, {
             'des' : '勾选「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '415px',
-                top : '171px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '349px',
+                top : '74px'
             }
         }, {
             'des' : '点击「确认」',
             'pos' : {
-                left : '374px',
-                top : '199px'
+                left : '312px',
+                top : '114px'
             }
         }]
     },
@@ -272,33 +272,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '323px',
-                top : '294px'
+                left : '260px',
+                top : '209px'
             }
         }, {
             'des' : '点击「设置」',
             'pos' : {
-                left : '298px',
-                top : '157px'
+                left : '235px',
+                top : '75px'
             }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
-                left : '281px',
-                top : '283px'
+                left : '218px',
+                top : '201px'
             }
         }, {
             'des' : '点击「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '415px',
-                top : '168px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '350px',
+                top : '67px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '278px',
-                top : '221px'
+                left : '215px',
+                top : '139px'
             }
         }]
     },
@@ -307,33 +307,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '326px',
-                top : '294px'
+                left : '263px',
+                top : '209px'
             }
         }, {
             'des' : '点击「设置」',
             'pos' : {
-                left : '350px',
-                top : '267px'
+                left : '289px',
+                top : '185px'
             }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
-                left : '281px',
-                top : '273px'
+                left : '218px',
+                top : '188px'
             }
         }, {
             'des' : '点击「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '406px',
-                top : '182px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '341px',
+                top : '87px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '375px',
-                top : '245px'
+                left : '311px',
+                top : '160px'
             }
         }]
     },
@@ -386,45 +386,45 @@ var systemInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '324px',
-                top : '290px'
+                left : '262px',
+                top : '205px'
             }
         }, {
             'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '298px',
-                top : '267px'
+                left : '234px',
+                top : '182px'
             }
         }, {
             'des' : '点击「开发者选项」',
             'pos' : {
-                left : '250px',
-                top : '275px'
+                left : '186px',
+                top : '190px'
             }
         }, {
             'des' : '开启「开发者选项」',
+            'direction' : 'up',
             'pos' : {
-                left : '390px',
-                top : '146px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '314px',
+                top : '41px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '370px',
-                top : '195px'
+                left : '317px',
+                top : '110px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'pos' : {
-                left : '400px',
-                top : '173px'
+                left : '339px',
+                top : '88px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '370px',
-                top : '200px'
+                left : '307px',
+                top : '123px'
             }
         }]
     },
@@ -433,57 +433,57 @@ var systemInfo = {
         steps : [{
             'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '323px',
-                top : '260px'
+                left : '259px',
+                top : '175px'
             }
         }, {
             'des' : '进入「关于手机」',
             'pos' : {
-                left : '272px',
-                top : '282px'
+                left : '208px',
+                top : '187px'
             }
         }, {
             'des' : '连续点击「版本号」若干次',
             'pos' : {
-                left : '250px',
-                top : '275px'
+                left : '187px',
+                top : '190px'
             }
         }, {
             'des' : '返回上一级，进入「开发者选项」',
             'pos' : {
-                left : '270px',
-                top : '255px'
+                left : '207px',
+                top : '170px'
             }
         }, {
             'des' : '开启「开发者选项」',
+            'direction' : 'up',
             'pos' : {
-                left : '380px',
-                top : '146px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '317px',
+                top : '61px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '370px',
-                top : '195px'
+                left : '307px',
+                top : '110px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'pos' : {
-                left : '400px',
-                top : '123px'
+                left : '337px',
+                top : '27px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '370px',
-                top : '184px'
+                left : '307px',
+                top : '99px'
             }
         }, {
             'des' : '勾选「一律允许」后确定',
             'pos' : {
-                left : '368px',
-                top : '217px'
+                left : '304px',
+                top : '132px'
             }
         }]
     },
@@ -492,45 +492,45 @@ var systemInfo = {
         steps : [{
             'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '250px',
-                top : '170px'
+                left : '187px',
+                top : '85px'
             }
         }, {
             'des' : '选择「开发者选项」',
             'pos' : {
-                left : '272px',
-                top : '290px'
+                left : '209px',
+                top : '205px'
             }
         }, {
             'des' : '开启开发者选项',
+            'direction' : 'up',
             'pos' : {
-                left : '390px',
-                top : '188px',
-                '-webkit-transform' : 'rotate(180deg)'
+                left : '332px',
+                top : '88px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '372px',
-                top : '290px'
+                left : '308px',
+                top : '205px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'pos' : {
-                left : '390px',
-                top : '225px'
+                left : '337px',
+                top : '137px'
             }
         }, {
             'des' : '点击确定',
             'pos' : {
-                left : '365px',
-                top : '290px'
+                left : '301px',
+                top : '205px'
             }
         }, {
             'des' : '勾选「一律允许」后确定',
             'pos' : {
-                left : '365px',
-                top : '290px'
+                left : '301px',
+                top : '205px'
             }
         }]
     },
@@ -539,39 +539,39 @@ var systemInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '325px',
-                top : '295px'
+                left : '261px',
+                top : '210px'
             }
         }, {
             'des' : '点击「设置」',
             'pos' : {
-                left : '299px',
-                top : '170px'
+                left : '236px',
+                top : '85px'
             }
         }, {
             'des' : '点击「应用程序」',
             'pos' : {
-                left : '274px',
-                top : '185px'
+                left : '211px',
+                top : '100px'
             }
         }, {
             'des' : '点击「开发」',
             'pos' : {
-                left : '260px',
-                top : '233px'
+                left : '197px',
+                top : '148px'
             }
         }, {
             'des' : '点击「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '412px',
-                top : '160px',
-                '-webkit-transform' : 'rotate(180deg)'
+                left : '346px',
+                top : '65px'
             }
         }, {
             'des' : '点击「确定」',
             'pos' : {
-                left : '277px',
-                top : '214px'
+                left : '214px',
+                top : '129px'
             }
         }]
     },
@@ -580,33 +580,33 @@ var systemInfo = {
         steps : [{
             'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '399px',
-                top : '215px'
+                left : '335px',
+                top : '135px'
             }
         }, {
             'des' : '选择「辅助功能」',
             'pos' : {
-                left : '280px',
-                top : '240px'
+                left : '217px',
+                top : '155px'
             }
         }, {
             'des' : '点击「开发人员工具」',
             'pos' : {
-                left : '280px',
-                top : '305px'
+                left : '217px',
+                top : '220px'
             }
         }, {
             'des' : '开启「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '396px',
-                top : '190px',
-                '-webkit-transform' : 'rotate(180deg)'
+                left : '332px',
+                top : '85px'
             }
         }, {
             'des' : '允许「USB 调试」',
             'pos' : {
-                left : '370px',
-                top : '220px'
+                left : '307px',
+                top : '135px'
             }
         }]
     }
