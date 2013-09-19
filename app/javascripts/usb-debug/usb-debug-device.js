@@ -382,7 +382,7 @@ var brandInfo = {
 
 var systemInfo = {
     'ics' : {
-        name : 'Android 4.0 - 4.1',
+        name : 'Android<br />4.0 - 4.1',
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
@@ -535,7 +535,7 @@ var systemInfo = {
         }]
     },
     'gingerbread' : {
-        name : 'Android 1.6 - 3.2',
+        name : 'Android<br />1.6 - 3.2',
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {

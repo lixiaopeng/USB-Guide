@@ -173,7 +173,7 @@ body,
                 margin: 20px auto 0;
                 width: 110px;
 
-                @each $logo in htc, huawei, lenovo, meizu, xiaomi,
+                @each $logo in htc, huawei, lenovo, xiaomi,
                         motorola, nexus, samsung, sony, zte, ktouch, vivo {
                     &.#{$logo} {
                         @include usb-debug-sprite(#{$logo});
@@ -185,12 +185,6 @@ body,
                 height: 62px;
                 margin: 6px auto 0;
                 width: 110px;
-
-                @each $logo in gingerbread, ics, jeallybean, miuios, meizu {
-                    &.#{$logo} {
-                        @include usb-debug-sprite(#{$logo});
-                    }
-                }
             }
 
             .title {
@@ -242,10 +236,15 @@ body,
             }
 
             &.system {
-                height: 110px;
+                height: 50px;
 
                 .title {
-                    margin-top: 3px;
+                    line-height: 1.3em;
+                    margin-top: 7px;
+
+                    &.signle-line {
+                        margin-top: 0;
+                    }
                 }
 
                 &.gingerbread, &.ics, &.jeallybean, &.meizu {
@@ -316,6 +315,10 @@ body,
                     background-image: -webkit-radial-gradient(85% 15%, #6ec8fb 7%, #0084ce 100%);
                 }
             }
+        }
+
+        &.systems {
+            margin-top: 20px;
         }
     }
 }
@@ -541,21 +544,21 @@ body,
                 left: 360px;
 
                 img {
-                    height: 270px;
+                    height: 240px;
                     opacity: .6;
                 }
             }
 
             &.go-current {
                 img {
-                    height: 330px;
+                    height: 280px;
                     opacity: 1;
                 }
             }
 
             &.go-before {
                 img {
-                    height: 270px;
+                    height: 240px;
                     opacity: .6;
                 }
             }

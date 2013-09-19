@@ -53,7 +53,7 @@
             </div>
         </script>
         <script type="text/template" id="selectView">
-                <h6 class="describe">请按照您的手机品牌选择对应的打开「USB 调试」开关的教程：</h6>
+                <h6 class="describe text-secondary">请按照您的手机品牌或系统选择对应的打开「USB 调试」开关的教程：</h6>
                 <ul class="select u-shadow brands w-cf">
                 <%
                     _.each(brands, function (brand) {
@@ -71,14 +71,12 @@
                     });
                 %>
                 </ul>
-                <h6 class="describe">按&nbsp;Android&nbsp;系统版选择教程</h6>
                 <ul class="select u-shadow systems w-cf">
                 <%
                     _.each(systems, function (system) {
                 %>
                     <li class="system <%= system.className %>">
-                        <div class="system-logo <%= system.className %>"></div>
-                        <div class="h6 title"><%= system.name %></div>
+                        <div class="h5 title"><%= system.name %></div>
                         <div class="top"></div>
                         <div class="check-course">
                             <div class="play"></div>

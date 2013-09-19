@@ -63,10 +63,10 @@ $(document).ready(function () {
                 className : 'vivo'
             }],
             systems: [{
-                name : 'Android 1.6 - 3.2',
+                name : 'Android<br />1.6 - 3.2',
                 className : 'gingerbread'
             }, {
-                name : 'Android 4.0 - 4.1',
+                name : 'Android<br />4.0 - 4.1',
                 className : 'ics'
             }, {
                 name : 'Android 4.2',
