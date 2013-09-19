@@ -174,6 +174,11 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        shell: {
+            replace : {
+                command : './build.sh'
+            }
         }
     });
 
@@ -207,6 +212,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'prebuild',
-        'replace-main'
+        'replace-main',
+        'shell:replace'
     ]);
 };
