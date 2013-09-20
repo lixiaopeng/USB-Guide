@@ -2,233 +2,129 @@ var brandInfo = {
     'samsung' : {
         name : 'Samsung 手机',
         steps : [{
-            'des' : '点击设定进入系统设置',
+            'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '262px',
-                top : '135px'
+                left : '246px',
+                top : '105px'
             }
         }, {
-            'des' : '选择开发者选项',
+            'des' : '选择「开发者选项」',
             'pos' : {
-                left : '209px',
-                top : '205px'
+                left : '200px',
+                top : '165px'
             }
         }, {
             'des' : '打开「开发者选项」',
             'direction' : 'up',
             'pos' : {
-                left : '329px',
-                top : '50px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '308px',
-                top : '119px'
-            }
-        }, {
-            'des' : '勾选USB调试',
-            'pos' : {
-                left : '345px',
-                top : '87px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '308px',
-                top : '125px'
-            }
-        }]
-    },
-    'huawei' : {
-        name : '华为手机',
-        steps : [{
-            'des' : '点击进入「应用列表」',
-            'pos' : {
-                left : '262px',
-                top : '213px'
-            }
-        }, {
-            'des' : '点击「设置」',
-            'pos' : {
-                left : '285px',
-                top : '40px'
-            }
-        }, {
-            'des' : '点击「开发人员选项」',
-            'pos' : {
-                left : '237px',
-                top : '163px'
-            }
-        }, {
-            'des' : '打开「USB 调试」',
-            'direction' : 'up',
-            'pos' : {
-                left : '346px',
-                top : '74px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '309px',
-                top : '130px'
-            }
-        }]
-    },
-    'motorola' : {
-        name : 'Moto 手机',
-        steps : [{
-            'des' : '点击进入应用列表',
-            'pos' : {
-                left : '338px',
-                top : '206px'
-            }
-        }, {
-            'des' : '点击「设定」进入系统设置',
-            'pos' : {
-                left : '187px',
-                top : '71px'
-            }
-        }, {
-            'des' : '点击「开发人员选项」',
-            'pos' : {
-                left : '211px',
-                top : '198px'
-            }
-        }, {
-            'des' : '勾选「usb调试」',
-            'direction' : 'up',
-            'pos' : {
-                left : '343px',
-                top : '65px'
+                left : '302px',
+                top : '45px'
             }
         }, {
             'des' : '点击「确定」',
             'pos' : {
-                left : '311px',
-                top : '115px'
-            }
-        }]
-    },
-    'sony': {
-        name : 'Sony 手机',
-        steps : [{
-            'des' : '点击设定进入系统设置',
-            'pos' : {
-                left : '238px',
-                top : '15px'
+                left : '285px',
+                top : '97px'
             }
         }, {
-            'des' : '选择开发者选项',
+            'des' : '勾选「USB调试」',
             'pos' : {
-                left : '210px',
-                top : '210px'
+                left : '318px',
+                top : '57px'
             }
         }, {
-            'des' : '选择USB调试',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '340px',
-                top : '123px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '308px',
-                top : '110px'
-            }
-        }, {
-            'des' : '勾选USB调试',
-            'pos' : {
-                left : '338px',
-                top : '130px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '308px',
-                top : '100px'
+                left : '285px',
+                top : '97px'
             }
         }]
     },
     'xiaomi' : {
         name : '小米手机',
         steps : [{
-            'des' : '点击「设定」进入系统设置',
+            'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '187px',
-                top : '81px'
+                left : '183px',
+                top : '55px'
             }
         }, {
             'des' : '选择「开发者选项」',
             'pos' : {
-                left : '209px',
-                top : '205px'
+                left : '190px',
+                top : '160px'
             }
         }, {
-            'des' : '开启开发者选项',
+            'des' : '开启「开发者选项」',
             'direction' : 'up',
             'pos' : {
-                left : '330px',
-                top : '93px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '307px',
-                top : '200px'
-            }
-        }, {
-            'des' : '勾选「USB 调试」',
-            'pos' : {
-                left : '333px',
-                top : '138px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
                 left : '305px',
-                top : '205px'
+                top : '80px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '280px',
+                top : '160px'
+            }
+        }, {
+            'des' : '开启「USB 调试」',
+            'pos' : {
+                left : '308px',
+                top : '105px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '280px',
+                top : '160px'
             }
         }, {
             'des' : '勾选「一律允许」后确定',
             'pos' : {
-                left : '305px',
-                top : '205px'
+                left : '280px',
+                top : '160px'
             }
         }]
     },
-    'zte' : {
-        name : '中兴手机',
+    'sony': {
+        name : 'Sony 手机',
         steps : [{
-            'des' : '点击进入应用列表',
+            'des' : '点击「设定」进入系统设置',
             'pos' : {
-                left : '260px',
-                top : '207px'
+                left : '225px',
+                top : '0px'
             }
         }, {
-            'des' : '点击「设置」进入系统设置',
+            'des' : '选择「开发者选项」',
             'pos' : {
-                left : '284px',
-                top : '75px'
+                left : '200px',
+                top : '165px'
             }
         }, {
-            'des' : '点击「开发者选项」',
-            'pos' : {
-                left : '209px',
-                top : '189px'
-            }
-        }, {
-            'des' : '勾选「USB 调试」',
+            'des' : '开启「开发人员选项」',
             'direction' : 'up',
             'pos' : {
-                left : '330px',
-                top : '74px'
+                left : '310px',
+                top : '35px'
             }
         }, {
-            'des' : '点击「确认」',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '305px',
-                top : '135px'
+                left : '285px',
+                top : '80px'
+            }
+        }, {
+            'des' : '勾选「USB调试」',
+            'pos' : {
+                left : '310px',
+                top : '100px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '285px',
+                top : '80px'
             }
         }]
     },
@@ -237,33 +133,68 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '261px',
-                top : '212px'
+                left : '245px',
+                top : '170px'
             }
         }, {
             'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '233px',
-                top : '138px'
+                left : '222px',
+                top : '100px'
             }
         }, {
-            'des' : '点击「开发者选项」',
+            'des' : '点击「开发人员选项」',
             'pos' : {
-                left : '212px',
-                top : '190px'
+                left : '190px',
+                top : '140px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'direction' : 'up',
             'pos' : {
-                left : '349px',
-                top : '74px'
+                left : '320px',
+                top : '65px'
             }
         }, {
-            'des' : '点击「确认」',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '312px',
-                top : '114px'
+                left : '285px',
+                top : '80px'
+            }
+        }]
+    },
+    'huawei' : {
+        name : '华为手机',
+        steps : [{
+            'des' : '点击进入「应用列表」',
+            'pos' : {
+                left : '245px',
+                top : '165px'
+            }
+        }, {
+            'des' : '点击「设置」',
+            'pos' : {
+                left : '266px',
+                top : '15px'
+            }
+        }, {
+            'des' : '点击「开发人员选项」',
+            'pos' : {
+                left : '200px',
+                top : '120px'
+            }
+        }, {
+            'des' : '勾选「USB 调试」',
+            'direction' : 'up',
+            'pos' : {
+                left : '317px',
+                top : '65px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '287px',
+                top : '90px'
             }
         }]
     },
@@ -272,33 +203,103 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '260px',
-                top : '209px'
+                left : '244px',
+                top : '165px'
             }
         }, {
             'des' : '点击「设置」',
             'pos' : {
-                left : '235px',
-                top : '75px'
+                left : '222px',
+                top : '45px'
             }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
-                left : '218px',
-                top : '201px'
+                left : '195px',
+                top : '155px'
             }
         }, {
-            'des' : '点击「USB 调试」',
+            'des' : '勾选「USB 调试」',
             'direction' : 'up',
             'pos' : {
-                left : '350px',
-                top : '67px'
+                left : '320px',
+                top : '55px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '215px',
-                top : '139px'
+                left : '205px',
+                top : '100px'
+            }
+        }]
+    },
+    'zte' : {
+        name : '中兴手机',
+        steps : [{
+            'des' : '点击进入「应用列表」',
+            'pos' : {
+                left : '245px',
+                top : '165px'
+            }
+        }, {
+            'des' : '点击「设置」进入系统设置',
+            'pos' : {
+                left : '265px',
+                top : '50px'
+            }
+        }, {
+            'des' : '点击「开发人员选项」',
+            'pos' : {
+                left : '200px',
+                top : '145px'
+            }
+        }, {
+            'des' : '勾选「USB 调试」',
+            'direction' : 'up',
+            'pos' : {
+                left : '304px',
+                top : '65px'
+            }
+        }, {
+            'des' : '点击「确认」',
+            'pos' : {
+                left : '285px',
+                top : '100px'
+            }
+        }]
+    },
+    'motorola' : {
+        name : 'Moto 手机',
+        steps : [{
+            'des' : '点击进入「应用列表」',
+            'pos' : {
+                left : '312px',
+                top : '160px'
+            }
+        }, {
+            'des' : '点击「设置」进入系统设置',
+            'pos' : {
+                left : '182px',
+                top : '45px'
+            }
+        }, {
+            'des' : '点击「开发人员选项」',
+            'pos' : {
+                left : '200px',
+                top : '155px'
+            }
+        }, {
+            'des' : '勾选「usb调试」',
+            'direction' : 'up',
+            'pos' : {
+                left : '315px',
+                top : '55px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '285px',
+                top : '85px'
             }
         }]
     },
@@ -307,33 +308,33 @@ var brandInfo = {
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '263px',
-                top : '209px'
+                left : '247px',
+                top : '165px'
             }
         }, {
             'des' : '点击「设置」',
             'pos' : {
-                left : '289px',
-                top : '185px'
+                left : '270px',
+                top : '145px'
             }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
-                left : '218px',
-                top : '188px'
+                left : '200px',
+                top : '140px'
             }
         }, {
-            'des' : '点击「USB 调试」',
+            'des' : '勾选「USB 调试」',
             'direction' : 'up',
             'pos' : {
-                left : '341px',
-                top : '87px'
+                left : '313px',
+                top : '75px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '311px',
-                top : '160px'
+                left : '288px',
+                top : '130px'
             }
         }]
     },
@@ -342,271 +343,271 @@ var brandInfo = {
         steps : [{
             'des' : '点击「设置」',
             'pos' : {
-                left : '403px',
-                top : '200px'
+                left : '312px',
+                top : '80px'
             }
         }, {
             'des' : '点击进入「通用」',
             'pos' : {
-                left : '263px',
-                top : '194px'
+                left : '200px',
+                top : '75px'
             }
         }, {
             'des' : '点击进入「应用程序」',
             'pos' : {
-                left : '258px',
-                top : '197px'
+                left : '190px',
+                top : '75px'
             }
         }, {
             'des' : '选择「开发」',
             'pos' : {
-                left : '250px',
-                top : '253px'
+                left : '180px',
+                top : '125px'
             }
         }, {
-            'des' : '点击「USB 调试」',
+            'des' : '开启「USB 调试」',
+            'direction' : 'up',
             'pos' : {
-                left : '395px',
-                top : '175px',
-                '-webkit-transform': 'rotate(180deg)'
+                left : '305px',
+                top : '65px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '278px',
-                top : '200px'
+                left : '205px',
+                top : '85px'
             }
         }]
     }
 };
 
 var systemInfo = {
-    'ics' : {
-        name : 'Android<br />4.0 - 4.1',
+    'gingerbread' : {
+        name : 'Android 1.6 - 3.2',
         steps : [{
             'des' : '点击进入「应用列表」',
             'pos' : {
-                left : '262px',
-                top : '205px'
+                left : '246px',
+                top : '170px'
+            }
+        }, {
+            'des' : '点击「设置」',
+            'pos' : {
+                left : '224px',
+                top : '55px'
+            }
+        }, {
+            'des' : '点击「应用程序」',
+            'pos' : {
+                left : '195px',
+                top : '75px'
+            }
+        }, {
+            'des' : '点击「开发」',
+            'pos' : {
+                left : '185px',
+                top : '115px'
+            }
+        }, {
+            'des' : '勾选「USB 调试」',
+            'direction' : 'up',
+            'pos' : {
+                left : '317px',
+                top : '50px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '205px',
+                top : '95px'
+            }
+        }]
+    },
+    'ics' : {
+        name : 'Android 4.0 - 4.1',
+        steps : [{
+            'des' : '点击进入「应用列表」',
+            'pos' : {
+                left : '245px',
+                top : '160px'
             }
         }, {
             'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '234px',
-                top : '182px'
+                left : '222px',
+                top : '140px'
             }
         }, {
             'des' : '点击「开发者选项」',
             'pos' : {
-                left : '186px',
-                top : '190px'
+                left : '190px',
+                top : '150px'
             }
         }, {
             'des' : '开启「开发者选项」',
             'direction' : 'up',
             'pos' : {
-                left : '314px',
-                top : '41px'
+                left : '300px',
+                top : '30px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '317px',
-                top : '110px'
+                left : '285px',
+                top : '75px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'pos' : {
-                left : '339px',
-                top : '88px'
+                left : '312px',
+                top : '65px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '307px',
-                top : '123px'
+                left : '285px',
+                top : '90px'
             }
         }]
     },
     'jeallybean' : {
         name : 'Android 4.2',
         steps : [{
-            'des' : '点击「设定」进入系统设置',
+            'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '259px',
-                top : '175px'
+                left : '245px',
+                top : '140px'
             }
         }, {
             'des' : '进入「关于手机」',
             'pos' : {
-                left : '208px',
-                top : '187px'
+                left : '195px',
+                top : '150px'
             }
         }, {
             'des' : '连续点击「版本号」若干次',
             'pos' : {
-                left : '187px',
-                top : '190px'
+                left : '185px',
+                top : '150px'
             }
         }, {
             'des' : '返回上一级，进入「开发者选项」',
             'pos' : {
-                left : '207px',
-                top : '170px'
+                left : '195px',
+                top : '130px'
             }
         }, {
             'des' : '开启「开发者选项」',
             'direction' : 'up',
             'pos' : {
-                left : '317px',
-                top : '61px'
+                left : '300px',
+                top : '45px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '307px',
-                top : '110px'
+                left : '285px',
+                top : '85px'
             }
         }, {
             'des' : '勾选「USB 调试」',
             'pos' : {
-                left : '337px',
-                top : '27px'
+                left : '310px',
+                top : '20px'
             }
         }, {
-            'des' : '点击确定',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '307px',
-                top : '99px'
+                left : '285px',
+                top : '70px'
             }
         }, {
             'des' : '勾选「一律允许」后确定',
             'pos' : {
-                left : '304px',
-                top : '132px'
+                left : '285px',
+                top : '95px'
             }
         }]
     },
     'miuios' : {
         name : 'MIUI V5',
         steps : [{
-            'des' : '点击「设定」进入系统设置',
+            'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '187px',
-                top : '85px'
+                left : '183px',
+                top : '55px'
             }
         }, {
             'des' : '选择「开发者选项」',
             'pos' : {
-                left : '209px',
-                top : '205px'
+                left : '190px',
+                top : '155px'
             }
         }, {
-            'des' : '开启开发者选项',
+            'des' : '开启「开发者选项」',
             'direction' : 'up',
             'pos' : {
-                left : '332px',
-                top : '88px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '308px',
-                top : '205px'
-            }
-        }, {
-            'des' : '勾选「USB 调试」',
-            'pos' : {
-                left : '337px',
-                top : '137px'
-            }
-        }, {
-            'des' : '点击确定',
-            'pos' : {
-                left : '301px',
-                top : '205px'
-            }
-        }, {
-            'des' : '勾选「一律允许」后确定',
-            'pos' : {
-                left : '301px',
-                top : '205px'
-            }
-        }]
-    },
-    'gingerbread' : {
-        name : 'Android<br />1.6 - 3.2',
-        steps : [{
-            'des' : '点击进入「应用列表」',
-            'pos' : {
-                left : '261px',
-                top : '210px'
-            }
-        }, {
-            'des' : '点击「设置」',
-            'pos' : {
-                left : '236px',
-                top : '85px'
-            }
-        }, {
-            'des' : '点击「应用程序」',
-            'pos' : {
-                left : '211px',
-                top : '100px'
-            }
-        }, {
-            'des' : '点击「开发」',
-            'pos' : {
-                left : '197px',
-                top : '148px'
-            }
-        }, {
-            'des' : '点击「USB 调试」',
-            'direction' : 'up',
-            'pos' : {
-                left : '346px',
-                top : '65px'
+                left : '305px',
+                top : '75px'
             }
         }, {
             'des' : '点击「确定」',
             'pos' : {
-                left : '214px',
-                top : '129px'
+                left : '280px',
+                top : '165px'
+            }
+        }, {
+            'des' : '开启「USB 调试」',
+            'pos' : {
+                left : '307px',
+                top : '100px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '280px',
+                top : '165px'
+            }
+        }, {
+            'des' : '勾选「一律允许」后确定',
+            'pos' : {
+                left : '280px',
+                top : '165px'
             }
         }]
     },
     'meizu' : {
         name : '魅族 Flyme',
         steps : [{
-            'des' : '点击「设定」进入系统设置',
+            'des' : '点击「设置」进入系统设置',
             'pos' : {
-                left : '335px',
-                top : '135px'
+                left : '308px',
+                top : '105px'
             }
         }, {
             'des' : '选择「辅助功能」',
             'pos' : {
-                left : '217px',
-                top : '155px'
+                left : '215px',
+                top : '110px'
             }
         }, {
             'des' : '点击「开发人员工具」',
             'pos' : {
-                left : '217px',
-                top : '220px'
+                left : '197px',
+                top : '165px'
             }
         }, {
             'des' : '开启「USB 调试」',
             'direction' : 'up',
             'pos' : {
-                left : '332px',
-                top : '85px'
+                left : '305px',
+                top : '75px'
             }
         }, {
-            'des' : '允许「USB 调试」',
+            'des' : '点击「确定」',
             'pos' : {
-                left : '307px',
-                top : '135px'
+                left : '285px',
+                top : '95px'
             }
         }]
     }
