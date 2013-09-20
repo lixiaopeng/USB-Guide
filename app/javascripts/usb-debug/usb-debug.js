@@ -75,7 +75,7 @@ $(document).ready(function () {
                 name : 'MIUI V5',
                 className : 'miuios'
             }, {
-                name : 'Flyme',
+                name : '魅族 Flyme',
                 className : 'meizu'
             }]
         };
@@ -132,12 +132,12 @@ $(document).ready(function () {
         };
 
         FeedbackView.prototype = {
-            className : 'u-feedback-ctn u-shadow',
+            className : 'u-feedback-ctn',
             template : _.template($('#feedBackView').html()),
             render: function () {
                 var self = this;
 
-                this.$el.html(this.template({})).find('.return').click(this.clickReturn);
+                this.$el.html(this.template({}));
 
                 var $numTip = this.$el.find('.body .not-a-number');
                 var $connectTip = this.$el.find('.body .connect-error');
@@ -218,9 +218,6 @@ $(document).ready(function () {
                 }
 
                 return this;
-            },
-            clickReturn : function () {
-                $.event.trigger('RETURN');
             }
         };
 
@@ -234,7 +231,7 @@ $(document).ready(function () {
         };
 
         SilderView.prototype = {
-            className : 'u-slider-view u-shadow',
+            className : 'u-slider-view',
             template : _.template($('#sliderView').html()),
             render : function () {
                 var self = this;
@@ -247,13 +244,6 @@ $(document).ready(function () {
                 this.$number = this.$el.find('.number');
                 this.$describe = this.$el.find('.steps-describe');
                 this.$page = this.$el.find('.page');
-
-                this.$el.find('.more').click(function () {
-                    $.event.trigger('MORE');
-                    log({
-                        'event': 'ui.click.new_usb_debug_more'
-                    });
-                });
 
                 this.$el.find('.left').click(function () {
                     if (self.currentIndex > 0) {
@@ -404,6 +394,7 @@ $(document).ready(function () {
             },
             initCss : function () {
                 var t = this.totleIndex;
+                var self = this;
 
                 this.lis.addClass('init white');
                 $.each(this.lis, function (index, li) {
@@ -416,10 +407,16 @@ $(document).ready(function () {
                 this.$el.find('.left').toggleClass('dis', true);
                 this.$el.find('.right').toggleClass('dis', false);
 
-                $(this.lis[0]).removeClass('white').addClass('go-current').css({
-                    left : 185
+                $(this.lis[0]).removeClass('white').animate({
+                    left : 174,
+                    top: 0
+                }, function () {
+                    self.showArrow(self.currentIndex);
+                }).find('img').animate({
+                    height: 280,
+                    opacity: 1
                 });
-                this.showArrow(this.currentIndex);
+
                 this.setNav(0);
             },
             hideArrow : function () {
@@ -455,17 +452,25 @@ $(document).ready(function () {
                     $li.css('zIndex', zIndex).attr('zindex', zIndex);
                 }
 
-                $(this.lis[this.currentIndex]).addClass('go-before').animate({
-                    left : 40
+                $(this.lis[this.currentIndex]).animate({
+                    left : 40,
+                    top : 20
+                }).find('img').animate({
+                    height: 240,
+                    opacity: .6
                 });
 
                 this.currentIndex++;
 
                 $(this.lis[this.currentIndex]).animate({
-                    left : 185
+                    left : 174,
+                    top : 0
                 }, function () {
                     self.showArrow(self.currentIndex);
-                }).addClass('go-current');
+                }).find('img').animate({
+                    height: 280,
+                    opacity: 1
+                });
 
                 this.setNav(this.currentIndex);
             },
@@ -482,17 +487,25 @@ $(document).ready(function () {
                     $li.css('zIndex', zIndex).attr('zindex', zIndex);
                 }
 
-                $(this.lis[this.currentIndex]).removeClass('go-current').animate({
-                    left : 360
+                $(this.lis[this.currentIndex]).animate({
+                    left : 333,
+                    top: 20
+                }).find('img').animate({
+                    height: 240,
+                    opacity: .6
                 });
 
                 this.currentIndex--;
 
                 $(this.lis[this.currentIndex]).animate({
-                    left : 185
+                    left : 174,
+                    top : 0
                 }, function () {
                     self.showArrow(self.currentIndex);
-                }).removeClass('go-before');
+                }).find('img').animate({
+                    height: 280,
+                    opacity: 1
+                });
 
                 this.setNav(this.currentIndex);
             }
@@ -562,12 +575,15 @@ if (product_id) {
 }
 
 $(document).ready(function () {
+
     $(document).on('mouseover', '.u-select-view .select li', function () {
         $(this).addClass('hover');
     });
+
     $(document).on('mouseout', '.u-select-view .select li', function () {
         $(this).removeClass('hover');
     });
+
     $(document).on('mouseover', '.ul-container .button', function () {
         $(this).addClass('hov');
         if (window.DD_belatedPNG) {
@@ -576,6 +592,7 @@ $(document).ready(function () {
             });
         }
     });
+
     $(document).on('mouseout', '.ul-container .button', function () {
         $(this).removeClass('hov');
         if (window.DD_belatedPNG) {
@@ -589,11 +606,38 @@ $(document).ready(function () {
     var currentView;
     var lastView;
 
+
+    var hideBtn = function (selector) {
+        $('.button-feedback, .button-return, .button-more').hide();
+    };
+
+    var showBtnMore = function () {
+        $('.button-more').show();
+    };
+
+    var showBtnReturn = function () {
+        $('.button-return').show();
+    };
+
+     var showBtnFeedback = function () {
+        $('.button-feedback').show();
+    };
+
+    var showView = function (nextView) {
+        currentView.$el.hide();
+        lastView = currentView;
+        currentView = nextView;
+        nextView.$el.show();
+        hideBtn();
+    };
+
+    hideBtn();
     if (version) {
         $container.append(sliderView.render().$el);
         currentView = sliderView;
         currentView.$el.show();
         currentView.start('brands', version);
+        showBtnMore();
 
         log({
             'event': 'ui.click.new_usb_debug_match',
@@ -604,54 +648,51 @@ $(document).ready(function () {
         $container.append(selectView.render().$el);
         currentView = selectView;
         currentView.$el.show();
+        showBtnFeedback();
     }
 
     $container.append(feedbackView.render().$el);
 
     $('.button-check-usb-debug').click(function () {
-        window.externalCall('', 'connection.detect_device', window.location.search);
+        window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
     });
 
     $('.button-feedback').on('click', function () {
-        $.event.trigger('FEEDBACK');
+        showView(feedbackView);
+        showBtnReturn();
+
         log({
             'event': 'ui.click.new_usb_debug_feedback'
         });
     });
 
-    $(document).bind('FEEDBACK', function () {
-        currentView.$el.hide();
-        lastView = currentView;
-        currentView = feedbackView;
-        feedbackView.$el.show();
-    });
-
-    $(document).bind('RETURN', function () {
-        currentView.$el.hide();
-        lastView.$el.show();
-        currentView = lastView;
-        lastView = feedbackView;
-    });
-
-    $(document).bind('SELECT', function (evt, type, version) {
-        currentView.$el.hide();
-        lastView = selectView;
-        currentView = sliderView;
-
-        $container.append(sliderView.render().$el);
-
-        sliderView.$el.show();
-        currentView.start(type, version);
-    });
-
-    $(document).bind('MORE', function () {
-        currentView.$el.hide();
-        lastView = selectView;
-        currentView = selectView;
+    $('.button-more').on('click', function () {
 
         if (!selectView.$el) {
             $container.append(selectView.render().$el);
         }
-        selectView.$el.show();
+        showView(selectView);
+        showBtnFeedback();
+
+        log({
+            'event': 'ui.click.new_usb_debug_more'
+        });
+    });
+
+    $('.button-return').on('click', function () {
+        showView(selectView);
+        showBtnFeedback();
+
+        log({
+            'event': 'ui.click.new_usb_debug_more'
+        });
+    });
+
+    $(document).bind('SELECT', function (evt, type, version) {
+        $container.append(sliderView.render().$el);
+        showView(sliderView);
+        showBtnMore();
+
+        currentView.start(type, version);
     });
 });

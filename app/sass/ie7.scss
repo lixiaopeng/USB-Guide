@@ -19,3 +19,15 @@
         }
     }
 }
+
+.u-slider-view {
+    .warp {
+        .course-li {
+            &.init {
+                img {
+                    filter: alpha(opacity=60);
+                }
+            }
+        }
+    }
+}
