@@ -605,22 +605,15 @@ $(document).ready(function () {
     var $container = $('.container');
     var currentView;
     var lastView;
+    var btnMore = $('.button-more');
+    var btnReturn = $('.button-return');
+    var btnFeedback = $('.button-feedback');
 
 
     var hideBtn = function (selector) {
-        $('.button-feedback, .button-return, .button-more').hide();
-    };
-
-    var showBtnMore = function () {
-        $('.button-more').show();
-    };
-
-    var showBtnReturn = function () {
-        $('.button-return').show();
-    };
-
-     var showBtnFeedback = function () {
-        $('.button-feedback').show();
+        btnMore.hide();
+        btnReturn.hide();
+        btnFeedback.hide();
     };
 
     var showView = function (nextView) {
@@ -637,7 +630,7 @@ $(document).ready(function () {
         currentView = sliderView;
         currentView.$el.show();
         currentView.start('brands', version);
-        showBtnMore();
+        btnMore.show();
 
         log({
             'event': 'ui.click.new_usb_debug_match',
@@ -648,7 +641,7 @@ $(document).ready(function () {
         $container.append(selectView.render().$el);
         currentView = selectView;
         currentView.$el.show();
-        showBtnFeedback();
+        btnFeedback.show();
     }
 
     $container.append(feedbackView.render().$el);
@@ -659,7 +652,7 @@ $(document).ready(function () {
 
     $('.button-feedback').on('click', function () {
         showView(feedbackView);
-        showBtnReturn();
+        btnReturn.show();
 
         log({
             'event': 'ui.click.new_usb_debug_feedback'
@@ -672,7 +665,7 @@ $(document).ready(function () {
             $container.append(selectView.render().$el);
         }
         showView(selectView);
-        showBtnFeedback();
+        btnFeedback.show();
 
         log({
             'event': 'ui.click.new_usb_debug_more'
@@ -681,7 +674,7 @@ $(document).ready(function () {
 
     $('.button-return').on('click', function () {
         showView(selectView);
-        showBtnFeedback();
+        btnFeedback.show();
 
         log({
             'event': 'ui.click.new_usb_debug_more'
@@ -691,7 +684,7 @@ $(document).ready(function () {
     $(document).bind('SELECT', function (evt, type, version) {
         $container.append(sliderView.render().$el);
         showView(sliderView);
-        showBtnMore();
+        btnMore.show();
 
         currentView.start(type, version);
     });
