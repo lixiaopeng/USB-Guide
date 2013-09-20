@@ -116,7 +116,9 @@ body,
     position: absolute;
     width: 100%;
 
-    .button-feedback {
+    .button-feedback,
+    .button-return,
+    .button-more {
         @include inline-block;
 
         background-image: none;
@@ -139,27 +141,26 @@ body,
     .describe {
         margin-left: auto;
         margin-right: auto;
-        padding: 10px 0;
-        width: 600px;
+        padding: 0px 0px 10px;
+        width: 540px;
     }
 
     .select {
         color: #505050;
         list-style: none;
         margin: 0 auto;
-        width: 600px;
+        width: 540px;
 
         li {
             cursor: pointer;
             float: left;
-            height: 120px;
+            height: 108px;
             overflow: hidden;
             position: relative;
-            width: 120px;
+            width: 108px;
 
             .top {
                 background: #000;
-                border: 1px red solid;
                 height: 100%;
                 opacity: 0.06;
                 position: absolute;
@@ -170,7 +171,7 @@ body,
 
             .logo {
                 height: 50px;
-                margin: 20px auto 0;
+                margin: 13px auto 0;
                 width: 110px;
 
                 @each $logo in htc, huawei, lenovo, xiaomi,
@@ -324,9 +325,8 @@ body,
 }
 
 .u-feedback-ctn {
-    background: #fff;
     display: none;
-    height: 390px;
+    height: 345px;
     margin: 15px auto;
     padding: 15px;
     position: relative;
@@ -348,11 +348,6 @@ body,
     .describe,
     .return {
         @include inline-block();
-    }
-
-    .return {
-        position: absolute;
-        right: 15px;
     }
 
     .body {
@@ -396,26 +391,21 @@ body,
 }
 
 .u-slider-view {
-    background: #fff;
     display: none;
-    margin: 20px auto;
+    margin: 0px auto;
     padding: 15px;
     position: relative;
-    width: 600px;
+    width: 540px;
 
     .title {
         height: 22px;
         line-height: 22px;
+        text-align: center;
     }
 
     .describe {
-        float: left;
         font-size: 16px;
         line-height: 22px;
-    }
-
-    .button-more {
-        float: right;
     }
 
     .connect-error {
@@ -450,12 +440,13 @@ body,
         display: none;
         margin-top: 10px;
         position: relative;
+        width: 522px;
 
         .button {
             cursor: pointer;
-            height: 330px;
+            height: 290px;
             position: absolute;
-            width: 185px;
+            width: 174px;
             z-index: 10000;
 
 
@@ -526,7 +517,7 @@ body,
 
     .warp {
         display: block;
-        height: 330px;
+        height: 290px;
         position: relative;
         white-space: nowrap;
 
@@ -541,22 +532,9 @@ body,
 
             &.init {
                 background: #fff;
-                left: 360px;
+                left: 333px;
+                top: 20px;
 
-                img {
-                    height: 240px;
-                    opacity: .6;
-                }
-            }
-
-            &.go-current {
-                img {
-                    height: 280px;
-                    opacity: 1;
-                }
-            }
-
-            &.go-before {
                 img {
                     height: 240px;
                     opacity: .6;
