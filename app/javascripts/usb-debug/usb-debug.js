@@ -394,6 +394,7 @@ $(document).ready(function () {
             },
             initCss : function () {
                 var t = this.totleIndex;
+                var self = this;
 
                 this.lis.addClass('init white');
                 $.each(this.lis, function (index, li) {
@@ -406,15 +407,16 @@ $(document).ready(function () {
                 this.$el.find('.left').toggleClass('dis', true);
                 this.$el.find('.right').toggleClass('dis', false);
 
-                $(this.lis[0]).removeClass('white').css({
+                $(this.lis[0]).removeClass('white').animate({
                     left : 174,
                     top: 0
-                }).find('img').css({
+                }, function () {
+                    self.showArrow(self.currentIndex);
+                }).find('img').animate({
                     height: 280,
                     opacity: 1
                 });
 
-                this.showArrow(this.currentIndex);
                 this.setNav(0);
             },
             hideArrow : function () {
@@ -604,13 +606,21 @@ $(document).ready(function () {
     var currentView;
     var lastView;
 
-    var displayButton = function (selector) {
 
-        $.each(['feedback', 'return', 'more'], function (index, className) {
-            $('.button-' + className).hide();
-        });
+    var hideBtn = function (selector) {
+        $('.button-feedback, .button-return, .button-more').hide();
+    };
 
-        $(selector).show();
+    var showBtnMore = function () {
+        $('.button-more').show();
+    };
+
+    var showBtnReturn = function () {
+        $('.button-return').show();
+    };
+
+     var showBtnFeedback = function () {
+        $('.button-feedback').show();
     };
 
     var showView = function (nextView) {
@@ -618,14 +628,16 @@ $(document).ready(function () {
         lastView = currentView;
         currentView = nextView;
         nextView.$el.show();
+        hideBtn();
     };
 
+    hideBtn();
     if (version) {
         $container.append(sliderView.render().$el);
         currentView = sliderView;
         currentView.$el.show();
         currentView.start('brands', version);
-        displayButton('.button-select');
+        showBtnMore();
 
         log({
             'event': 'ui.click.new_usb_debug_match',
@@ -636,7 +648,7 @@ $(document).ready(function () {
         $container.append(selectView.render().$el);
         currentView = selectView;
         currentView.$el.show();
-        displayButton('.button-feedback');
+        showBtnFeedback();
     }
 
     $container.append(feedbackView.render().$el);
@@ -647,7 +659,7 @@ $(document).ready(function () {
 
     $('.button-feedback').on('click', function () {
         showView(feedbackView);
-        displayButton('.button-return');
+        showBtnReturn();
 
         log({
             'event': 'ui.click.new_usb_debug_feedback'
@@ -660,7 +672,7 @@ $(document).ready(function () {
             $container.append(selectView.render().$el);
         }
         showView(selectView);
-        displayButton('.button-feedback');
+        showBtnFeedback();
 
         log({
             'event': 'ui.click.new_usb_debug_more'
@@ -669,7 +681,7 @@ $(document).ready(function () {
 
     $('.button-return').on('click', function () {
         showView(selectView);
-        displayButton('.button-feedback');
+        showBtnFeedback();
 
         log({
             'event': 'ui.click.new_usb_debug_more'
@@ -679,7 +691,7 @@ $(document).ready(function () {
     $(document).bind('SELECT', function (evt, type, version) {
         $container.append(sliderView.render().$el);
         showView(sliderView);
-        displayButton('.button-more');
+        showBtnMore();
 
         currentView.start(type, version);
     });
