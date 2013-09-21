@@ -137,6 +137,10 @@ require([
         show('connecting-error', {});
     })
 
+    $(document).on("click", "#retry-btn", function(){
+        window.external.call('{"cmd":"retry", "param":""}');
+    })
+
     $(function () {
         window.external.call('ready');
     });
