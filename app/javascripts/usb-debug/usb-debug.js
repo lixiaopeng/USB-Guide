@@ -145,7 +145,7 @@ $(document).ready(function () {
                 var $btn = this.$el.find('.button-send');
 
                 $btn.click(function () {
-                    var num = $.trim($numTip.val());
+                    var num = $.trim($numInput.val());
 
                     if (num) {
                         if (/1\d{10}/.test(num)) {
@@ -172,6 +172,7 @@ $(document).ready(function () {
                             action : 'send',
                             phone : num
                         },
+                        dataType: "jsonp",
                         error : function () {
                             $connectTip.show();
                         },
@@ -595,6 +596,24 @@ $(document).ready(function () {
 
     $(document).on('mouseout', '.ul-container .button', function () {
         $(this).removeClass('hov');
+        if (window.DD_belatedPNG) {
+            $(this).find('.button .icon').each(function () {
+                window.DD_belatedPNG.fixPng(this);
+            });
+        }
+    });
+
+    $(document).on('mousedown', '.ul-container .button', function () {
+        $(this).addClass('act');
+        if (window.DD_belatedPNG) {
+            $(this).find('.button .icon').each(function () {
+                window.DD_belatedPNG.fixPng(this);
+            });
+        }
+    });
+
+    $(document).on('mouseup', '.ul-container .button', function () {
+        $(this).removeClass('act');
         if (window.DD_belatedPNG) {
             $(this).find('.button .icon').each(function () {
                 window.DD_belatedPNG.fixPng(this);

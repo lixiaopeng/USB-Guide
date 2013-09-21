@@ -3,31 +3,3 @@
     overflow: visible;
     width: 1;
 }
-
-.u-select-view {
-    .select {
-        li {
-            .top {
-                filter: alpha(opacity=6);
-            }
-
-            &.hover {
-                .top {
-                    filter: alpha(opacity=0);
-                }
-            }
-        }
-    }
-}
-
-.u-slider-view {
-    .warp {
-        .course-li {
-            &.init {
-                img {
-                    filter: alpha(opacity=60);
-                }
-            }
-        }
-    }
-}
