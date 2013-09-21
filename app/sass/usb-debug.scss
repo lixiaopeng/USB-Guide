@@ -47,9 +47,10 @@
     &.disabled {
         @include background-image(linear-gradient($btnBgColorFrom, $btnBgColorTo));
         @include filter-gradient($btnBgColorFrom, $btnBgColorTo);
+        @include opacity($disabledOpacity);
 
         color: $btnTextColor;
-        opacity: $disabledOpacity;
+        //opacity: $disabledOpacity;
     }
 
 
@@ -98,7 +99,7 @@ body,
 }
 
 .wrap {
-    background: url('../images/bg.png');
+    background-color: #f6f6f6;
     position: relative;
 
     .w-ui-loading {
@@ -160,9 +161,11 @@ body,
             width: 108px;
 
             .top {
+
+                @include opacity(0.06);
+
                 background: #000;
                 height: 100%;
-                opacity: 0.06;
                 position: absolute;
                 top: 0;
                 width: 100%;
@@ -196,12 +199,14 @@ body,
             }
 
             .check-course {
+
+                @include opacity(0.7);
+
                 background-color: #000;
                 bottom: -25px;
                 color: #fff;
                 height: 25px;
                 line-height: 25px;
-                opacity: .7;
                 position: absolute;
                 text-align: center;
                 vertical-align: middle;
@@ -228,7 +233,7 @@ body,
 
             &.hover {
                 .top {
-                    opacity: 0;
+                    @include opacity(0);
                 }
 
                 .check-course {
@@ -248,9 +253,20 @@ body,
                     }
                 }
 
-                &.gingerbread, &.ics, &.jeallybean, &.meizu {
+                &.gingerbread,
+                &.ics,
+                &.jeallybean,
+                &.meizu {
                     background-color: #f9fbfc;
                     background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
+                }
+
+                &.meizu,
+                &.miuios,
+                &.jeallybean {
+                    .title {
+                        margin-top: 15px;
+                    }
                 }
 
                 &.miuios {
@@ -444,7 +460,7 @@ body,
 
         .button {
             cursor: pointer;
-            height: 290px;
+            height: 280px;
             position: absolute;
             width: 174px;
             z-index: 10000;
@@ -453,7 +469,7 @@ body,
             .icon {
                 height: 42px;
                 position: absolute;
-                top: 139px;
+                top: 119px;
                 width: 24px;
             }
 
@@ -462,8 +478,6 @@ body,
 
                 .icon {
                     @include usb-debug-sprite(switch_default_left);
-
-                    left: 10px;
                 }
 
                 &.hov {
@@ -472,11 +486,11 @@ body,
                     }
                 }
 
-                // &:active {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_press_left);
-                //     }
-                // }
+                &.act {
+                    .icon {
+                        @include usb-debug-sprite(switch_press_left);
+                    }
+                }
 
                 &.dis {
                     .icon {
@@ -490,8 +504,7 @@ body,
 
                 .icon {
                     @include usb-debug-sprite(switch_default);
-
-                    right: 10px;
+                    right: 0;
                 }
 
                 &.hov {
@@ -500,11 +513,11 @@ body,
                     }
                 }
 
-                // &:active {
-                //     .icon {
-                //         @include usb-debug-sprite(switch_press);
-                //     }
-                // }
+                &.act {
+                    .icon {
+                       @include usb-debug-sprite(switch_press);
+                   }
+                }
 
                 &.dis {
                     .icon {
@@ -517,7 +530,7 @@ body,
 
     .warp {
         display: block;
-        height: 290px;
+        height: 280px;
         position: relative;
         white-space: nowrap;
 
@@ -531,13 +544,13 @@ body,
             }
 
             &.init {
-                background: #fff;
+                background: #f6f6f6;
                 left: 333px;
                 top: 20px;
 
                 img {
+                    @include opacity(0.6);
                     height: 240px;
-                    opacity: .6;
                 }
             }
         }
@@ -548,7 +561,16 @@ body,
         text-align: center;
 
         .number {
-            @include inline-block;
+            @include usb-debug-sprite(bullet_list);
+            @include inline-block();
+
+            color: #fff;
+            height: usb-debug-sprite-height(bullet_list);
+            line-height: 27px;
+            margin-right: 5px;
+            text-align: center;
+            vertical-align: middle;
+            width: usb-debug-sprite-width(bullet_list);
         }
 
         .steps-describe {
