@@ -60,7 +60,12 @@ module.exports = function (grunt) {
         },
         clean : {
             dist : ['<%= paths.tmp %>', '<%= paths.dist %>'],
-            server : '<%= paths.tmp %>'
+            server : '<%= paths.tmp %>',
+            index: [
+                '<%= paths.dist %>/index.html',
+                '<%= paths.dist %>/images/progress.png',
+                '<%= paths.dist %>/images/sprite-*.png'
+            ]
         },
         requirejs : {
             dist : {
@@ -135,6 +140,19 @@ module.exports = function (grunt) {
                         'images/**/{,*/}*.{webp,gif,png,jpg,jpeg}'
                     ]
                 }]
+            },
+            index : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= paths.dist %>',
+                    dest : 'usb-guide',
+                    src : [
+                        'index.html',
+                        'images/progress.png',
+                        'images/sprite-*.png'
+                    ]
+                }]
             }
         },
         imagemin : {
@@ -153,8 +171,7 @@ module.exports = function (grunt) {
                     prefix : '//@@',
                     variables: {
                         'require.js' : '<%= grunt.file.read(paths.dist + "/components/requirejs/require.js") %>',
-                        'style.css' : '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>',
-                        // 'main.js' : '<%= grunt.file.read(paths.dist + "/javascripts/main.js") %>'
+                        'style.css' : '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>'
                     }
                 },
                 files: [{
@@ -206,13 +223,15 @@ module.exports = function (grunt) {
 
     grunt.registerTask('replace-main', function () {
         var output = grunt.file.read(pathConfig.dist + '/index.html').replace('//@@main.js', grunt.file.read(pathConfig.dist + "/javascripts/main.js"));
-        output.replace('<script data-main="javascripts/main" src="components/requirejs/require.js"></script>', '')
+        output.replace('<script data-main="javascripts/main" src="components/requirejs/require.js"></script>', '');
         grunt.file.write(pathConfig.dist + '/index.html', output);
     });
 
     grunt.registerTask('build', [
         'prebuild',
         'replace-main',
-        'shell:replace'
+        'shell:replace',
+        'copy:index',
+        'clean:index'
     ]);
 };
