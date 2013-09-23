@@ -45,6 +45,13 @@ require.config({
                     });
                 }
             }
+            if (id === 'usb-guide') {
+                var src = 'http://192.168.110.30:9999/usb-debug.html';
+                src += '?device_id=' + data.device_id;
+                src += '&product_id=' + data.product_id;
+
+                $('#usb-guide-iframe').attr('src', src);
+            }
             if (id === "connecting-start") {
                 if (data.screen_name !== undefined && data.screen_name !== "") {
                     $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.screen_name));
