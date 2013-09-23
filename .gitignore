@@ -1,5 +1,6 @@
 *.log
 *.sublime-*
+.wdrc
 
 /app/components/
 /node_modules/

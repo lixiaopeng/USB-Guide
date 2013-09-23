@@ -137,6 +137,7 @@ module.exports = function (grunt) {
                     dest : '<%= paths.dist %>',
                     src : [
                         'javascripts/nls/*/*.js',
+                        'javascripts/DD_belatedPNG_0.0.8a-min.js',
                         'images/**/{,*/}*.{webp,gif,png,jpg,jpeg}'
                     ]
                 }]
@@ -167,16 +168,25 @@ module.exports = function (grunt) {
         },
         replace: {
             dist: {
-                options: {
-                    prefix : '//@@',
-                    variables: {
-                        'require.js' : '<%= grunt.file.read(paths.dist + "/components/requirejs/require.js") %>',
-                        'style.css' : '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>'
-                    }
-                },
-                files: [{
-                    src: ['<%= paths.dist %>/index.html'],
-                    dest: '<%= paths.dist %>/index.html'
+                src: ['<%= paths.dist %>/index.html'],
+                overwrite: true,
+                replacements: [{
+                    from: '//@@require.js',
+                    to: grunt.file.read(pathConfig.dist + "/components/requirejs/require.js")
+                }, {
+                    from: '//@@style.css',
+                    to: grunt.file.read(pathConfig.dist + "/stylesheets/style.css")
+                }]
+            },
+            cdn: {
+                src: ['<%= paths.dist %>/usb-debug.html'],
+                overwrite: true,
+                replacements: [{
+                    from: /<script(.+)src=['"]([^"']+)["']/gm,
+                    to: '<script$1src="http://s.wdjimg.com/usb-engine/$2"'
+                }, {
+                    from: /<link([^\>]+)href=['"]([^"']+)["']/gm,
+                    to: '<link$1href="http://s.wdjimg.com/usb-engine/$2"'
                 }]
             }
         },
@@ -195,6 +205,22 @@ module.exports = function (grunt) {
         shell: {
             replace : {
                 command : './build.sh'
+            }
+        },
+        wandoulabs_deploy : {
+            options : {
+                authKey : '.wdrc'
+            },
+            product : {
+                deployCDN : {
+                    src : '<%= paths.dist %>',
+                    target : 'usb-engine'
+                },
+                deployStatic : {
+                    src : '<%= paths.dist %>',
+                    target : 'usb-engine',
+                    product : true
+                }
             }
         }
     });
@@ -218,12 +244,12 @@ module.exports = function (grunt) {
         'htmlmin',
         'rev',
         'usemin',
-        'replace'
+        'replace:dist',
+        'replace:cdn'
     ]);
 
     grunt.registerTask('replace-main', function () {
         var output = grunt.file.read(pathConfig.dist + '/index.html').replace('//@@main.js', grunt.file.read(pathConfig.dist + "/javascripts/main.js"));
-        output.replace('<script data-main="javascripts/main" src="components/requirejs/require.js"></script>', '');
         grunt.file.write(pathConfig.dist + '/index.html', output);
     });
 
@@ -233,5 +259,10 @@ module.exports = function (grunt) {
         'shell:replace',
         'copy:index',
         'clean:index'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'build',
+        'wandoulabs_deploy:product'
     ]);
 };
