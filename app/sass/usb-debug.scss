@@ -558,7 +558,6 @@ body,
 
     .navigation {
         margin-top: 10px;
-        text-align: center;
 
         .number {
             @include usb-debug-sprite(bullet_list);
@@ -567,6 +566,7 @@ body,
             color: #fff;
             height: usb-debug-sprite-height(bullet_list);
             line-height: 27px;
+            margin-left: 160px;
             margin-right: 5px;
             text-align: center;
             vertical-align: middle;
