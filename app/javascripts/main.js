@@ -46,7 +46,7 @@ require.config({
                 }
             }
             if (id === 'usb-guide') {
-                var src = 'http://192.168.110.30:9999/usb-debug.html';
+                var src = 'http://conn.wandoujia.com/usb-engine/usb-debug.html';
                 src += '?device_id=' + data.device_id;
                 src += '&product_id=' + data.product_id;
 
