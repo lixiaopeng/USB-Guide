@@ -12,5 +12,9 @@ define({
     ERROR_STORAGE : '豌豆荚在您的手机上安装失败，可能是由于您的手机内存存储空间不足。安装豌豆荚需要大概 10M 的空间，请您清理手机垃圾，或者卸载一些软件后重试。',
     RETRY : '重试',
     USB_DEBUG : '如果您手机是 Android 4.2 版本以上的操作系统，请在手机的提示中允许「USB 调试」',
-    USB_FALLBACK_TIP : '手机上没有这个提示，试试别的办法'
+    USB_FALLBACK_TIP : '手机上没有这个提示，试试别的办法',
+    INSTALL_DRIVER_FAILED : '呃，驱动好像没安装成功，请您尝试重新安装驱动。',
+    DOWNLOAD_DRIVER_FAILED : '呃，服务器好像有一些故障...请过几分钟再试吧',
+    RETRY_INSTALL_DRIVER : '重新安装',
+    RETRY_DOWNLOAD_DRIVER : '重新下载'
 });

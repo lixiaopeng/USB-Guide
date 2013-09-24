@@ -46,7 +46,7 @@ require.config({
                 }
             }
             if (id === 'usb-guide') {
-                var src = 'http://conn.wandoujia.com/usb-engine/usb-debug.html';
+                var src = 'http://conn.wandoujia.com/usb-engine/';
                 src += '?device_id=' + data.device_id;
                 src += '&product_id=' + data.product_id;
 
@@ -73,24 +73,6 @@ require.config({
                 } else {
                     $(".g-tips.h6").html(FormatString(lang.SPEED_TIP, data.progress, speedKbps + " KB"));
                 }
-            }
-            if (id === "installing") {
-                // TODO
-            }
-            if (id === "offline") {
-                // TODO
-            }
-            if (id === "storage_insufficient") {
-                // TODO
-            }
-            if (id === "adbdebug_close") {
-                // TODO
-            }
-            if (id === "connecting-error") {
-                // TODO
-            }
-            if (id === "apk_install_cancel_by_user") {
-                // TODO
             }
         };
 
@@ -131,6 +113,12 @@ require.config({
             case STATE.ADB_DEBUG_CLOSE:
                 show('usb-guide', obj);
                 break;
+            case STATE.INSTALL_DRIVER_CANCELED:
+                show('install_driver_canceled', obj);
+                break;
+            case STATE.DOWNLOAD_DRIVER_FAILED:
+                show('download_driver_failed', obj);
+                break;
             default:
                 if (obj.state >= 0) {
                     show('connecting-start', obj);
@@ -147,6 +135,14 @@ require.config({
 
         $(document).on('click', '#retry-btn', function () {
             window.external.call('{"cmd":"retry", "param":""}');
+        });
+
+        $(document).on('click', '.retry-install-driver', function () {
+            window.external.call('{"cmd":"retry-install-driver", "param":""}');
+        });
+
+        $(document).on('click', '.retry-download-driver', function () {
+            window.external.call('{"cmd":"retry-download-driver", "param":""}');
         });
 
         $(function () {

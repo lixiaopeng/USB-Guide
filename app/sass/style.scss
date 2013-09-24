@@ -74,6 +74,22 @@ body {
     }
 }
 
+.g-download-driver-failed,
+.g-install-driver-canceled {
+    .bg {
+        @include sprite-sprite(speechless);
+
+        height: sprite-sprite-height(speechless);
+        position: relative;
+        margin: 50px auto;
+        width: sprite-sprite-width(speechless);
+    }
+
+    .w-btn {
+      margin-top: 10px;
+    }
+}
+
 .g-downloading,
 .g-installing {
     .bg {

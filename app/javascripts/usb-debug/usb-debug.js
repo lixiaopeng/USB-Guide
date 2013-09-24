@@ -88,8 +88,10 @@ $(document).ready(function () {
         SelectView.prototype = {
             className : 'u-select-view',
             template : _.template($('#selectView').html()),
+            isRender : false,
             render : function () {
                 var self = this;
+                self.isRender = true;
 
                 this.$el.html(this.template(data))
                     .on('click', 'li', this.clickSelect);
@@ -680,7 +682,7 @@ $(document).ready(function () {
 
     $('.button-more').on('click', function () {
 
-        if (!selectView.$el) {
+        if (!selectView.isRender) {
             $container.append(selectView.render().$el);
         }
         showView(selectView);
