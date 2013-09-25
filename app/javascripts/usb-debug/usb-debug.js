@@ -581,8 +581,7 @@ if (product_id) {
 }
 
 var creatVideoUrl = function (videoId) {
-    return 'http://211.152.116.29/help/?do=topic&id=' + videoId;
-    //return 'http://www.wandoujia.com/help/?do=topic&id=' + videoId;
+    return 'http://www.wandoujia.com/help/?do=topic&id=' + videoId;
 };
 
 $(document).ready(function () {
@@ -712,6 +711,12 @@ $(document).ready(function () {
 
         log({
             'event': 'ui.click.new_usb_debug_more'
+        });
+    });
+
+    $('.button-video').on('click', function () {
+        log({
+            'event': 'ui.click.new_usb_debug_video'
         });
     });
 
