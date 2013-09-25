@@ -40,7 +40,7 @@ require.config({
                     $('.g-ctn:not(:last)').animate({
                         'margin-left' : '-100%',
                         'opacity' : '0'
-                    }, 1500, 'linear', function () {
+                    }, 500, 'linear', function () {
                         $('.g-ctn:not(:last)').remove();
                     });
                 }
@@ -75,6 +75,7 @@ require.config({
                 }
             }
         };
+        window.show = show;
 
         var add = function (templateId, data) {
             var tpl = _.template($('#' + templateId));
