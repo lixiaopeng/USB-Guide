@@ -172,10 +172,10 @@ module.exports = function (grunt) {
                 overwrite: true,
                 replacements: [{
                     from: '//@@require.js',
-                    to: grunt.file.read(pathConfig.dist + "/components/requirejs/require.js")
+                    to: '<%= grunt.file.read(paths.dist + "/components/requirejs/require.js") %>'
                 }, {
                     from: '//@@style.css',
-                    to: grunt.file.read(pathConfig.dist + "/stylesheets/style.css")
+                    to: '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>'
                 }]
             },
             cdn: {
