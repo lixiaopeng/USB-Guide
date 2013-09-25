@@ -340,6 +340,7 @@ $(document).ready(function () {
                 self.version = version;
 
                 self.devInfo = data[version];
+                var videoId = self.devInfo['video'];
 
                 self.$el.find('.describe').html(self.devInfo.name);
 
@@ -375,6 +376,8 @@ $(document).ready(function () {
                 }, function () {
                     self.$el.find('.error-des').show();
                 });
+
+                return videoId;
             },
             setNav : function (index) {
                 this.$number.html(index + 1);
@@ -577,6 +580,11 @@ if (product_id) {
     }
 }
 
+var creatVideoUrl = function (videoId) {
+    return 'http://211.152.116.29/help/?do=topic&id=' + videoId;
+    //return 'http://www.wandoujia.com/help/?do=topic&id=' + videoId;
+};
+
 $(document).ready(function () {
 
     $(document).on('mouseover', '.u-select-view .select li', function () {
@@ -629,12 +637,13 @@ $(document).ready(function () {
     var btnMore = $('.button-more');
     var btnReturn = $('.button-return');
     var btnFeedback = $('.button-feedback');
-
+    var btnVideo = $('.button-video');
 
     var hideBtn = function (selector) {
         btnMore.hide();
         btnReturn.hide();
         btnFeedback.hide();
+        btnVideo.hide();
     };
 
     var showView = function (nextView) {
@@ -650,8 +659,12 @@ $(document).ready(function () {
         $container.append(sliderView.render().$el);
         currentView = sliderView;
         currentView.$el.show();
-        currentView.start('brands', version);
+        var videoId = currentView.start('brands', version);
         btnMore.show();
+
+        if (videoId) {
+            btnVideo.attr('href', creatVideoUrl(videoId)).show();
+        }
 
         log({
             'event': 'ui.click.new_usb_debug_match',
@@ -705,8 +718,11 @@ $(document).ready(function () {
     $(document).bind('SELECT', function (evt, type, version) {
         $container.append(sliderView.render().$el);
         showView(sliderView);
-        btnMore.show();
 
-        currentView.start(type, version);
+        var videoId = currentView.start(type, version);
+        btnMore.show();
+        if (videoId) {
+            btnVideo.attr('href', creatVideoUrl(videoId)).show();
+        }
     });
 });
