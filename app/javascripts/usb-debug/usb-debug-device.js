@@ -1,5 +1,6 @@
 var brandInfo = {
     'samsung' : {
+        video : '26641077',
         name : 'Samsung 手机',
         steps : [{
             'des' : '点击「设定」进入系统设置',
@@ -41,6 +42,7 @@ var brandInfo = {
         }]
     },
     'xiaomi' : {
+        video : '26713133',
         name : '小米手机',
         steps : [{
             'des' : '点击「设置」进入系统设置',
@@ -88,6 +90,7 @@ var brandInfo = {
         }]
     },
     'sony': {
+        video : '26641767',
         name : 'Sony 手机',
         steps : [{
             'des' : '点击「设定」进入系统设置',
@@ -129,6 +132,7 @@ var brandInfo = {
         }]
     },
     'htc' : {
+        video : '27150886',
         name : 'HTC 手机',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -164,6 +168,7 @@ var brandInfo = {
         }]
     },
     'huawei' : {
+        video : '27150796',
         name : '华为手机',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -199,6 +204,7 @@ var brandInfo = {
         }]
     },
     'lenovo' : {
+        video : '26641087',
         name : '联想手机',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -234,6 +240,7 @@ var brandInfo = {
         }]
     },
     'zte' : {
+        video : '27150816',
         name : '中兴手机',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -269,6 +276,7 @@ var brandInfo = {
         }]
     },
     'motorola' : {
+        video : '26664018',
         name : 'Moto 手机',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -383,6 +391,7 @@ var brandInfo = {
 
 var systemInfo = {
     'gingerbread' : {
+        video : '26641097',
         name : 'Android 1.6 - 3.2',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -424,6 +433,7 @@ var systemInfo = {
         }]
     },
     'ics' : {
+        video : '26664068',
         name : 'Android 4.0 - 4.1',
         steps : [{
             'des' : '点击进入「应用列表」',
@@ -471,6 +481,7 @@ var systemInfo = {
         }]
     },
     'jeallybean' : {
+        video : '26664138',
         name : 'Android 4.2',
         steps : [{
             'des' : '点击「设置」进入系统设置',
@@ -530,6 +541,7 @@ var systemInfo = {
         }]
     },
     'miuios' : {
+        video : '26641717',
         name : 'MIUI V5',
         steps : [{
             'des' : '点击「设置」进入系统设置',
@@ -577,6 +589,7 @@ var systemInfo = {
         }]
     },
     'meizu' : {
+        video : '27151326',
         name : '魅族 Flyme',
         steps : [{
             'des' : '点击「设置」进入系统设置',
