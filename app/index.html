@@ -60,8 +60,7 @@
     </script>
     <script type="text/template" id="download_driver_failed">
         <div class="g-ctn g-download-driver-failed">
-            <div class="bg">
-            </div>
+            <div class="bg"/>
             <div class="g-tips h5 w-text-secondary"><%= i18n.DOWNLOAD_DRIVER_FAILED %></div>
             <div class="g-tips">
               <button class="w-btn w-btn-primary w-btn-large retry-download-driver"><%= i18n.RETRY_DOWNLOAD_DRIVER%></button>
@@ -70,12 +69,11 @@
     </script>
     <script type="text/template" id="connecting-error">
         <div class="g-ctn g-error">
-            <div class="bg">
-                <div class="tip w-text-secondary h5">
-                    <span><%= i18n.RESET_USB %></span>
-                    <span class="tip2"><%= i18n.RESTART_PHONE %></span>
-                    <span class="tip3"><%= i18n.RESTART_PC %></span>
-                </div>
+            <div class="bg"/>
+            <div class="tip w-text-secondary h5">
+              <span><%= i18n.RESET_USB %></span>
+              <span class="tip2"><%= i18n.RESTART_PHONE %></span>
+              <span class="tip3"><%= i18n.RESTART_PC %></span>
             </div>
         </div>
     </script>
@@ -98,7 +96,9 @@
             <iframe style="height: 100%; width: 100%; border: none" id="usb-guide-iframe"/>
         </div>
     </script>
-
+    <!--[if IE 6]>
+        <script src="javascripts/DD_belatedPNG_0.0.8a-min.js"></script>
+    <![endif]-->
     <!-- build:js javascripts/main.js -->
     <script data-main="javascripts/main" src="components/requirejs/require.js"></script>
     <!-- endbuild -->

@@ -139,19 +139,21 @@ body {
         @include sprite-sprite(error);
 
         height: sprite-sprite-height(error);
-        margin: 80px auto;
+        margin: 80px auto 10px;
+        width: sprite-sprite-width(error);
+    }
+
+    .tip {
+        margin-left: auto;
+        margin-right: auto;
         width: sprite-sprite-width(error);
 
-        .tip {
-            padding-top: 190px;
+        .tip2 {
+            margin-left: 60px;
+        }
 
-            .tip2 {
-                margin-left: 60px;
-            }
-
-            .tip3 {
-                margin-left: 115px;
-            }
+        .tip3 {
+            margin-left: 115px;
         }
     }
 }
