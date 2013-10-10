@@ -137,6 +137,7 @@ body {
 .g-error {
     .bg {
         @include sprite-sprite(error);
+        _margin-left: 80px 62px 10px;
 
         height: sprite-sprite-height(error);
         margin: 80px auto 10px;
@@ -144,8 +145,13 @@ body {
     }
 
     .tip {
+
+        _margin-left: 62px;
+        _margin-right: 62px;
+
         margin-left: auto;
         margin-right: auto;
+
         width: sprite-sprite-width(error);
 
         .tip2 {

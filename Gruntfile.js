@@ -176,6 +176,9 @@ module.exports = function (grunt) {
                 }, {
                     from: '//@@style.css',
                     to: '<%= grunt.file.read(paths.dist + "/stylesheets/style.css") %>'
+                }, {
+                    from: '//@@DD_belatedPNG_0.0.8a-min.js',
+                    to: '<%= grunt.file.read(paths.dist + "/javascripts/DD_belatedPNG_0.0.8a-min.js") %>'
                 }]
             },
             cdn: {
