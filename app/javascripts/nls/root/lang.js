@@ -1,6 +1,6 @@
 /*global define*/
 define({
-    CONNECTION_START : '检测到您的 {1} 手机连接电脑，豌豆荚正在为您连接',
+    CONNECTION_START : '检测到您的 {1} 连接电脑，豌豆荚正在为您连接',
     DOWNLOADING_TIP : '下载驱动的速度可能取决于您的网络状况，请耐心等候',
     SPEED_TIP : '{1}% &bull; {2}/s',
     INSTALLING_TIP : '驱动安装过程中不要重启电脑，请耐心等候',

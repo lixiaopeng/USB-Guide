@@ -74,6 +74,12 @@ require.config({
                     $(".g-tips.h6").html(FormatString(lang.SPEED_TIP, data.progress, speedKbps + " KB"));
                 }
             }
+
+            if (window.DD_belatedPNG) {
+                $('.bg').each(function () {
+                    window.DD_belatedPNG.fixPng(this);
+                });
+            }
         };
         window.show = show;
 
