@@ -10,20 +10,18 @@ $(document).ready(function () {
         var Log = function (data) {
             data = data || {};
 
-            // var url = "wdj://window/log.json",
-            //     datas = [],
-            //     d;
 
-            // for (d in data) {
-            //     if (data.hasOwnProperty(d)) {
-            //         datas.push(d + '=' + window.encodeURIComponent(data[d]));
-            //     }
-            // }
-            // url += '?' + datas.join('&');
+            var url = "wdj://window/log.json",
+                datas = [],
+                d;
 
-            // window.OneRingRequest('get', url, '', function (resp) {
-            //     return;
-            // });
+            for (d in data) {
+                if (data.hasOwnProperty(d)) {
+                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
+                }
+            }
+
+            window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
         };
 
         log = Log;
@@ -557,6 +555,7 @@ var proMap = {
     'xiaomi' : 1
 };
 
+
 var device_id = getUrlParam('device_id');
 var product_id = getUrlParam('product_id');
 var version;
@@ -569,6 +568,7 @@ if (product_id) {
     if (product_arr[0] === 'semc') {
         product_arr[0] = 'sony';
     }
+    product_arr[0] = product_arr[0].toLowerCase();
 
     if (proMap.hasOwnProperty(product_arr[0])) {
         version = product_arr[0];
@@ -728,6 +728,19 @@ $(document).ready(function () {
         btnMore.show();
         if (videoId) {
             btnVideo.attr('href', creatVideoUrl(videoId)).show();
+        }
+    });
+
+    $.ajax('http://conn-feedback.wandoujia.com/request', {
+        data : {
+            device_id : device_id
+        },
+        dataType: "jsonp",
+        success : function (resp) {
+            if (resp.ret > 0) {
+                $('.usb-bbs').hide();
+                $('.usb-qq').show();
+            }
         }
     });
 });

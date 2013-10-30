@@ -426,9 +426,12 @@ a,
 
             .wording {
                 @include inline-block();
-
                 vertical-align: middle;
             }
+        }
+
+        .usb-qq {
+            display : none;
         }
     }
 }
