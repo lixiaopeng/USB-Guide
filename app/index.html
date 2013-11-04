@@ -3,6 +3,7 @@
 <head>
     <title>USB Guide</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <style type="text/css">
     //@@style.css
@@ -24,7 +25,8 @@
 
     <script type="text/template" id="connecting-start">
         <div class="g-ctn g-connecting-start">
-            <div class="bg">
+            <div class="bg-container">
+                <div class="bg"></div>
                 <div class="g-progress-running"></div>
             </div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.CONNECTION_START %></div>
@@ -116,7 +118,7 @@
     </script>
     <script type="text/template" id="usb-guide">
         <div class="g-ctn g-error-debug">
-            <iframe style="height: 100%; width: 100%; border: none" id="usb-guide-iframe"/>
+            <iframe style="height: 100%; width: 100%; border: none; display:none;" id="usb-guide-iframe"/>
         </div>
     </script>
     <script type="text/template" id="kill-adb">

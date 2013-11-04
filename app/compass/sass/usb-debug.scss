@@ -16,6 +16,7 @@
     @include single-box-shadow(#fff, 0, 1px, 0, false, true);
     @include single-text-shadow(0, 1px, 0, false, #fff);
 
+    background-color: #EFEFEF;
     border: 1px $btnBorderColor solid;
     color: $btnTextColor;
     cursor: pointer;
@@ -26,10 +27,16 @@
     text-decoration: none;
     -webkit-user-select: none;
 
+    *min-width : auto;
+    *border: 0px;
+    outline: none;
+
     &:hover,
     &.hover {
         @include background-image(linear-gradient($btnHoverBgColorFrom, $btnHoverBgColorTo));
+        @include filter-gradient($btnHoverBgColorFrom, $btnHoverBgColorTo);
 
+        background-color: #F5F5F5;
         color: #000;
         text-decoration: none;
     }
@@ -38,6 +45,7 @@
     &.active {
         @include background-image(linear-gradient($btnActiveBgColorFrom, $btnActiveBgColorTo));
         @include filter-gradient($btnActiveBgColorFrom, $btnActiveBgColorTo);
+        background-color: #E1E1E1;
 
         color: #000;
         text-decoration: none;
@@ -50,7 +58,7 @@
         @include opacity($disabledOpacity);
 
         color: $btnTextColor;
-        //opacity: $disabledOpacity;
+        opacity: $disabledOpacity;
     }
 
 
@@ -59,6 +67,7 @@
         @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
         @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
         @include single-text-shadow(0, 1px, 0, false, rgba(0, 0, 0, .2));
+        background-color : #4CB038;
 
         border-color: $btnPrimaryBorderColor;
         color: $btnPrimaryTextColor;
@@ -67,6 +76,7 @@
         &.hover {
             @include background-image(linear-gradient($btnPrimaryHoverBgColorFrom, $btnPrimaryHoverBgColorTo));
             @include single-box-shadow(#79d367, 0, 1px, 0, false, true);
+            background-color : #57C83F;
         }
 
         &:active,
@@ -74,6 +84,7 @@
             @include background-image(linear-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo));
             @include filter-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo);
             @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+            background-color : #359921;
         }
 
 
@@ -126,11 +137,13 @@ a,
 
     .button-feedback,
     .button-return,
-    .button-more {
+    .button-more,
+    .button-qq {
         @include inline-block;
 
         background-image: none;
         cursor: pointer;
+        display: none;
         float: right;
         height: 30px;
         line-height: 30px;
@@ -143,22 +156,22 @@ a,
     }
 
     .button-video {
-        height: 30px;
+
+        @include usb-debug-sprite(video);
+
+        filter: none;
+        height: 31px;
+        padding: 0;
         margin-left: 15px;
         margin-top: 15px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        width: 100px;
+        width: 99px;
 
-        .play {
-            @include usb-debug-sprite(playVideo);
+        &:hover {
+          @include usb-debug-sprite(video_hover);
+        }
 
-            display: inline-block;
-            height: 20px;
-            margin-top: -1px;
-            margin-right: 6px;
-            vertical-align: top;
-            width: 20px;
+        &:active {
+          @include usb-debug-sprite(video_press);
         }
     }
 }
@@ -191,7 +204,7 @@ a,
 
                 @include opacity(0.06);
 
-                background: #000;
+                /*background: #000;*/
                 height: 100%;
                 position: absolute;
                 top: 0;
@@ -402,6 +415,12 @@ a,
 
         .send-message {
             height: 45px;
+            *position: relative;
+            *left: 10px;
+
+            .button-send {
+                *margin-left: 10px;
+            }
 
             p {
                 display: none;
@@ -422,16 +441,15 @@ a,
                 margin-right: 10px;
                 vertical-align: middle;
                 width: usb-debug-sprite-width(bullet_arrow);
+
+                _font-size: 10px;
+                _line-height: 10px;
             }
 
             .wording {
                 @include inline-block();
                 vertical-align: middle;
             }
-        }
-
-        .usb-qq {
-            display : none;
         }
     }
 }
@@ -631,4 +649,12 @@ a,
             }
         }
     }
+}
+
+input {
+    _height: 24px;
+    _line-height: 24px;
+    _margin-right: 5px;
+    _width: 140px;
+    _margin-left: -35px;
 }

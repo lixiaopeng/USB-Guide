@@ -47,12 +47,18 @@ require.config({
             }
             if (id === 'usb-guide') {
                 var src = 'http://conn.wandoujia.com/usb-engine/';
- 
+
                 src += '?device_id=' + encodeURIComponent(data.device_id);
                 src += '&product_id=' + data.product_id;
 
-                $('#usb-guide-iframe').attr('src', src);
+                var img = new window.Image();
+                $(img).one('load', function () {
+                    $('#usb-guide-iframe').attr('src', src).show();
+                }).one('error', function () {
+                    show("usb-guide-local");
+                }).attr('src', "http://www.wandoujia.com/favicon.ico?t=" + new Date().valueOf());
             }
+
             if (id === "connecting-start") {
                 if (data.screen_name !== undefined && data.screen_name !== "") {
                     $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.screen_name));
@@ -62,6 +68,7 @@ require.config({
                     $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, "手机"));
                 }
             }
+
             if (id === "downloading") {
                 var progress = data.progress + "%";
                 $(".g-progress .inner").width(progress);
@@ -172,9 +179,6 @@ require.config({
             case STATE.RECOVER:
                 show('connecting-error', obj);
                 break;
-            case STATE.USB_GUIDE_LOCAL:
-                show('usb-guide-local', obj);
-                break;
             case STATE.ADB_SERVER_KILL_ERROR:
                 show('kill-adb-error', obj);
                 break;
@@ -192,7 +196,7 @@ require.config({
             show('connecting-error', {});
             log({
                 //手机上没有这个提示，试试别的办法
-                'event' : 'fallback_tip'
+                'event' : 'ui.click.fallback_tip'
             });
         });
 
@@ -200,7 +204,7 @@ require.config({
             window.external.call('{"cmd":"retry", "param":""}');
             log({
                 //重试杀程序
-                'event' : 'retry-kill-adb'
+                'event' : 'ui.click.retry-kill-adb'
             });
         });
 
@@ -208,7 +212,7 @@ require.config({
             window.external.call('{"cmd":"retry-install-driver", "param":""}');
             log({
                 //重新安装驱动
-                'event' : 'retry-install-driver'
+                'event' : 'ui.click.retry-install-driver'
             });
         });
 
@@ -216,7 +220,7 @@ require.config({
             window.external.call('{"cmd":"retry-download-driver", "param":""}');
             log({
                 //重新下载驱动
-                'event' : 'retry-download-driver'
+                'event' : 'ui.click.retry-download-driver'
             });
         });
 
@@ -224,14 +228,14 @@ require.config({
             window.external.call('{"cmd":"retry", "param":""}');
             log({
                 //手机空间不足
-                'event' : 'storage_insufficient'
+                'event' : 'ui.click.storage_insufficient'
             });
         });
 
         $(document).on('click', '.button-show-detail', function () {
             log({
                 //查看详细错误信息
-                'event' : 'show-detail'
+                'event' : 'ui.click.show-detail'
             });
         });
 
@@ -239,7 +243,7 @@ require.config({
             window.external.call('{"cmd":"kill-adb", "param":""}');
             log({
                 //关闭程序
-                'event' : 'kill-adb'
+                'event' : 'ui.click.kill-adb'
             });
         });
 
@@ -256,14 +260,14 @@ require.config({
             window.external.call('{"cmd":"reboot-wdj", "param":""}');
             log({
                 //重启豌豆荚
-                'event' : 'reboot-wdj'
+                'event' : 'ui.click.reboot-wdj'
             });
         });
 
         $(document).on('click', '.button-no-solution', function () {
             log({
                 //就是连不上
-                'event' : 'no-solution'
+                'event' : 'ui.click.no-solution'
             });
         });
 
@@ -271,13 +275,9 @@ require.config({
             window.external.call('{"cmd":"retry", "param":""}');
             log({
                 //就是连不上
-                'event' : 'allow_install'
+                'event' : 'ui.click.allow_install'
             });
         });
-
-
-
-
 
         $(function () {
             window.external.call('ready');

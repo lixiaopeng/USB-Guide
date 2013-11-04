@@ -87,6 +87,7 @@ $(document).ready(function () {
             className : 'u-select-view',
             template : _.template($('#selectView').html()),
             isRender : false,
+            isShow : false,
             render : function () {
                 var self = this;
                 self.isRender = true;
@@ -134,6 +135,7 @@ $(document).ready(function () {
         FeedbackView.prototype = {
             className : 'u-feedback-ctn',
             template : _.template($('#feedBackView').html()),
+            isShow : false,
             render: function () {
                 var self = this;
 
@@ -155,7 +157,6 @@ $(document).ready(function () {
                             return;
                         }
                     } else {
-                        $btn.prop('disabled', true);
                         $numTip.css('visibility', 'hidden');
                         return;
                     }
@@ -234,6 +235,7 @@ $(document).ready(function () {
         SilderView.prototype = {
             className : 'u-slider-view',
             template : _.template($('#sliderView').html()),
+            isShow : false,
             render : function () {
                 var self = this;
 
@@ -637,19 +639,31 @@ $(document).ready(function () {
     var btnReturn = $('.button-return');
     var btnFeedback = $('.button-feedback');
     var btnVideo = $('.button-video');
+    var btnUsbQQ = $('.button-qq');
+
+    btnUsbQQ.on('click', function () {
+        log({
+            'event': 'ui.click.new_usb_qq'
+        });
+    });
+
+    var showQQ = false;
 
     var hideBtn = function (selector) {
         btnMore.hide();
         btnReturn.hide();
         btnFeedback.hide();
         btnVideo.hide();
+        btnUsbQQ.hide();
     };
 
     var showView = function (nextView) {
         currentView.$el.hide();
+        currentView.isShow = false;
         lastView = currentView;
         currentView = nextView;
         nextView.$el.show();
+        nextView.isShow = true;
         hideBtn();
     };
 
@@ -662,7 +676,7 @@ $(document).ready(function () {
         btnMore.show();
 
         if (videoId) {
-            btnVideo.attr('href', creatVideoUrl(videoId)).show();
+            btnVideo.attr('href', creatVideoUrl(videoId));
         }
 
         log({
@@ -673,6 +687,7 @@ $(document).ready(function () {
     } else {
         $container.append(selectView.render().$el);
         currentView = selectView;
+        currentView.isShow = true;
         currentView.$el.show();
         btnFeedback.show();
     }
@@ -698,7 +713,11 @@ $(document).ready(function () {
             $container.append(selectView.render().$el);
         }
         showView(selectView);
-        btnFeedback.show();
+        if (showQQ) {
+            btnUsbQQ.show();
+        } else {
+            btnFeedback.show();
+        }
 
         log({
             'event': 'ui.click.new_usb_debug_more'
@@ -738,8 +757,11 @@ $(document).ready(function () {
         dataType: "jsonp",
         success : function (resp) {
             if (resp.ret > 0) {
-                $('.usb-bbs').hide();
-                $('.usb-qq').show();
+                showQQ = true;
+                btnFeedback.hide();
+                if (selectView.isShow) {
+                    btnUsbQQ.show();
+                }
             }
         }
     });

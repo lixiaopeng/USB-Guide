@@ -13,10 +13,12 @@ html, body {
     cursor: default;
 }
 
+/*IE hacker*/
 .w-btn {
     *min-width : auto;
-    *border: 0px $btnBorderColor solid;
+    *border-width: 0;
     background-color : #4CB038\9;
+    outline: none;
 
     &:hover,
     &.hover {
@@ -26,6 +28,10 @@ html, body {
     &:active,
     &.active {
         background-color : #359921\9;
+    }
+
+    &.w-btn-large {
+        *padding: 7px 5px;
     }
 }
 
@@ -48,7 +54,6 @@ html, body {
 
 .g-progress-running {
     background-image: generated-image-url('progress.png');
-
     height: 12px;
 }
 
@@ -73,13 +78,21 @@ html, body {
 }
 
 .g-connecting-start {
-    .bg {
-        @include sprite-sprite(connecting);
+    .bg-container {
 
-        height: sprite-sprite-height(connecting);
+        height: 209px;
         position: relative;
         margin: 50px auto;
-        width: sprite-sprite-width(connecting);
+        width: 520px;
+
+        .bg {
+            background-image: generated-image-url('connecting.png');
+            height: 209px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 520px;
+        }
 
         .g-progress-running {
             left: 115px;
