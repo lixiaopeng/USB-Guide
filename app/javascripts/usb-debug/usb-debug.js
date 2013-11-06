@@ -646,6 +646,11 @@ $(document).ready(function () {
             'event': 'ui.click.new_usb_qq'
         });
     });
+    $('.usb-qq').click(function () {
+        log({
+            'event': 'ui.click.new_usb_qq'
+        });
+    });
 
     var showQQ = false;
 
@@ -757,11 +762,17 @@ $(document).ready(function () {
         dataType: "jsonp",
         success : function (resp) {
             if (resp.ret > 0) {
+
+                $('.usb-qq').show();
+                $('.usb-bbs').hide();
+
                 showQQ = true;
                 btnFeedback.hide();
                 if (selectView.isShow) {
                     btnUsbQQ.show();
                 }
+            } else {
+                $('.usb-qq').hide();
             }
         }
     });
