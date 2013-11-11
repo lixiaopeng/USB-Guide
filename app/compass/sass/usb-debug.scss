@@ -150,6 +150,21 @@ a,
         margin: 15px;
     }
 
+    .button-qq {
+        .img {
+            @include usb-debug-sprite('qq');
+            float: left;
+            height: usb-debug-sprite-height('qq');
+            margin-top: 8px;
+            margin-right: 2px;
+            width: usb-debug-sprite-width('qq');
+        }
+
+        span {
+            float: left;
+        }
+    }
+
     .button-check-usb-debug {
         float: right;
         margin: 15px;
@@ -388,17 +403,8 @@ a,
     position: relative;
     width: 600px;
 
-    .number {
-        @include usb-debug-sprite(bullet_list);
-        @include inline-block();
-
-        color: #fff;
-        height: usb-debug-sprite-height(bullet_list);
-        line-height: 27px;
-        margin-right: 5px;
-        text-align: center;
-        vertical-align: middle;
-        width: usb-debug-sprite-width(bullet_list);
+    .pic {
+        @include usb-debug-sprite(bigpic);
     }
 
     .describe,
