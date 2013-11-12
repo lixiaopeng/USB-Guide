@@ -578,7 +578,8 @@ var proMap = {
     'huawei' : 1,
     'lenovo' : 1,
     'zte' : 1,
-    'xiaomi' : 1
+    'xiaomi' : 1,
+    'xiaomi3' : 1
 };
 
 

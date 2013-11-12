@@ -89,6 +89,53 @@ var brandInfo = {
             }
         }]
     },
+    'xiaomi3' : {
+        name : '小米手机',
+        steps : [{
+            'des' : '点击「设置」进入系统设置',
+            'pos' : {
+                left : '173px',
+                top : '95px'
+            }
+        }, {
+            'des' : '选择「关于手机」',
+            'pos' : {
+                left : '180px',
+                top : '170px'
+            }
+        }, {
+            'des' : '连续点击「版本号」若干次',
+            'pos' : {
+                left : '195px',
+                top : '80px'
+            }
+        }, {
+            'des' : '点击「开发者选项」',
+            'pos' : {
+                left : '190',
+                top : '150'
+            }
+        }, {
+            'des' : '开启「开发者选项」',
+            'direction' : 'up',
+            'pos' : {
+                left : '298px',
+                top : '45px'
+            }
+        }, {
+            'des' : '点击「确定」',
+            'pos' : {
+                left : '270px',
+                top : '160px'
+            }
+        }, {
+            'des' : '勾选「开启USB调试」',
+            'pos' : {
+                left : '298px',
+                top : '60px'
+            }
+        }]
+    },
     'sony': {
         video : '26641767',
         name : 'Sony 手机',
