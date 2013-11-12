@@ -50,6 +50,7 @@ require.config({
 
                 src += '?device_id=' + encodeURIComponent(data.device_id);
                 src += '&product_id=' + data.product_id;
+                src += '&user_detail=' + data.user_detail;
 
                 var img = new window.Image();
                 $(img).one('load', function () {

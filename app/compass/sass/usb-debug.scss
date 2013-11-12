@@ -403,10 +403,6 @@ a,
     position: relative;
     width: 600px;
 
-    .pic {
-        @include usb-debug-sprite(bigpic);
-    }
-
     .describe,
     .return {
         @include inline-block();
@@ -654,6 +650,29 @@ a,
                 @include usb-debug-sprite(arrow-up);
             }
         }
+    }
+}
+
+.u-detail-view {
+    display: none;
+    height: 399px;
+    margin: 15px auto;
+    padding: 15px;
+    position: relative;
+    width: 680px;
+
+    .describe,
+    .return {
+        @include inline-block();
+    }
+
+    .user-detail {
+        background-color: #FFF;
+        border: 1px solid #BEBEBE;
+        font-size: 14px;
+        height: 280px;
+        padding: 5px 0 0 5px;
+        width: 650px;
     }
 }
 

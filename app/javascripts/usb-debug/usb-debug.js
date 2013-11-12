@@ -2,6 +2,7 @@
 var selectView;
 var feedbackView;
 var sliderView;
+var detailView;
 var log;
 
 $(document).ready(function () {
@@ -519,6 +520,29 @@ $(document).ready(function () {
 
         sliderView = new SilderView();
     }(this));
+
+    (function () {
+        var DetailView = function () {
+            this.$el = $('<div>').addClass(this.className);
+            return this;
+        };
+
+        DetailView.prototype = {
+            className : 'u-detail-view',
+            template : _.template($('#detailView').html()),
+            isShow : false,
+            render : function () {
+                this.$el.html(this.template({}));
+                return this;
+            },
+            setContent : function (content) {
+                this.$el.find('.user-detail').html(content);
+            }
+        };
+
+        detailView = new DetailView();
+
+    }(this));
 });
 
 var getUrlParam = function (name) {
@@ -582,6 +606,9 @@ if (product_id) {
     }
 }
 
+//TODO
+var userDetail = getUrlParam('user_detail') || device_id + '<br />' + product_id;
+
 var creatVideoUrl = function (videoId) {
     return 'http://www.wandoujia.com/help/?do=topic&id=' + videoId;
 };
@@ -640,17 +667,7 @@ $(document).ready(function () {
     var btnFeedback = $('.button-feedback');
     var btnVideo = $('.button-video');
     var btnUsbQQ = $('.button-qq');
-
-    btnUsbQQ.on('click', function () {
-        log({
-            'event': 'ui.click.new_usb_qq'
-        });
-    });
-    $('.usb-qq').click(function () {
-        log({
-            'event': 'ui.click.new_usb_qq'
-        });
-    });
+    var btnCheckUsb = $('.button-check-usb-debug');
 
     var showQQ = false;
 
@@ -699,11 +716,11 @@ $(document).ready(function () {
 
     $container.append(feedbackView.render().$el);
 
-    $('.button-check-usb-debug').click(function () {
+    btnCheckUsb.click(function () {
         window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
     });
 
-    $('.button-feedback').on('click', function () {
+    btnFeedback.on('click', function () {
         showView(feedbackView);
         btnReturn.show();
 
@@ -712,7 +729,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.button-more').on('click', function () {
+    btnMore.on('click', function () {
 
         if (!selectView.isRender) {
             $container.append(selectView.render().$el);
@@ -729,16 +746,37 @@ $(document).ready(function () {
         });
     });
 
-    $('.button-return').on('click', function () {
+    btnReturn.on('click', function () {
         showView(selectView);
-        btnFeedback.show();
+        if (showQQ) {
+            btnUsbQQ.show();
+        } else {
+            btnFeedback.show();
+        }
+        btnCheckUsb.show();
+
 
         log({
             'event': 'ui.click.new_usb_debug_more'
         });
     });
 
-    $('.button-video').on('click', function () {
+    $('.button-qq, usb-qq').on('click', function () {
+
+        if (!detailView.isShow) {
+            $container.append(detailView.render().$el);
+        }
+        showView(detailView);
+        btnCheckUsb.hide();
+        detailView.setContent(userDetail);
+        btnReturn.show();
+
+        log({
+            'event': 'ui.click.new_usb_qq'
+        });
+    });
+
+    btnVideo.on('click', function () {
         log({
             'event': 'ui.click.new_usb_debug_video'
         });
@@ -763,16 +801,11 @@ $(document).ready(function () {
         success : function (resp) {
             if (resp.ret > 0) {
 
-                $('.usb-qq').show();
-                $('.usb-bbs').hide();
-
                 showQQ = true;
                 btnFeedback.hide();
                 if (selectView.isShow) {
                     btnUsbQQ.show();
                 }
-            } else {
-                $('.usb-qq').hide();
             }
         }
     });
