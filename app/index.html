@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <title>USB Guide</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <style type="text/css">
     //@@style.css
@@ -25,7 +25,8 @@
 
     <script type="text/template" id="connecting-start">
         <div class="g-ctn g-connecting-start">
-            <div class="bg">
+            <div class="bg-container">
+                <div class="bg"></div>
                 <div class="g-progress-running"></div>
             </div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.CONNECTION_START %></div>
@@ -89,12 +90,23 @@
             </div>
         </div>
     </script>
+    <script type="text/template" id="conflict_vmware">
+        <div class="g-ctn g-error">
+            <div class="bg"></div>
+            <div class="tip w-text-secondary h5">
+              <span><%= i18n.RESET_USB %></span>
+              <span class="tip2"><%= i18n.RESTART_PHONE %></span>
+              <span class="tip3"><%= i18n.RESTART_PC %></span>
+            </div>
+            <a class="g-fallback link button-show-detail" target="_blank" href="https://androidfeedback.zendesk.com/entries/26187067"><%= i18n.SHOW_DETAIL_RESULT %></a>
+        </div>
+    </script>
     <script type="text/template" id="storage_insufficient">
         <div class="g-ctn g-error-storage">
             <div class="bg">
             </div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.ERROR_STORAGE %></div>
-            <button class="button-retry w-btn w-btn-primary w-btn-kaiju"><%= i18n.RETRY %></button>
+            <button class="button-retry-storage-insufficient w-btn w-btn-primary w-btn-kaiju"><%= i18n.RETRY %></button>
         </div>
     </script>
     <script type="text/template" id="offline">
@@ -106,7 +118,72 @@
     </script>
     <script type="text/template" id="usb-guide">
         <div class="g-ctn g-error-debug">
-            <iframe style="height: 100%; width: 100%; border: none" id="usb-guide-iframe"/>
+            <iframe style="height: 100%; width: 100%; border: none; display:none;" id="usb-guide-iframe"></iframe>
+        </div>
+    </script>
+    <script type="text/template" id="kill-adb">
+        <div class="g-ctn g-kill-adb">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"></div>
+            <div class="g-tips">
+                <button class="w-btn w-btn-primary w-btn-large kill-adb"><%= i18n.USER_KILL_ADB_BTN %></button>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="kill-adb-error">
+        <div class="g-ctn g-kill-adb">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"></div>
+            <div class="g-tips">
+              <button class="w-btn w-btn-primary w-btn-large retry-kill-adb"><%= i18n.RETRY %></button>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id='adb-server-error'>
+        <div class="g-ctn g-kill-app">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.ADB_SERVER_ERROR %></div>
+            <div class="g-tips">
+                <button class="w-btn w-btn-primary w-btn-large reboot-wdj"><%= i18n.REBOOT_WDJ %></button>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="no-solution">
+        <div class="g-ctn g-error">
+            <div class="bg"></div>
+            <div class="tip w-text-secondary h5">
+              <span><%= i18n.RESET_USB %></span>
+              <span class="tip2"><%= i18n.RESTART_PHONE %></span>
+              <span class="tip3"><%= i18n.RESTART_PC %></span>
+            </div>
+            <a class="g-fallback link button-no-solution" id="fallback_tip" target="_blank" href="http://help.wandoujia.com/home"><%= i18n.NO_SOLUTION %></a>
+        </div>
+    </script>
+    <script type="text/template" id='allow-install'>
+        <div class="g-ctn g-allow-install">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.ALLOW_INSTALL %></div>
+            <div class="g-tips">
+                <button class="w-btn w-btn-primary w-btn-large allow-install"><%= i18n.RETRY %></button>
+            </div>
+        </div>
+    </script>
+
+    <script  type="text/template" id='usb-guide-local'>
+        <div class="usb-guide-local g-ctn">
+            <div>
+                <ul class="cate-selector cf">
+                    <li class="cate selected text-primary" data-cate="guide"><%= i18n.USB_GUIDE_LOCAL_GUIDE %></li>
+                    <li class="cate text-primary" data-cate="guide-41"><%= i18n.USB_GUIDE_LOCAL_GUIDE_41 %></li>
+                    <li class="cate text-primary" data-cate="guide-42"><%= i18n.USB_GUIDE_LOCAL_GUIDE_42 %></li>
+                    <li class="cate text-primary" data-cate="guide-miui"><%= i18n.USB_GUIDE_LOCAL_GUIDE_MIUI %></li>
+                </ul>
+            </div>
+            <div class="content"><div class="img-wrap guide"></div></div>
         </div>
     </script>
 

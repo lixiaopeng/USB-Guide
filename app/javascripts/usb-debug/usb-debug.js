@@ -2,6 +2,7 @@
 var selectView;
 var feedbackView;
 var sliderView;
+var detailView;
 var log;
 
 $(document).ready(function () {
@@ -10,20 +11,18 @@ $(document).ready(function () {
         var Log = function (data) {
             data = data || {};
 
-            // var url = "wdj://window/log.json",
-            //     datas = [],
-            //     d;
 
-            // for (d in data) {
-            //     if (data.hasOwnProperty(d)) {
-            //         datas.push(d + '=' + window.encodeURIComponent(data[d]));
-            //     }
-            // }
-            // url += '?' + datas.join('&');
+            var url = "wdj://window/log.json",
+                datas = [],
+                d;
 
-            // window.OneRingRequest('get', url, '', function (resp) {
-            //     return;
-            // });
+            for (d in data) {
+                if (data.hasOwnProperty(d)) {
+                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
+                }
+            }
+
+            window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
         };
 
         log = Log;
@@ -89,6 +88,7 @@ $(document).ready(function () {
             className : 'u-select-view',
             template : _.template($('#selectView').html()),
             isRender : false,
+            isShow : false,
             render : function () {
                 var self = this;
                 self.isRender = true;
@@ -136,6 +136,7 @@ $(document).ready(function () {
         FeedbackView.prototype = {
             className : 'u-feedback-ctn',
             template : _.template($('#feedBackView').html()),
+            isShow : false,
             render: function () {
                 var self = this;
 
@@ -157,7 +158,6 @@ $(document).ready(function () {
                             return;
                         }
                     } else {
-                        $btn.prop('disabled', true);
                         $numTip.css('visibility', 'hidden');
                         return;
                     }
@@ -236,6 +236,7 @@ $(document).ready(function () {
         SilderView.prototype = {
             className : 'u-slider-view',
             template : _.template($('#sliderView').html()),
+            isShow : false,
             render : function () {
                 var self = this;
 
@@ -519,6 +520,29 @@ $(document).ready(function () {
 
         sliderView = new SilderView();
     }(this));
+
+    (function () {
+        var DetailView = function () {
+            this.$el = $('<div>').addClass(this.className);
+            return this;
+        };
+
+        DetailView.prototype = {
+            className : 'u-detail-view',
+            template : _.template($('#detailView').html()),
+            isShow : false,
+            render : function () {
+                this.$el.html(this.template({}));
+                return this;
+            },
+            setContent : function (content) {
+                this.$el.find('.user-detail').val(content);
+            }
+        };
+
+        detailView = new DetailView();
+
+    }(this));
 });
 
 var getUrlParam = function (name) {
@@ -554,8 +578,10 @@ var proMap = {
     'huawei' : 1,
     'lenovo' : 1,
     'zte' : 1,
-    'xiaomi' : 1
+    'xiaomi' : 1,
+    'xiaomi3' : 1
 };
+
 
 var device_id = getUrlParam('device_id');
 var product_id = getUrlParam('product_id');
@@ -569,6 +595,14 @@ if (product_id) {
     if (product_arr[0] === 'semc') {
         product_arr[0] = 'sony';
     }
+
+    if (product_arr[0] === 'xiaomi') {
+        if (product_arr[1] === 'mi3' || product_arr[1] === 'hm1') {
+            product_arr[0] = 'xiaomi3';
+        }
+
+    }
+    product_arr[0] = product_arr[0].toLowerCase();
 
     if (proMap.hasOwnProperty(product_arr[0])) {
         version = product_arr[0];
@@ -637,19 +671,26 @@ $(document).ready(function () {
     var btnReturn = $('.button-return');
     var btnFeedback = $('.button-feedback');
     var btnVideo = $('.button-video');
+    var btnUsbQQ = $('.button-qq');
+    var btnCheckUsb = $('.button-check-usb-debug');
+
+    var showQQ = false;
 
     var hideBtn = function (selector) {
         btnMore.hide();
         btnReturn.hide();
         btnFeedback.hide();
         btnVideo.hide();
+        btnUsbQQ.hide();
     };
 
     var showView = function (nextView) {
         currentView.$el.hide();
+        currentView.isShow = false;
         lastView = currentView;
         currentView = nextView;
         nextView.$el.show();
+        nextView.isShow = true;
         hideBtn();
     };
 
@@ -662,7 +703,7 @@ $(document).ready(function () {
         btnMore.show();
 
         if (videoId) {
-            btnVideo.attr('href', creatVideoUrl(videoId)).show();
+            btnVideo.attr('href', creatVideoUrl(videoId));
         }
 
         log({
@@ -673,17 +714,18 @@ $(document).ready(function () {
     } else {
         $container.append(selectView.render().$el);
         currentView = selectView;
+        currentView.isShow = true;
         currentView.$el.show();
         btnFeedback.show();
     }
 
     $container.append(feedbackView.render().$el);
 
-    $('.button-check-usb-debug').click(function () {
+    btnCheckUsb.click(function () {
         window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
     });
 
-    $('.button-feedback').on('click', function () {
+    btnFeedback.on('click', function () {
         showView(feedbackView);
         btnReturn.show();
 
@@ -692,29 +734,54 @@ $(document).ready(function () {
         });
     });
 
-    $('.button-more').on('click', function () {
+    btnMore.on('click', function () {
 
         if (!selectView.isRender) {
             $container.append(selectView.render().$el);
         }
         showView(selectView);
-        btnFeedback.show();
+        if (showQQ) {
+            btnUsbQQ.show();
+        } else {
+            btnFeedback.show();
+        }
 
         log({
             'event': 'ui.click.new_usb_debug_more'
         });
     });
 
-    $('.button-return').on('click', function () {
+    btnReturn.on('click', function () {
         showView(selectView);
-        btnFeedback.show();
+        if (showQQ) {
+            btnUsbQQ.show();
+        } else {
+            btnFeedback.show();
+        }
+        btnCheckUsb.show();
+
 
         log({
             'event': 'ui.click.new_usb_debug_more'
         });
     });
 
-    $('.button-video').on('click', function () {
+    $('.button-qq, .usb-qq').on('click', function () {
+
+        if (!detailView.isShow) {
+            $container.append(detailView.render().$el);
+        }
+        showView(detailView);
+        btnCheckUsb.hide();
+        detailView.setContent('device_id : ' + device_id + '\r\nproduct_id : ' + product_id);
+        btnReturn.show();
+
+        log({
+            'event': 'ui.click.new_usb_qq'
+        });
+    });
+
+    btnVideo.on('click', function () {
         log({
             'event': 'ui.click.new_usb_debug_video'
         });
@@ -728,6 +795,23 @@ $(document).ready(function () {
         btnMore.show();
         if (videoId) {
             btnVideo.attr('href', creatVideoUrl(videoId)).show();
+        }
+    });
+
+    $.ajax('http://conn-feedback.wandoujia.com/request', {
+        data : {
+            device_id : device_id
+        },
+        dataType: "jsonp",
+        success : function (resp) {
+            if (resp.ret > 0) {
+
+                showQQ = true;
+                btnFeedback.hide();
+                if (selectView.isShow) {
+                    btnUsbQQ.show();
+                }
+            }
         }
     });
 });
