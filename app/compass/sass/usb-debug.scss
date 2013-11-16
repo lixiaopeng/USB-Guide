@@ -403,6 +403,19 @@ a,
     position: relative;
     width: 600px;
 
+    .number {
+        @include usb-debug-sprite(bullet_list);
+        @include inline-block();
+
+        color: #fff;
+        height: usb-debug-sprite-height(bullet_list);
+        line-height: 27px;
+        margin-right: 5px;
+        text-align: center;
+        vertical-align: middle;
+        width: usb-debug-sprite-width(bullet_list);
+    }
+
     .describe,
     .return {
         @include inline-block();
@@ -663,15 +676,14 @@ a,
 
     .describe,
     .return {
+        color: $textNormal;
+        font-size: 14px;
         @include inline-block();
     }
 
     .user-detail {
-        background-color: #FFF;
-        border: 1px solid #BEBEBE;
         font-size: 14px;
         height: 280px;
-        padding: 5px 0 0 5px;
         width: 650px;
     }
 }

@@ -536,7 +536,7 @@ $(document).ready(function () {
                 return this;
             },
             setContent : function (content) {
-                this.$el.find('.user-detail').html(content);
+                this.$el.find('.user-detail').val(content);
             }
         };
 
@@ -595,6 +595,13 @@ if (product_id) {
     if (product_arr[0] === 'semc') {
         product_arr[0] = 'sony';
     }
+
+    if (product_arr[0] === 'xiaomi') {
+        if (product_arr[1] === 'mi3' || product_arr[1] === 'hm1') {
+            product_arr[0] = 'xiaomi3';
+        }
+
+    }
     product_arr[0] = product_arr[0].toLowerCase();
 
     if (proMap.hasOwnProperty(product_arr[0])) {
@@ -606,9 +613,6 @@ if (product_id) {
         version = VIDMap[vid];
     }
 }
-
-//TODO
-var userDetail = getUrlParam('user_detail') || device_id + '<br />' + product_id;
 
 var creatVideoUrl = function (videoId) {
     return 'http://www.wandoujia.com/help/?do=topic&id=' + videoId;
@@ -762,14 +766,14 @@ $(document).ready(function () {
         });
     });
 
-    $('.button-qq, usb-qq').on('click', function () {
+    $('.button-qq, .usb-qq').on('click', function () {
 
         if (!detailView.isShow) {
             $container.append(detailView.render().$el);
         }
         showView(detailView);
         btnCheckUsb.hide();
-        detailView.setContent(userDetail);
+        detailView.setContent('device_id : ' + device_id + '\r\nproduct_id : ' + product_id);
         btnReturn.show();
 
         log({

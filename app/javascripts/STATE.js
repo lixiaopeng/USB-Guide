@@ -27,12 +27,8 @@
             CONNECTION_FORWARD_FAILED : -23,  // forward connection port failed
             CONNECTION_IDENTIFY_FAILED : -24,  // identify device info failed
             STORAGE_INSUFFICIENT : -27,  // storage is insufficient
-            RECOVERY : -29,  // Phone enter recovery mode
             NOT_ALLOW_INSTALL_APK : -32,  // used by snappea
             APK_INSTALL_CANCELED_BY_USER : -33,
-            ADB_SERVER_ERROR_WDJ : -34,  // The inner state of adb server is error, which is provided by wdj.
-            ADB_SERVER_ERROR_OTHER : -35,  // The inner state of adb server is error, which is provided by other pc suite.
-            ADB_SERVER_KILL_ERROR : -36,  // Kill adb process error
             // ////////////////////////////////////////////////////////////////////////
             // All Processing State, bigger than 1, lowwer than 100
             // ////////////////////////////////////////////////////////////////////////
@@ -80,7 +76,11 @@
             REALY_INSTALL_APK_SUCCESS : 165,
             START_UPDATE_PROXY : 166,
             ADB_SERVER_KILL_SUCCESS : 167,  // kill other adb server success
-            ASK_ALLOW_INSTALL_APK : 1000  // used by snappea
+            ASK_ALLOW_INSTALL_APK : 1000,  // used by snappea
+            RECOVERY : 1029,  // Phone enter recovery mode
+            ADB_SERVER_ERROR_WDJ : 1034,  // The inner state of adb server is error, which is provided by wdj.
+            ADB_SERVER_ERROR_OTHER : 1035,  // The inner state of adb server is error, which is provided by other pc suite.
+            ADB_SERVER_KILL_ERROR : 1036  // Kill adb process error
         };
     });
 }(this));
