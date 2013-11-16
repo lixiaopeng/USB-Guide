@@ -14,25 +14,35 @@ module.exports = function (grunt) {
     var pathConfig = {
         app : 'app',
         dist : 'dist',
-        tmp : '.tmp'
+        tmp : '.tmp',
+        test : 'test'
     };
 
     grunt.initConfig({
         paths : pathConfig,
         watch : {
             compass : {
-                files : ['<%= paths.app %>/{,*/}*/{,*/}*.{scss,png}'],
+                files : ['<%= paths.app %>/compass/{,*/}*/{,*/}*.{scss,sass,png,ttf}'],
                 tasks : ['compass:server']
+            },
+            test : {
+                files : ['<%= paths.app %>/javascripts/**/*.js'],
+                tasks : ['jshint:test', 'karma:server:run'],
+                options : {
+                    spawn : false
+                }
             },
             livereload: {
                 files: [
-                    '<%= paths.app %>{,*/}*/*.html',
-                    '<%= paths.tmp %>/stylesheets/*.css',
-                    '<%= paths.app %>/javascripts/*.js',
-                    '<%= paths.tmp %>/images/{,*/}*/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    '<%= paths.app %>/*.html',
+                    '<%= paths.app %>/javascripts/**/*.js',
+                    '<%= paths.app %>/images/**/*.*',
+                    '<%= paths.tmp %>/stylesheets/**/*.css',
+                    '<%= paths.tmp %>/images/**/*.*'
                 ],
                 options : {
-                    livereload : true
+                    livereload : true,
+                    spawn : false
                 }
             }
         },
@@ -41,7 +51,7 @@ module.exports = function (grunt) {
                 port : 9999,
                 hostname : '0.0.0.0'
             },
-            dev : {
+            server : {
                 options : {
                     middleware : function (connect) {
                         return [
@@ -55,56 +65,13 @@ module.exports = function (grunt) {
         },
         open: {
             server : {
-                path : 'http://127.0.0.1:<%= connect.options.port %>'
+                path : 'http://127.0.0.1:<%= connect.options.port %>',
+                app : 'Google Chrome Canary'
             }
         },
         clean : {
             dist : ['<%= paths.tmp %>', '<%= paths.dist %>'],
-            server : '<%= paths.tmp %>',
-            index: [
-                '<%= paths.dist %>/index.html',
-                '<%= paths.dist %>/images/progress.png',
-                '<%= paths.dist %>/images/sprite-*.png'
-            ]
-        },
-        requirejs : {
-            dist : {
-                options : {
-                    optimize : 'uglify',
-                    uglify : {
-                        toplevel : true,
-                        ascii_only : false,
-                        beautify : false
-                    },
-                    preserveLicenseComments : true,
-                    useStrict : false,
-                    wrap : true
-                }
-            }
-        },
-        compass : {
-            options : {
-                sassDir : '<%= paths.app %>/sass',
-                cssDir : '<%= paths.tmp %>/stylesheets',
-                imagesDir : '<%= paths.app %>/sprites',
-                generatedImagesDir : '<%= paths.tmp %>/images',
-                relativeAssets : false
-            },
-            dist : {
-                options : {
-                    cssDir : '<%= paths.dist %>/stylesheets',
-                    generatedImagesDir : '<%= paths.dist %>/images',
-                    outputStyle : 'compressed',
-                    httpGeneratedImagesPath: '{placeholder}/images'
-                }
-            },
-            server : {
-                options : {
-                    generatedImagesDir : '<%= paths.tmp %>/images',
-                    httpGeneratedImagesPath : '../images',
-                    debugInfo : false
-                }
-            }
+            server : '<%= paths.tmp %>'
         },
         useminPrepare : {
             html : ['<%= paths.app %>/*.html'],
@@ -112,7 +79,7 @@ module.exports = function (grunt) {
                 dest : '<%= paths.dist %>'
             }
         },
-        usemin : {
+        usemin: {
             html : ['<%= paths.dist %>/*.html'],
             options : {
                 dirs : ['<%= paths.dist %>']
@@ -138,7 +105,7 @@ module.exports = function (grunt) {
                     src : [
                         'javascripts/nls/*/*.js',
                         'javascripts/DD_belatedPNG_0.0.8a-min.js',
-                        'images/**/{,*/}*.{webp,gif,png,jpg,jpeg}'
+                        'images/**/*.{webp,gif,png,jpg,jpeg}'
                     ]
                 }]
             },
@@ -156,14 +123,113 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        compass : {
+            options : {
+                sassDir : '<%= paths.app %>/compass/sass',
+                cssDir : '<%= paths.tmp %>/stylesheets',
+                imagesDir : '<%= paths.app %>/compass/images',
+                fontsDir : '<%= paths.app %>/compass/fonts',
+                relativeAssets : true
+            },
+            dist : {
+                options : {
+                    cssDir : '<%= paths.dist %>/stylesheets',
+                    generatedImagesDir : '<%= paths.dist %>/images',
+                    outputStyle : 'compressed',
+                    httpGeneratedImagesPath: '{placeholder}/images'
+                }
+            },
+            server : {
+                options : {
+                    cssDir : '<%= paths.tmp %>/stylesheets',
+                    httpGeneratedImagesPath : '../images',
+                    debugInfo : false
+                }
+            }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= paths.dist %>/javascripts/usb-debug.js',
+                        '<%= paths.dist %>/stylesheets/usb-debug.css',
+                        '<%= paths.dist %>/stylesheets/ie6.css',
+                        '<%= paths.dist %>/stylesheets/ie7.css'
+                    ]
+                }
+            }
+        },
         imagemin : {
             dist : {
                 files : [{
                     expand : true,
                     cwd : '<%= paths.dist %>/images',
-                    src : '{,*/}*.{png,jpg,jpeg}',
+                    src : '**/*.{png,jpg,jpeg}',
                     dest : '<%= paths.dist %>/images'
                 }]
+            }
+        },
+        requirejs : {
+            dist : {
+                options : {
+                    optimize : 'uglify',
+                    uglify : {
+                        toplevel : true,
+                        ascii_only : false,
+                        beautify : false
+                    },
+                    preserveLicenseComments : true,
+                    useStrict : false,
+                    wrap : true
+                }
+            }
+        },
+        concurrent: {
+            dist : ['copy:dist', 'compass:dist']
+        },
+        jshint : {
+            test : ['<%= paths.app %>/javascripts/**/*.js']
+        },
+        karma : {
+            options : {
+                configFile : '<%= paths.test %>/karma.conf.js',
+                browsers : ['Chrome_without_security']
+            },
+            server : {
+                reporters : ['progress'],
+                background : true
+            },
+            test : {
+                reporters : ['progress', 'junit', 'coverage'],
+                preprocessors : {
+                    '<%= paths.app %>/javascripts/**/*.js' : 'coverage'
+                },
+                junitReporter : {
+                    outputFile : '<%= paths.test %>/output/test-results.xml'
+                },
+                coverageReporter : {
+                    type : 'html',
+                    dir : '<%= paths.test %>/output/coverage/'
+                },
+                singleRun : true
+            },
+            travis : {
+                browsers : ['PhantomJS'],
+                reporters : ['progress'],
+                singleRun : true
+            }
+        },
+        bump : {
+            options : {
+                files : ['package.json', 'bower.json'],
+                updateConfigs : [],
+                commit : true,
+                commitMessage : 'Release v%VERSION%',
+                commitFiles : ['-a'],
+                createTag : true,
+                tagName : 'v%VERSION%',
+                tagMessage : 'Version %VERSION%',
+                push : false
             }
         },
         replace: {
@@ -193,18 +259,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        rev: {
-            dist: {
-                files: {
-                    src: [
-                        '<%= paths.dist %>/javascripts/usb-debug.js',
-                        '<%= paths.dist %>/stylesheets/usb-debug.css',
-                        '<%= paths.dist %>/stylesheets/ie6.css',
-                        '<%= paths.dist %>/stylesheets/ie7.css'
-                    ]
-                }
-            }
-        },
         shell: {
             replace : {
                 command : './build.sh'
@@ -231,7 +285,8 @@ module.exports = function (grunt) {
     grunt.registerTask('server', [
         'clean:server',
         'compass:server',
-        'connect:dev',
+        'connect:server',
+        'karma:server',
         'open',
         'watch'
     ]);
