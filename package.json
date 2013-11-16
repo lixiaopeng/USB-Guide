@@ -1,6 +1,6 @@
 {
     "name" : "WandouLabs-USB-Guide",
-    "version" : "0.0.1",
+    "version" : "1.0.1",
     "description" : "USB-Guide UI. ",
     "repository" : {
         "type" : "git",
