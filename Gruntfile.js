@@ -105,7 +105,8 @@ module.exports = function (grunt) {
                     src : [
                         'javascripts/nls/*/*.js',
                         'javascripts/DD_belatedPNG_0.0.8a-min.js',
-                        'images/**/*.{webp,gif,png,jpg,jpeg}'
+                        'images/**/*.{webp,gif,png,jpg,jpeg}',
+                        'components/requirejs/require.js'
                     ]
                 }]
             },
