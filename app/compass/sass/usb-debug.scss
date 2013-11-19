@@ -13,7 +13,7 @@
     @include border-radius(3px);
     @include filter-gradient($btnBgColorFrom, $btnBgColorTo);
     @include inline-block();
-    @include single-box-shadow(#fff, 0, 1px, 0, false, true);
+    @include single-box-shadow(0, 1px, 0, false, #fff, true);
     @include single-text-shadow(0, 1px, 0, false, #fff);
 
     border: 1px $btnBorderColor solid;
@@ -57,7 +57,7 @@
     &.w-btn-primary {
         @include background-image(linear-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo));
         @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
-        @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+        @include single-box-shadow(0, 1px, 0, false, #72c261, true);
         @include single-text-shadow(0, 1px, 0, false, rgba(0, 0, 0, .2));
 
         border-color: $btnPrimaryBorderColor;
@@ -66,14 +66,14 @@
         &:hover,
         &.hover {
             @include background-image(linear-gradient($btnPrimaryHoverBgColorFrom, $btnPrimaryHoverBgColorTo));
-            @include single-box-shadow(#79d367, 0, 1px, 0, false, true);
+            @include single-box-shadow(0, 1px, 0, false, #79d367, true);
         }
 
         &:active,
         &.active {
             @include background-image(linear-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo));
             @include filter-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo);
-            @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+            @include single-box-shadow(0, 1px, 0, false, #72c261, true);
         }
 
 
@@ -81,7 +81,7 @@
         &.disabled {
             @include background-image(linear-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo));
             @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
-            @include single-box-shadow(#72c261, 0, 1px, 0, false, true);
+            @include single-box-shadow(0, 1px, 0, false, #72c261, true);
 
             color: $btnPrimaryTextColor;
         }
@@ -115,7 +115,7 @@ a,
 }
 
 .u-shadow {
-    @include single-box-shadow(#999, 0, 1px, 10px, false, false);
+    @include single-box-shadow(0, 1px, 10px, false, #999, false);
 }
 
 .u-footer {
