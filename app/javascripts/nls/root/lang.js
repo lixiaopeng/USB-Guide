@@ -16,5 +16,23 @@ define({
     INSTALL_DRIVER_FAILED : '呃，驱动好像没安装成功，请您尝试重新安装驱动。',
     DOWNLOAD_DRIVER_FAILED : '呃，服务器好像有一些故障...请过几分钟再试吧',
     RETRY_INSTALL_DRIVER : '重新安装',
-    RETRY_DOWNLOAD_DRIVER : '重新下载'
+    RETRY_DOWNLOAD_DRIVER : '重新下载',
+    SHOW_DETAIL_RESULT : '查看详细错误原因',
+    USER_KILL_ADB : '{1} 阻止了豌豆荚连接您的手机，请关闭此程序后继续。',
+    USER_KILL_ADB_BTN : "把它关掉",
+    USER_KILL_ADB_ERROR : '{1} 关闭失败，需要您亲自去关掉它，或者试一下重启豌豆荚',
+    REBOOT : '重启电脑',
+    ADB_SERVER_ERROR : '豌豆荚链接手机过程中遇到一些障碍，请您重新启动豌豆荚后继续',
+    REBOOT_WDJ : '重启豌豆荚',
+    NO_SOLUTION : '都试过了，还是不能链接',
+    ALLOW_INSTALL : '链接手机时，需要您在手机上允许安装豌豆荚才能正常连接',
+
+    USB_GUIDE_LOCAL_TITLE : '请打开「USB 调试」开关',
+    USB_GUIDE_LOCAL_NEED_OPEN_DEBUG : '豌豆荚需要您打开手机上的「USB 调试」开关才能连接',
+    USB_GUIDE_LOCAL_CHOOSE_VERSION : '请选择您的手机系统的版本查看相应设置方法',
+    USB_GUIDE_LOCAL_GUIDE : '3.2 及以下',
+    USB_GUIDE_LOCAL_GUIDE_41 : '4.0 及以上',
+    USB_GUIDE_LOCAL_GUIDE_42 : '4.2',
+    USB_GUIDE_LOCAL_GUIDE_MIUI : 'MIUI V5',
+    USB_GUIDE_LOCAL_ALREADY_TURN_ON : '我已打开'
 });

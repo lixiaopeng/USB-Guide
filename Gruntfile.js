@@ -71,7 +71,13 @@ module.exports = function (grunt) {
         },
         clean : {
             dist : ['<%= paths.tmp %>', '<%= paths.dist %>'],
-            server : '<%= paths.tmp %>'
+            server : '<%= paths.tmp %>',
+            index: [
+                '<%= paths.dist %>/index.html',
+                '<%= paths.dist %>/images/progress.png',
+                '<%= paths.dist %>/images/connecting.png',
+                '<%= paths.dist %>/images/sprite-*.png'
+            ]
         },
         useminPrepare : {
             html : ['<%= paths.app %>/*.html'],
@@ -119,11 +125,16 @@ module.exports = function (grunt) {
                     src : [
                         'index.html',
                         'images/progress.png',
+                        'images/connecting.png',
                         'images/sprite-*.png'
                     ]
                 }]
             }
         },
+
+
+
+
         compass : {
             options : {
                 sassDir : '<%= paths.app %>/compass/sass',
@@ -137,7 +148,7 @@ module.exports = function (grunt) {
                     cssDir : '<%= paths.dist %>/stylesheets',
                     generatedImagesDir : '<%= paths.dist %>/images',
                     outputStyle : 'compressed',
-                    httpGeneratedImagesPath: '{placeholder}/images'
+                    httpGeneratedImagesPath: './images'
                 }
             },
             server : {

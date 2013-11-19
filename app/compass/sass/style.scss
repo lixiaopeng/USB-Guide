@@ -7,10 +7,32 @@
 @import "sprite/*.png";
 @import "compass/css3";
 
-body {
+html, body {
     background-color: #f6f6f6;
     overflow: hidden;
     cursor: default;
+}
+
+/*IE hacker*/
+.w-btn {
+    *min-width : auto;
+    *border-width: 0;
+    background-color : #4CB038\9;
+    outline: none;
+
+    &:hover,
+    &.hover {
+        background-color : #57C83F\9;
+    }
+
+    &:active,
+    &.active {
+        background-color : #359921\9;
+    }
+
+    &.w-btn-large {
+        *padding: 7px 5px;
+    }
 }
 
 .g-stage {
@@ -32,7 +54,6 @@ body {
 
 .g-progress-running {
     background-image: generated-image-url('progress.png');
-
     height: 12px;
 }
 
@@ -57,13 +78,21 @@ body {
 }
 
 .g-connecting-start {
-    .bg {
-        @include sprite-sprite(connecting);
+    .bg-container {
 
-        height: sprite-sprite-height(connecting);
+        height: 209px;
         position: relative;
         margin: 50px auto;
-        width: sprite-sprite-width(connecting);
+        width: 520px;
+
+        .bg {
+            background-image: generated-image-url('connecting.png');
+            height: 209px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 520px;
+        }
 
         .g-progress-running {
             left: 115px;
@@ -75,7 +104,8 @@ body {
 }
 
 .g-download-driver-failed,
-.g-install-driver-canceled {
+.g-install-driver-canceled,
+.g-kill-adb {
     .bg {
         @include sprite-sprite(speechless);
 
@@ -83,6 +113,21 @@ body {
         position: relative;
         margin: 50px auto;
         width: sprite-sprite-width(speechless);
+    }
+
+    .w-btn {
+      margin-top: 10px;
+    }
+}
+
+.g-allow-install {
+    .bg {
+        @include sprite-sprite(allowinstall);
+
+        height: sprite-sprite-height(allowinstall);
+        position: relative;
+        margin: 50px auto;
+        width: sprite-sprite-width(allowinstall);
     }
 
     .w-btn {
@@ -194,4 +239,60 @@ body {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+.usb-guide-local {
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 20px 0px;
+
+    .cate-selector {
+        height: 20px;
+        list-style-type: none;
+        margin: 0px 0px 20px 0px;
+
+        .cate {
+            border: 1px transparent solid;
+            float: left;
+            min-width: 80px;
+            padding: 3px 0;
+            position: relative;
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            + .cate {
+                margin-left: 10px;
+            }
+
+            &.selected {
+                background-color: $standardColor;
+                border: 1px #629333 solid;
+                border-radius: 15px;
+                box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 1px 3px rgba(0, 0, 0, .3);
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+            }
+        }
+    }
+
+    .content {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        -webkit-box-flex: 1;
+
+        .img-wrap {
+            background-position: center center;
+            background-repeat: no-repeat;
+
+            @each $cate in guide, guide-41, guide-42, guide-miui {
+                &.#{$cate} {
+                    @include sprite-sprite(#{$cate});
+                    height: sprite-sprite-height(#{$cate})
+                }
+            }
+        }
+    }
 }
