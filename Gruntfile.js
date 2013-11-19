@@ -172,15 +172,36 @@ module.exports = function (grunt) {
         requirejs : {
             dist : {
                 options : {
+                    almond : true,
+                    appDir : '<%= paths.app %>/javascripts',
+                    dir :　'<%= paths.dist %>/javascripts',
                     optimize : 'uglify',
+                    baseUrl : './',
                     uglify : {
                         toplevel : true,
                         ascii_only : false,
                         beautify : false
                     },
+                    paths : {
+                        $ : '../components/jquery/jquery',
+                        i18n : '../components/requirejs-i18n/i18n',
+                        _ : '../components/underscore/underscore'
+                    },
+                    shim: {
+                        $ : {
+                            exports : '$'
+                        },
+                        _ : {
+                            exports : '_'
+                        }
+                    },
                     preserveLicenseComments : true,
                     useStrict : false,
-                    wrap : true
+                    wrap : true,
+                    modules : [{
+                        name : 'main',
+                        include : ['jquery', 'i18n', '_',]
+                    }]
                 }
             }
         },
@@ -294,11 +315,11 @@ module.exports = function (grunt) {
     grunt.registerTask('prebuild', [
         'clean:dist',
         'compass:dist',
+        'requirejs:dist',
         'copy',
         'useminPrepare',
         'concat',
         'uglify',
-        'requirejs:dist',
         'htmlmin',
         'rev',
         'usemin',
