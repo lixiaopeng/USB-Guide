@@ -102,7 +102,7 @@
 html,
 body,
 .wrap {
-    @include user-select(none);
+   // @include user-select(none);
 
     height: 100%;
     overflow: hidden;
@@ -694,4 +694,8 @@ input {
     _margin-right: 5px;
     _width: 140px;
     _margin-left: -35px;
+}
+
+input, textarea {
+   // @include user-select(text);
 }

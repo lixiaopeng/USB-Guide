@@ -230,8 +230,12 @@ html, body {
         @include sprite-sprite(debug);
 
         height: sprite-sprite-height(debug);
-        margin: 60px auto;
+        margin: 60px auto 20px auto;
         width: sprite-sprite-width(debug);
+    }
+
+    .button-container {
+        margin-top: 20px;
     }
 }
 

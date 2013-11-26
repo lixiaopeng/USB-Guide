@@ -280,6 +280,15 @@ require.config({
             });
         });
 
+        $(document).on('click', '.button-retry-offline', function () {
+            window.external.call('{"cmd":"retry", "param":""}');
+            log({
+                //没有弹窗，再试一次
+                'event' : 'ui.click.retry_debug'
+            });
+
+        });
+
         $(function () {
             window.external.call('ready');
         });

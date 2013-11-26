@@ -131,10 +131,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
-
-
-
         compass : {
             options : {
                 sassDir : '<%= paths.app %>/compass/sass',
@@ -305,12 +301,12 @@ module.exports = function (grunt) {
                 deployCDN : {
                     src : '<%= paths.dist %>',
                     target : 'usb-engine'
-                },
+                }/*,
                 deployStatic : {
                     src : '<%= paths.dist %>',
                     target : 'usb-engine',
                     product : true
-                }
+                }*/
             }
         }
     });

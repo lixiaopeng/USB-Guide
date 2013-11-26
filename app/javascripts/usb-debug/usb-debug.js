@@ -80,7 +80,7 @@ $(document).ready(function () {
         };
 
         var SelectView = function () {
-            this.$el = $('<div>').addClass(this.className);
+            this.$el = $('.tmp_select').addClass(this.className);
             return this;
         };
 
@@ -114,7 +114,7 @@ $(document).ready(function () {
                 var type = tmp[1];
                 var version = tmp[2];
 
-                $.event.trigger('SELECT', [type, version]);
+                $.event.trigger('SELECT_PHONE', [type, version]);
 
                 log({
                     'event': 'ui.click.new_usb_debug_select',
@@ -129,7 +129,7 @@ $(document).ready(function () {
 
     (function () {
         var FeedbackView = function () {
-            this.$el = $('<div>').addClass(this.className);
+            this.$el = $('.tmp_feedback').addClass(this.className);
             return this;
         };
 
@@ -229,7 +229,7 @@ $(document).ready(function () {
 
     (function () {
         var SilderView = function () {
-            this.$el = $('<div>').addClass(this.className);
+            this.$el = $('.tmp_silder').addClass(this.className);
             return this;
         };
 
@@ -523,7 +523,7 @@ $(document).ready(function () {
 
     (function () {
         var DetailView = function () {
-            this.$el = $('<div>').addClass(this.className);
+            this.$el = $('.tmp_detail').addClass(this.className);
             return this;
         };
 
@@ -696,7 +696,7 @@ $(document).ready(function () {
 
     hideBtn();
     if (version) {
-        $container.append(sliderView.render().$el);
+        sliderView.render();
         currentView = sliderView;
         currentView.$el.show();
         var videoId = currentView.start('brands', version);
@@ -712,14 +712,14 @@ $(document).ready(function () {
         });
 
     } else {
-        $container.append(selectView.render().$el);
+        selectView.render();
         currentView = selectView;
         currentView.isShow = true;
         currentView.$el.show();
         btnFeedback.show();
     }
 
-    $container.append(feedbackView.render().$el);
+    feedbackView.render();
 
     btnCheckUsb.click(function () {
         window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
@@ -737,7 +737,7 @@ $(document).ready(function () {
     btnMore.on('click', function () {
 
         if (!selectView.isRender) {
-            $container.append(selectView.render().$el);
+            selectView.render();
         }
         showView(selectView);
         if (showQQ) {
@@ -769,7 +769,7 @@ $(document).ready(function () {
     $('.button-qq, .usb-qq').on('click', function () {
 
         if (!detailView.isShow) {
-            $container.append(detailView.render().$el);
+            detailView.render();
         }
         showView(detailView);
         btnCheckUsb.hide();
@@ -787,8 +787,8 @@ $(document).ready(function () {
         });
     });
 
-    $(document).bind('SELECT', function (evt, type, version) {
-        $container.append(sliderView.render().$el);
+    $(document).bind('SELECT_PHONE', function (evt, type, version) {
+        sliderView.render();
         showView(sliderView);
 
         var videoId = currentView.start(type, version);
