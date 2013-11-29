@@ -27,6 +27,9 @@ define({
     REBOOT_WDJ : '重启豌豆荚',
     NO_SOLUTION : '都试过了，还是不能链接',
     ALLOW_INSTALL : '链接手机时，需要您在手机上允许安装豌豆荚才能正常连接',
+    CDROM : '您手机的驱动安装程序需要你手动安装，请您点击安装按钮继续安装过程',
+    ASK_WANDOUJIA : '始终安装不上？QQ联系豌豆公主帮您解答',
+    NO_CDROM_TIP : '电脑上没出现这个提示，试试别的办法',
 
     USB_GUIDE_LOCAL_TITLE : '请打开「USB 调试」开关',
     USB_GUIDE_LOCAL_NEED_OPEN_DEBUG : '豌豆荚需要您打开手机上的「USB 调试」开关才能连接',

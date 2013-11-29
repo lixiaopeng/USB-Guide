@@ -8,24 +8,29 @@ var log;
 $(document).ready(function () {
 
     (function () {
-        var Log = function (data) {
-            data = data || {};
 
+        try {
+            window.external.call('{cmd:""}');
+            log = function (data) {
+                data = data || {};
 
-            var url = "wdj://window/log.json",
-                datas = [],
-                d;
+                var url = "wdj://window/log.json",
+                    datas = [],
+                    d;
 
-            for (d in data) {
-                if (data.hasOwnProperty(d)) {
-                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
+                for (d in data) {
+                    if (data.hasOwnProperty(d)) {
+                        datas.push(d + '=' + window.encodeURIComponent(data[d]));
+                    }
                 }
-            }
 
-            window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
-        };
+                window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
+            };
 
-        log = Log;
+        }catch (e) {
+            log = function () {};
+        }
+
     }(this));
 
     (function () {
@@ -68,7 +73,7 @@ $(document).ready(function () {
                 name : 'Android<br />4.0 - 4.1',
                 className : 'ics'
             }, {
-                name : 'Android 4.2',
+                name : 'Android<br /> 4.2 - 4.4',
                 className : 'jeallybean'
             }, {
                 name : 'MIUI V5',
@@ -137,14 +142,27 @@ $(document).ready(function () {
             className : 'u-feedback-ctn',
             template : _.template($('#feedBackView').html()),
             isShow : false,
+            eventName : '',
             render: function () {
                 var self = this;
 
                 this.$el.html(this.template({}));
 
+                var smsPanel = this.$el.find('.sms');
+                var qrPanel = this.$el.find('.qr');
+
+                if (Math.floor(Math.random()*2)) {
+                    this.eventName = 'ui.show.smsPanel';
+                    qrPanel.hide();
+                } else {
+                    this.eventName = 'ui.show.qrPanel';
+                    smsPanel.hide();
+                }
+
                 var $numTip = this.$el.find('.body .not-a-number');
                 var $connectTip = this.$el.find('.body .connect-error');
                 var $numInput = this.$el.find('.body input');
+                var $dis = this.$el.find('.body .tip');
                 var $btn = this.$el.find('.button-send');
 
                 $btn.click(function () {
@@ -153,12 +171,15 @@ $(document).ready(function () {
                     if (num) {
                         if (/1\d{10}/.test(num)) {
                             $numTip.hide();
+                            $dis.show();
                         } else {
                             $numTip.show();
+                            $dis.hide();
                             return;
                         }
                     } else {
-                        $numTip.css('visibility', 'hidden');
+                        $numTip.hide();
+                        $dis.show();
                         return;
                     }
 
@@ -177,6 +198,7 @@ $(document).ready(function () {
                         dataType: "jsonp",
                         error : function () {
                             $connectTip.show();
+                            $dis.hide();
                         },
                         success : function () {
                             log({
@@ -411,8 +433,10 @@ $(document).ready(function () {
                 });
 
                 this.currentIndex = 0;
-                this.$el.find('.left').toggleClass('dis', true);
-                this.$el.find('.right').toggleClass('dis', false);
+                if (!window.DD_belatedPNG) {
+                    this.$el.find('.left').toggleClass('dis', true);
+                    this.$el.find('.right').toggleClass('dis', false);
+                }
 
                 $(this.lis[0]).removeClass('white').animate({
                     left : 174,
@@ -674,6 +698,12 @@ $(document).ready(function () {
     var btnUsbQQ = $('.button-qq');
     var btnCheckUsb = $('.button-check-usb-debug');
 
+    try {
+            window.external.call('{cmd:""}');
+        }catch (e) {
+            btnCheckUsb.hide();
+        }
+
     var showQQ = false;
 
     var hideBtn = function (selector) {
@@ -732,6 +762,10 @@ $(document).ready(function () {
         log({
             'event': 'ui.click.new_usb_debug_feedback'
         });
+
+        log({
+            'event' : feedbackView.eventName
+        });
     });
 
     btnMore.on('click', function () {
@@ -758,8 +792,13 @@ $(document).ready(function () {
         } else {
             btnFeedback.show();
         }
-        btnCheckUsb.show();
 
+        try {
+            window.external.call('{cmd:""}');
+            btnCheckUsb.show();
+        }catch (e) {
+            btnCheckUsb.hide();
+        }
 
         log({
             'event': 'ui.click.new_usb_debug_more'

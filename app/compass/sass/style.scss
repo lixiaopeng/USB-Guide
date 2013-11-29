@@ -105,7 +105,8 @@ html, body {
 
 .g-download-driver-failed,
 .g-install-driver-canceled,
-.g-kill-adb {
+.g-kill-adb,
+.g-reboot-wdj {
     .bg {
         @include sprite-sprite(speechless);
 
@@ -222,6 +223,38 @@ html, body {
 
     .button-retry {
         margin-top: 20px;
+    }
+}
+
+.start_cdrom_failed {
+    text-align: center;
+
+    .bg {
+        @include sprite-sprite(cdrom);
+
+        height: sprite-sprite-height(cdrom);
+        margin: 60px auto;
+        width: sprite-sprite-width(cdrom);
+    }
+
+    .button-qq {
+        display: none;
+
+        .img {
+            float: right;
+            @include sprite-sprite('qq');
+            height: sprite-sprite-height('qq');
+            margin-left: 2px;
+            width: sprite-sprite-width('qq');
+        }
+
+        .wording {
+            float: left;
+        }
+    }
+
+    .button-no-solution {
+        display: none;
     }
 }
 

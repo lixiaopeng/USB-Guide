@@ -317,8 +317,7 @@ a,
                 }
 
                 &.meizu,
-                &.miuios,
-                &.jeallybean {
+                &.miuios {
                     .title {
                         margin-top: 15px;
                     }
@@ -403,67 +402,118 @@ a,
     position: relative;
     width: 600px;
 
-    .number {
-        @include usb-debug-sprite(bullet_list);
-        @include inline-block();
-
-        color: #fff;
-        height: usb-debug-sprite-height(bullet_list);
-        line-height: 27px;
-        margin-right: 5px;
-        text-align: center;
-        vertical-align: middle;
-        width: usb-debug-sprite-width(bullet_list);
-    }
-
     .describe,
     .return {
         @include inline-block();
     }
 
-    .body {
-        margin-left: 35px;
-    }
+    .left {
+        float: left;
+        width: 205px;
 
-    .message {
-        margin-top: 20px;
-
-        .send-message {
-            height: 45px;
-            *position: relative;
-            *left: 10px;
-
-            .button-send {
-                *margin-left: 10px;
-            }
-
-            p {
-                display: none;
-            }
+        .bg {
+            @include usb-debug-sprite(usb-quick);
+            height: 310px;
+            width: 180px;
         }
     }
 
-    .href-container {
-        .href {
-            display: block;
-            line-height: 25px;
+    .right {
 
-            .img {
-                @include inline-block();
-                @include usb-debug-sprite(bullet_arrow);
+        margin-left: 205px;
+        padding-top: 30px;
 
-                height: usb-debug-sprite-height(bullet_arrow);
-                margin-right: 10px;
-                vertical-align: middle;
-                width: usb-debug-sprite-width(bullet_arrow);
+        .message {
+            margin-bottom: 25px;
 
-                _font-size: 10px;
-                _line-height: 10px;
+            .body {
+                float: left;
+                margin-bottom: 20px;
+                margin-top: 20px;
+
+                .not-a-number,
+                .connect-error,{
+                    display: none;
+                }
+
+                .qr {
+                    float: left;
+                    height: 130px;
+                    width: 150px;
+
+                    p {
+                        margin-left: 45px;
+                    }
+
+                    .bg {
+                        @include usb-debug-sprite(qr);
+                        height: 101px;
+                        margin-left: 25px;
+                        margin-top: 10px;
+                        width: 101px;
+                    }
+                }
+
+                .huo {
+                    @include usb-debug-sprite(huo);
+                    float: left;
+                    height: 130px;
+                    width: 34px;
+
+                }
+
+                .short-url {
+                    float: left;
+                    font-size: 14px;
+                    height: 130px;
+                    width: 165px;
+                    *width: 195px;
+
+                    .w-text-info {
+                        margin-top: 40px;
+                        margin-left: 20px;
+                    }
+
+                    .url {
+                        margin-left: 20px;
+                    }
+                }
             }
 
-            .wording {
-                @include inline-block();
-                vertical-align: middle;
+            .send-message {
+                height: 45px;
+                *position: relative;
+                *left: 10px;
+                *width: 380px;
+
+                .button-send {
+                    *margin-left: 10px;
+                }
+            }
+        }
+
+        .href-container {
+            .href {
+                display: block;
+                line-height: 25px;
+
+                .img {
+                    @include inline-block();
+                    @include usb-debug-sprite(bullet_arrow);
+
+                    height: usb-debug-sprite-height(bullet_arrow);
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    width: usb-debug-sprite-width(bullet_arrow);
+
+                    _font-size: 10px;
+                    _line-height: 10px;
+                }
+
+                .wording {
+                    @include inline-block();
+                    vertical-align: middle;
+                }
             }
         }
     }
@@ -541,6 +591,7 @@ a,
 
                 .icon {
                     @include usb-debug-sprite(switch_default_left);
+                    left: 0;
                 }
 
                 &.hov {
@@ -693,9 +744,5 @@ input {
     _line-height: 24px;
     _margin-right: 5px;
     _width: 140px;
-    _margin-left: -35px;
 }
 
-input, textarea {
-   // @include user-select(text);
-}
