@@ -119,9 +119,9 @@
             case STATE.ADB_SERVER_KILL_ERROR:
                 killADBError(obj);
                 break;
-            /*case STATE.START_CDROM_FAILED:
+            case STATE.START_CDROM_FAILED:
                 startDdromFailed(obj);
-                break;*/
+                break;
             case STATE.ADB_SERVER_ERROR_WDJ:
             case STATE.PHONE_POWEROFF:
             case STATE.RECOVER:
@@ -183,12 +183,12 @@
 
         var offLine = function (data) {
             show('offline');
-            /*$('.button-retry-offline').one('click', function () {
+            $('.button-retry-offline').one('click', function () {
                 window.external.call('{"cmd":"retry", "param":""}');
                 log({
                     'event' : 'ui.click.retry_debug'
                 });
-            });*/
+            });
 
             $('.button-fallback-tip').one('click', function () {
                 connectingError();
