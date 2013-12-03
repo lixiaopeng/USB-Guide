@@ -151,13 +151,13 @@ $(document).ready(function () {
                 var smsPanel = this.$el.find('.sms');
                 var qrPanel = this.$el.find('.qr');
 
-                if (Math.floor(Math.random()*2)) {
+                /*if (Math.floor(Math.random()*2)) {
                     this.eventName = 'ui.show.smsPanel';
                     qrPanel.hide();
-                } else {
+                } else {*/
                     this.eventName = 'ui.show.qrPanel';
                     smsPanel.hide();
-                }
+                /*}*/
 
                 var $numTip = this.$el.find('.body .not-a-number');
                 var $connectTip = this.$el.find('.body .connect-error');

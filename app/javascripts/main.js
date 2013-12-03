@@ -184,7 +184,7 @@
         var offLine = function (data) {
             show('offline');
             $('.button-retry-offline').one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+                window.external.call('{"cmd":"show-rsa-on-device", "param":""}');
                 log({
                     'event' : 'ui.click.retry_debug'
                 });

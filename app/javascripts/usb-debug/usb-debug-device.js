@@ -529,7 +529,7 @@ var systemInfo = {
     },
     'jeallybean' : {
         video : '26664138',
-        name : 'Android 4.2',
+        name : 'Android 4.2 - 4.4',
         steps : [{
             'des' : '点击「设置」进入系统设置',
             'pos' : {
