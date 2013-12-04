@@ -225,6 +225,7 @@
         };
 
         var usbGuideLocal = function (data) {
+            show('usb-guide-local');
             $('.cate').click(function () {
                 $('.cate').removeClass('selected');
                 $(this).addClass('selected');

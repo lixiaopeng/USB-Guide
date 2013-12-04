@@ -17,17 +17,17 @@ html, body {
 .w-btn {
     *min-width : auto;
     *border-width: 0;
-    background-color : #4CB038\9;
+    background-color : #4CB038;
     outline: none;
 
     &:hover,
     &.hover {
-        background-color : #57C83F\9;
+        background-color : #57C83F;
     }
 
     &:active,
     &.active {
-        background-color : #359921\9;
+        background-color : #359921;
     }
 
     &.w-btn-large {
