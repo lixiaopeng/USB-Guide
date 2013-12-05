@@ -51,6 +51,7 @@
             INSTALL_DRIVER_CANCELED : 28,
             // Should Restart PC to continue
             INSTALL_DRIVER_SUCCESS_BUT_SHOULD_RESTART : 29,
+            UAC_CANCELED : 30,
             PHONE_POWEROFF : 36,  // some phone adb can be used when power off.
             ADB_SERVER_DONT_ACK : 37,  // adb server didn't ack, need to be killed.
             USB_DEVICE_MAY_BE_PLUGOUT : 39,

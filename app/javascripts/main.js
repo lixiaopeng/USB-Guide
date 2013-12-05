@@ -89,6 +89,7 @@
             case STATE.APK_INSTALL_CANCELED_BY_USER:
                 allowInstall(obj);
                 break;
+            case STATE.DOWNLOAD_DRIVER_SUCCESS:
             case STATE.INSTALL_DRIVER:
                 installing(obj);
                 break;
@@ -126,6 +127,9 @@
             case STATE.PHONE_POWEROFF:
             case STATE.RECOVER:
                 connectingError(obj);
+                break;
+            case STATE.UAC_CANCELED:
+                uacCanceled(obj);
                 break;
             default:
                 if (obj.state >= 0) {
@@ -183,14 +187,14 @@
 
         var offLine = function (data) {
             show('offline');
-            $('.button-retry-offline').one('click', function () {
+            $('.button-retry-offline').on('click', function () {
                 window.external.call('{"cmd":"show-rsa-on-device", "param":""}');
                 log({
                     'event' : 'ui.click.retry_debug'
                 });
             });
 
-            $('.button-fallback-tip').one('click', function () {
+            $('.button-fallback-tip').on('click', function () {
                 connectingError();
                 log({
                     'event' : 'ui.click.fallback_tip'
@@ -315,6 +319,14 @@
                 connectingError();
             });
         };
+
+        var uacCanceled = function (data) {
+            show('uac_canceled');
+            $(".click_uac").one('click', function () {
+                window.external.call('{"cmd":"retry", "param":""}');
+            });
+        };
+
         window.external.call('ready');
     });
 }(this, this.document));

@@ -17,17 +17,17 @@ html, body {
 .w-btn {
     *min-width : auto;
     *border-width: 0;
-    background-color : #4CB038\9;
+    background-color : #4CB038;
     outline: none;
 
     &:hover,
     &.hover {
-        background-color : #57C83F\9;
+        background-color : #57C83F;
     }
 
     &:active,
     &.active {
-        background-color : #359921\9;
+        background-color : #359921;
     }
 
     &.w-btn-large {
@@ -276,6 +276,20 @@ html, body {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+.uac_canceled {
+    .bg {
+        @include sprite-sprite(click_uac);
+
+        height: sprite-sprite-height(click_uac);
+        margin: 60px auto 20px auto;
+        width: sprite-sprite-width(click_uac);
+    }
+
+    .w-btn {
+      margin-top: 10px;
+    }
 }
 
 .usb-guide-local {

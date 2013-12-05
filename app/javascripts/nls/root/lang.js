@@ -30,6 +30,8 @@ define({
     CDROM : '您手机的驱动安装程序需要你手动安装，请您点击安装按钮继续安装过程',
     ASK_WANDOUJIA : '始终安装不上？QQ联系豌豆公主帮您解答',
     NO_CDROM_TIP : '电脑上没出现这个提示，试试别的办法',
+    UAC_CANCELED : '请点击「是」，以允许豌豆荚继续帮助您安装手机驱动',
+    CLICK_UAC : '去点一下',
 
     USB_GUIDE_LOCAL_TITLE : '请打开「USB 调试」开关',
     USB_GUIDE_LOCAL_NEED_OPEN_DEBUG : '豌豆荚需要您打开手机上的「USB 调试」开关才能连接',
