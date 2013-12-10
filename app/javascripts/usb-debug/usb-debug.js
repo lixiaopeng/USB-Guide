@@ -3,83 +3,47 @@ var selectView;
 var feedbackView;
 var sliderView;
 var detailView;
-var log;
 
 $(document).ready(function () {
 
-    (function () {
+    try {
+        window.external.call('{cmd:""}');
+        window.log = function (data) {
+            data = data || {};
 
-        try {
-            window.external.call('{cmd:""}');
-            log = function (data) {
-                data = data || {};
+            var url = "wdj://window/log.json",
+                datas = [],
+                d;
 
-                var url = "wdj://window/log.json",
-                    datas = [],
-                    d;
-
-                for (d in data) {
-                    if (data.hasOwnProperty(d)) {
-                        datas.push(d + '=' + window.encodeURIComponent(data[d]));
-                    }
+            for (d in data) {
+                if (data.hasOwnProperty(d)) {
+                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
                 }
+            }
 
-                window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
-            };
+            window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
+        };
 
-        }catch (e) {
-            log = function () {};
-        }
-
-    }(this));
+    } catch (e) {
+        window.log = function () {};
+    }
 
     (function () {
         var data = {
-            brands: [{
-                name : '三星手机',
-                className : 'samsung'
-            }, {
-                name : '小米手机',
-                className : 'xiaomi'
-            }, {
-                name : '索尼手机',
-                className : 'sony'
-            }, {
-                name : ' HTC 手机',
-                className : 'htc'
-            }, {
-                name : '华为手机',
-                className : 'huawei'
-            }, {
-                name : '联想手机',
-                className : 'lenovo'
-            }, {
-                name : '中兴手机',
-                className : 'zte'
-            }, {
-                name : 'MOTO 手机',
-                className : 'motorola'
-            }, {
-                name : '天语手机',
-                className : 'ktouch'
-            }, {
-                name : 'VIVIO 手机',
-                className : 'vivo'
-            }],
             systems: [{
-                name : 'Android<br />1.6 - 3.2',
+                name : 'Android 1.6 - 3.2',
                 className : 'gingerbread'
             }, {
-                name : 'Android<br />4.0 - 4.1',
+                name : 'Android 4.0 - 4.1',
                 className : 'ics'
             }, {
-                name : 'Android<br /> 4.2 - 4.4',
+                name : 'Android 4.2 - 4.4',
                 className : 'jeallybean'
             }, {
                 name : 'MIUI V5',
                 className : 'miuios'
             }, {
-                name : '魅族 Flyme',
+                name : 'Meizu Flyme3',
                 className : 'meizu'
             }]
         };
@@ -95,35 +59,29 @@ $(document).ready(function () {
             isRender : false,
             isShow : false,
             render : function () {
-                var self = this;
-                self.isRender = true;
+                this.isRender = true;
+                this.$el.html(this.template(data)).on('click', 'li', this.clickSelect);
 
-                this.$el.html(this.template(data))
-                    .on('click', 'li', this.clickSelect);
-
-                if (window.DD_belatedPNG) {
-                    setTimeout(function () {
-                        self.$el.find('li .logo, li .system-logo, li .play').each(function () {
-                            window.DD_belatedPNG.fixPng(this);
-                        });
-                    });
-                }
+                this.$el.find('li').on('mouseenter', function () {
+                    $(this).find('.top').animate({
+                        'top' : "-5px"
+                    }, 100, 'linear');
+                }).on('mouseleave', function () {
+                    $(this).find('.top').animate({
+                        'top' : "0px"
+                    }, 100, 'linear');
+                });
 
                 return this;
             },
             clickSelect : function (evt) {
-                var tmp = /(\w+)\s(\w+)/.exec(evt.currentTarget.className);
-                if (tmp[2] === 'nobrands') {
-                    return;
-                }
-                var type = tmp[1];
-                var version = tmp[2];
+                var tmp = /(\w+)\s(\w+)\s(\w+)/.exec(evt.currentTarget.className);
+                var version = tmp[3];
 
-                $.event.trigger('SELECT_PHONE', [type, version]);
+                $.event.trigger('SELECT_PHONE', 'general_' + version);
 
                 log({
                     'event': 'ui.click.new_usb_debug_select',
-                    'type': type,
                     'version': version
                 });
             }
@@ -249,6 +207,7 @@ $(document).ready(function () {
         feedbackView = new FeedbackView();
     }(this));
 
+    /*
     (function () {
         var SilderView = function () {
             this.$el = $('.tmp_silder').addClass(this.className);
@@ -260,52 +219,32 @@ $(document).ready(function () {
             template : _.template($('#sliderView').html()),
             isShow : false,
             render : function () {
+
                 var self = this;
 
                 this.$el.html(this.template({}));
-
-                this.$arrow = this.$el.find('.pointer');
-                this.$leftButton = this.$el.find('.left');
-                this.$rightButton = this.$el.find('.right');
-                this.$number = this.$el.find('.number');
-                this.$describe = this.$el.find('.steps-describe');
-                this.$page = this.$el.find('.page');
-
                 this.$el.find('.left').click(function () {
-                    if (self.currentIndex > 0) {
-                        self.moveLeft();
-                        self.resetBtn();
-                    }
-
                     log({
                         'event': 'ui.click.new_usb_debug_left'
                     });
                 });
 
                 this.$el.find('.right').click(function () {
-                    if (self.currentIndex < self.devInfo.steps.length - 1) {
-                        self.moveRight();
-                        self.resetBtn();
-                    }
 
                     log({
                         'event': 'ui.click.new_usb_debug_right'
                     });
                 });
 
-                this.$el.find('.button-reload').click(function () {
-                    self.$el.find('.error-des').hide();
-                    self.$el.find('.w-ui-loading').show();
-                    self.start(self.type, self.version);
-                });
 
+                //TODO:check
                 if (window.DD_belatedPNG) {
                     setTimeout(function () {
                         self.$el.find('.button .icon, .pointer').each(function () {
                             window.DD_belatedPNG.fixPng(this);
                         });
                     });
-                }
+                }*
 
                 return this;
             },
@@ -543,7 +482,7 @@ $(document).ready(function () {
         };
 
         sliderView = new SilderView();
-    }(this));
+    }(this));*/
 
     (function () {
         var DetailView = function () {
@@ -644,13 +583,7 @@ var creatVideoUrl = function (videoId) {
 
 $(document).ready(function () {
 
-    $(document).on('mouseover', '.u-select-view .select li', function () {
-        $(this).addClass('hover');
-    });
 
-    $(document).on('mouseout', '.u-select-view .select li', function () {
-        $(this).removeClass('hover');
-    });
 
     $(document).on('mouseover', '.ul-container .button', function () {
         $(this).addClass('hov');
@@ -694,7 +627,7 @@ $(document).ready(function () {
     var btnMore = $('.button-more');
     var btnReturn = $('.button-return');
     var btnFeedback = $('.button-feedback');
-    var btnVideo = $('.button-video');
+
     var btnUsbQQ = $('.button-qq');
     var btnCheckUsb = $('.button-check-usb-debug');
 
@@ -710,7 +643,6 @@ $(document).ready(function () {
         btnMore.hide();
         btnReturn.hide();
         btnFeedback.hide();
-        btnVideo.hide();
         btnUsbQQ.hide();
     };
 
@@ -732,9 +664,7 @@ $(document).ready(function () {
         var videoId = currentView.start('brands', version);
         btnMore.show();
 
-        if (videoId) {
-            btnVideo.attr('href', creatVideoUrl(videoId));
-        }
+
 
         log({
             'event': 'ui.click.new_usb_debug_match',
@@ -820,11 +750,6 @@ $(document).ready(function () {
         });
     });
 
-    btnVideo.on('click', function () {
-        log({
-            'event': 'ui.click.new_usb_debug_video'
-        });
-    });
 
     $(document).bind('SELECT_PHONE', function (evt, type, version) {
         sliderView.render();
@@ -832,9 +757,7 @@ $(document).ready(function () {
 
         var videoId = currentView.start(type, version);
         btnMore.show();
-        if (videoId) {
-            btnVideo.attr('href', creatVideoUrl(videoId)).show();
-        }
+
     });
 
     $.ajax('http://conn-feedback.wandoujia.com/request', {

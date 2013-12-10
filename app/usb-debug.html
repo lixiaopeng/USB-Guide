@@ -4,13 +4,7 @@
         <title>Wandoujia 2.0 USB Debug</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="stylesheets/usb-debug.css" />
-        <!--[if IE 6]>
-        <link rel="stylesheet" href="stylesheets/ie6.css">
-        <![endif]-->
-        <!--[if IE 7]>
-        <link rel="stylesheet" href="stylesheets/ie7.css">
-        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="../.tmp/stylesheets/usb-debug.css" />
     </head>
     <body>
         <div class="wrap vbox">
@@ -21,12 +15,8 @@
                 <div class="tmp_detail"></div>
             </div>
             <div class="u-footer w-cf"  onselectstart="javascript:return false;">
-                <button class="w-btn w-btn-primary button-check-usb-debug">我已打开</button>
                 <div class="button-feedback link">还是连不上？我要反馈！</div>
-                <a class="href button-qq" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA3NzExM184NDAzMl80MDA2NTI4NzA1XzJf" target="_default"><div class="img"></div><span class="wording">向豌豆工程师求助</span></a>
-                <div class="button-return link">返回教程</div>
-                <div class="button-more link">其他手机教程</div>
-                <a class="button-video w-btn" target="_blank"></a>
+                <div class="button-return link">返回</div>
             </div>
         </div>
         <script type="text/template" id="feedBackView">
@@ -79,66 +69,31 @@
             </div>
         </script>
         <script type="text/template" id="selectView">
-                <h6 class="describe w-text-info">请按照您的手机品牌或系统选择对应的打开「USB 调试」开关的教程：</h6>
-                <ul class="select u-shadow brands w-cf">
-                <%
-                    _.each(brands, function (brand) {
-                %>
-                    <li class="brand <%= brand.className %>">
-                        <div class="logo <%= brand.className %>"></div>
-                        <div class="h5 title"><%= brand.name %></div>
-                        <div class="top"></div>
-                        <div class="check-course">
-                            <div class="play"></div>
-                            <div class="info">查看教程</div>
-                        </div>
-                    </li>
-                <%
-                    });
-                %>
-                </ul>
-                <ul class="select u-shadow systems w-cf">
+                <h6 class="describe w-text-info">请根据您的系统版本选择：</h6>
+                <ul class="select systems w-cf">
                 <%
                     _.each(systems, function (system) {
                 %>
-                    <li class="system <%= system.className %>">
-                        <div class="h5 title"><%= system.name %></div>
+                    <li class="u-shadow system <%= system.className %>">
                         <div class="top"></div>
-                        <div class="check-course">
-                            <div class="play"></div>
-                            <div class="info">查看教程</div>
-                        </div>
+                        <div class="h5 title"><%= system.name %></div>
                     </li>
                 <%
                     });
                 %>
+
+                    <li class="u-shadow system howto">
+                        <div class="top">
+                            <a target="_default"></a>
+                        </div>
+                        <div class="h5 title">
+                             <a target="_default">如何识别手机系统是什么？</a>
+                        </div>
+                    </li>
                 </ul>
         </script>
         <script type="text/template" id="sliderView">
-            <div class="w-cf title">
-                <div class="h5 describe"></div>
-            </div>
-            <div class="container connect-error">
-                <div class="w-ui-loading" >
-                    <img src="images/loading.gif" alt="" />
-                </div>
-                <div class="error-des">
-                    <div>貌似网络不给力，请稍后再试～</div>
-                    <button class="button-reload w-btn w-btn-primary">重试</button>
-                </div>
-            </div>
-            <div class="container slider-container">
-                <div class="ul-container">
-                    <div class="pointer"></div>
-                    <div class="button left"><div class="icon"></div></div>
-                    <div class="button right"><div class="icon"></div></div>
-                </div>
-                <div class="navigation">
-                    <span class="number"></span>
-                    <span class="steps-describe"></span>
-                    <span class="page"></span>
-                </div>
-            </div>
+
         </script>
         <script type="text/template" id="detailView">
             <h6 class="describe w-text-info">请将以下信息复制下来，粘贴到和豌豆工程师的聊天窗口中发给我们</h6>
@@ -150,7 +105,6 @@
         <!-- build:js javascripts/usb-debug.js -->
         <script type="text/javascript" src="components/jquery/jquery.js"></script>
         <script type="text/javascript" src="components/underscore/underscore.js"></script>
-        <script type="text/javascript" src="javascripts/usb-debug/usb-debug-device.js"></script>
         <script type="text/javascript" src="javascripts/usb-debug/usb-debug.js"></script>
         <!-- endbuild -->
     </body>

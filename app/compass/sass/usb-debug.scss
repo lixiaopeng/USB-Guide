@@ -137,8 +137,7 @@ a,
 
     .button-feedback,
     .button-return,
-    .button-more,
-    .button-qq {
+    .button-more{
         @include inline-block;
 
         background-image: none;
@@ -149,247 +148,69 @@ a,
         line-height: 30px;
         margin: 15px;
     }
-
-    .button-qq {
-        .img {
-            @include usb-debug-sprite('qq');
-            float: left;
-            height: usb-debug-sprite-height('qq');
-            margin-top: 8px;
-            margin-right: 2px;
-            width: usb-debug-sprite-width('qq');
-        }
-
-        span {
-            float: left;
-        }
-    }
-
-    .button-check-usb-debug {
-        float: right;
-        margin: 15px;
-    }
-
-    .button-video {
-
-        @include usb-debug-sprite(video);
-
-        filter: none;
-        height: 31px;
-        padding: 0;
-        margin-left: 15px;
-        margin-top: 15px;
-        width: 99px;
-
-        &:hover {
-          @include usb-debug-sprite(video_hover);
-        }
-
-        &:active {
-          @include usb-debug-sprite(video_press);
-        }
-    }
 }
 
 .u-select-view {
     display: none;
 
     .describe {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 160px;
         padding: 0px 0px 10px;
-        width: 540px;
     }
 
     .select {
         color: #505050;
         list-style: none;
         margin: 0 auto;
-        width: 540px;
+        width: 640px;
 
         li {
             cursor: pointer;
             float: left;
-            height: 108px;
+            height: 140px;
             overflow: hidden;
             position: relative;
-            width: 108px;
-
-            .top {
-
-                @include opacity(0.06);
-
-                /*background: #000;*/
-                height: 100%;
-                position: absolute;
-                top: 0;
-                width: 100%;
-                -webkit-transition: opacity .2s;
-            }
-
-            .logo {
-                height: 50px;
-                margin: 13px auto 0;
-                width: 110px;
-
-                @each $logo in htc, huawei, lenovo, xiaomi,
-                        motorola, nexus, samsung, sony, zte, ktouch, vivo {
-                    &.#{$logo} {
-                        @include usb-debug-sprite(#{$logo});
-                    }
-                }
-            }
-
-            .system-logo {
-                height: 62px;
-                margin: 6px auto 0;
-                width: 110px;
-            }
-
-            .title {
-                @include single-text-shadow(0, 2px, 3px, false, rgba(0, 0, 0, .21));
-
-                margin-top: 5px;
-                text-align: center;
-            }
-
-            .check-course {
-
-                @include opacity(0.7);
-
-                background-color: #000;
-                bottom: -25px;
-                color: #fff;
-                height: 25px;
-                line-height: 25px;
-                position: absolute;
-                text-align: center;
-                vertical-align: middle;
-                width: 100%;
-                -webkit-transition: all .2s linear;
-
-                .play {
-                    @include inline-block();
-                    @include usb-debug-sprite(play);
-
-                    height: 16px;
-                    margin-right: 5px;
-                    overflow: hidden;
-                    position: relative;
-                    top: 4px;
-                    vertical-align: top;
-                    width: 16px;
-                }
-
-                .info {
-                    @include inline-block();
-                }
-            }
-
-            &.hover {
-                .top {
-                    @include opacity(0);
-                }
-
-                .check-course {
-                    bottom: 0;
-                }
-            }
+            width: 200px;
 
             &.system {
-                height: 50px;
+
+                margin-bottom: 20px;
+
+                @each $logo in gingerbread, ics, jeallybean, miuios, meizu, howto{
+                    &.#{$logo} {
+                        .top {
+                            @include usb-debug-sprite(#{$logo});
+                            position: absolute;
+                            height: usb-debug-sprite-height(#{$logo});
+                            width: usb-debug-sprite-width(#{$logo});
+                        }
+                    }
+                }
+
+                &.ics, &.meizu{
+                    margin: 0px 20px;
+                }
+
+                &.howto {
+                    a {
+                        color: #505050;
+                        display: block;
+                        height: 100%;
+                        font-size: 14px;
+                        text-decoration: none;
+                        width: 100%;
+                    }
+                }
 
                 .title {
-                    line-height: 1.3em;
-                    margin-top: 7px;
-
-                    &.signle-line {
-                        margin-top: 0;
-                    }
-                }
-
-                &.gingerbread,
-                &.ics,
-                &.jeallybean,
-                &.meizu {
-                    background-color: #f9fbfc;
-                    background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
-                }
-
-                &.meizu,
-                &.miuios {
-                    .title {
-                        margin-top: 15px;
-                    }
-                }
-
-                &.miuios {
-                    background-color: #ffa43b;
-                    background-image: -webkit-radial-gradient(85% 15%, #ffa43b 3%, #fa6b06 100%);
-                    color: white;
+                    background-color: white;
+                    height: 30px;
+                    line-height: 30px;
+                    margin-top: 110px;
+                    position: relative;
+                    text-align: center;
                 }
             }
-
-            &.brand {
-                color: #fff;
-
-                &.nobrands {
-                    background-color: #f8f8f8;
-                    background-image: -webkit-radial-gradient(85% 15%, #f8f8f8 7%, #dfdfdf 100%);
-                    cursor: default;
-                }
-
-                &.samsung {
-                    background-color: #4ba1fe;
-                    background-image: -webkit-radial-gradient(85% 15%, #4ba1fe 0%, #375dbf 100%);
-                }
-
-                &.lenovo {
-                    background-color: #6c6c6c;
-                    background-image: -webkit-radial-gradient(85% 15%, #6c6c6c 19%, #4a4a4a 100%);
-                }
-
-                &.huawei,
-                &.ktouch {
-                    background-color: #f9fbfc;
-                    background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
-                    color: #505050;
-                }
-
-                &.xiaomi {
-                    background-color: #ffa43b;
-                    background-image: -webkit-radial-gradient(85% 15%, #ffa43b 3%, #fa6b06 100%);
-                }
-
-                &.sony {
-                    background-color: #6c6c6c;
-                    background-image: -webkit-radial-gradient(85% 15%, #6c6c6c 17%, #525252 100%);
-                }
-
-                &.zte {
-                    background-color: #47f7ff;
-                    background-image: -webkit-radial-gradient(85% 15%, #47f7ff 7%, #1498ef 100%);
-                }
-
-                &.htc {
-                    background-color: #22dc00;
-                    background-image: -webkit-radial-gradient(85% 15%, #afff5c 12%, #22dc00 100%);
-                }
-
-                &.motorola {
-                    background-color: #ff8063;
-                    background-image: -webkit-radial-gradient(85% 15%, #ff8063 0%, #dd3c44 100%);
-                }
-
-                &.vivo{
-                    background-color: #6ec8fb;
-                    background-image: -webkit-radial-gradient(85% 15%, #6ec8fb 7%, #0084ce 100%);
-                }
-            }
-        }
-
-        &.systems {
-            margin-top: 20px;
         }
     }
 }
@@ -519,204 +340,6 @@ a,
     }
 }
 
-.u-slider-view {
-    display: none;
-    margin: 0px auto;
-    padding: 15px;
-    position: relative;
-    width: 540px;
-
-    .title {
-        height: 22px;
-        line-height: 22px;
-        text-align: center;
-    }
-
-    .describe {
-        font-size: 16px;
-        line-height: 22px;
-    }
-
-    .connect-error {
-        height: 369px;
-        text-align: center;
-
-        .w-ui-loading {
-            left: 50%;
-            margin: -23px 0 0 -23px;
-            position: absolute;
-            top: 50%;
-
-            img {
-                @include inline-block;
-            }
-        }
-
-        .error-des {
-            bottom: 15px;
-            left: 0;
-            position: absolute;
-            text-align: center;
-            width: 100%;
-        }
-
-        .button-reload {
-            margin: 10px;
-        }
-    }
-
-    .slider-container {
-        display: none;
-        margin-top: 10px;
-        position: relative;
-        width: 522px;
-
-        .button {
-            cursor: pointer;
-            height: 280px;
-            position: absolute;
-            width: 174px;
-            z-index: 10000;
-
-
-            .icon {
-                height: 42px;
-                position: absolute;
-                top: 119px;
-                width: 24px;
-            }
-
-            &.left {
-                left: 0;
-
-                .icon {
-                    @include usb-debug-sprite(switch_default_left);
-                    left: 0;
-                }
-
-                &.hov {
-                    .icon {
-                        @include usb-debug-sprite(switch_hover_left);
-                    }
-                }
-
-                &.act {
-                    .icon {
-                        @include usb-debug-sprite(switch_press_left);
-                    }
-                }
-
-                &.dis {
-                    .icon {
-                        @include usb-debug-sprite(switch_disable_left);
-                    }
-                }
-            }
-
-            &.right {
-                right: 0;
-
-                .icon {
-                    @include usb-debug-sprite(switch_default);
-                    right: 0;
-                }
-
-                &.hov {
-                    .icon {
-                        @include usb-debug-sprite(switch_hover);
-                    }
-                }
-
-                &.act {
-                    .icon {
-                       @include usb-debug-sprite(switch_press);
-                   }
-                }
-
-                &.dis {
-                    .icon {
-                        @include usb-debug-sprite(switch_disable);
-                    }
-                }
-            }
-        }
-    }
-
-    .warp {
-        display: block;
-        height: 280px;
-        position: relative;
-        white-space: nowrap;
-
-        .course-li {
-            @include inline-block;
-
-            position: absolute;
-
-            img {
-                -webkit-transition: all .3s linear;
-            }
-
-            &.init {
-                background: #f6f6f6;
-                left: 333px;
-                top: 20px;
-
-                img {
-                    @include opacity(0.6);
-                    height: 240px;
-                }
-            }
-        }
-    }
-
-    .navigation {
-        margin-top: 10px;
-
-        .number {
-            @include usb-debug-sprite(bullet_list);
-            @include inline-block();
-
-            color: #fff;
-            height: usb-debug-sprite-height(bullet_list);
-            line-height: 27px;
-            margin-left: 160px;
-            margin-right: 5px;
-            text-align: center;
-            vertical-align: middle;
-            width: usb-debug-sprite-width(bullet_list);
-        }
-
-        .steps-describe {
-            margin-left: 5px;
-        }
-
-        .page {
-            color: #c0c0c0;
-            margin-left: 5px;
-        }
-    }
-
-    .ul-container {
-        overflow: hidden;
-        position: relative;
-
-        .pointer {
-            @include usb-debug-sprite(arrow);
-
-            display: none;
-            height: usb-debug-sprite-height(arrow);
-            position: absolute;
-            width: usb-debug-sprite-width(arrow);
-            z-index: 1000;
-
-            &.up {
-                @include usb-debug-sprite(arrow-up);
-            }
-        }
-    }
-}
-
 .u-detail-view {
     display: none;
     height: 399px;
@@ -746,3 +369,6 @@ input {
     _width: 140px;
 }
 
+.u-slider-view {
+    display: none;
+}
