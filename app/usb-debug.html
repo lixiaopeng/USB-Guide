@@ -4,21 +4,19 @@
         <title>Wandoujia 2.0 USB Debug</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="../.tmp/stylesheets/usb-debug.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/usb-debug.css" />
     </head>
     <body>
-        <div class="wrap vbox">
-            <div class="container">
-                <div class="tmp_select" onselectstart="javascript:return false;"></div>
-                <div class="tmp_feedback" onselectstart="javascript:return false;"></div>
-                <div class="tmp_silder" onselectstart="javascript:return false;"></div>
-                <div class="tmp_detail"></div>
-            </div>
-            <div class="u-footer w-cf"  onselectstart="javascript:return false;">
-                <div class="button-feedback link">还是连不上？我要反馈！</div>
-                <div class="button-return link">返回</div>
-            </div>
-        </div>
+
+            <div class="tmp_select" onselectstart="javascript:return false;"></div>
+            <div class="tmp_feedback" onselectstart="javascript:return false;"></div>
+            <div class="tmp_silder" onselectstart="javascript:return false;"></div>
+            <div class="tmp_detail"></div>
+            <div class="tmp_footer w-cf"  onselectstart="javascript:return false;"></div>
+        <script type="text/template" id="footerView">
+            <div class="button-return">返回</div>
+            <span class="feedback link">还是连不上，试试别的办法！</span>
+        </script>
         <script type="text/template" id="feedBackView">
             <div>
                 <span class="describe">还是连不上怎么办？试试下面的方法吧！</span>
@@ -62,14 +60,28 @@
                     </div>
                     <div class="describe">访问豌豆荚帮助中心，获取更多帮助：</div>
                     <div class="href-container">
-                        <a class="href usb-help" href="http://help.wandoujia.com/entries/21550377-usb" target="_default"><div class="img"></div><span class="wording">查看打开「USB 调试」的帮助</span></a>
-                        <a class="href usb-bbs" href="http://help.wandoujia.com/anonymous_requests/new?guid=null&clientVersion=null" target="_default"><div class="img"></div><span class="wording">发帖求助，让专业的豌豆们帮您解答</span></a>
+                        <a class="href usb-help" href="http://help.wandoujia.com/entries/21550377-usb" target="_default">
+                            <span class="img"></span>
+                            <span class="wording">查看打开「USB 调试」的帮助</span>
+                        </a>
+                        <% if (!showQQ) {%>
+                        <a class="href usb-bbs" href="http://help.wandoujia.com/anonymous_requests/new?guid=null&clientVersion=null" target="_default">
+                            <span class="img"></span>
+                            <span class="wording">发帖求助，让专业的豌豆们帮您解答</span>
+                        </a>
+                        <% } else { %>
+                        <a class="href qq" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTAzMl85Mzk0NV80MDA2NTI4NzA2XzJf" target="_default">
+                            <span class="img"></span>
+                            <span class="wording">QQ 联系豌豆们帮忙</span>
+                            <span class="qq"></span>
+                        </a>
+                        <% } %>
                     </div>
                 </div>
             </div>
         </script>
         <script type="text/template" id="selectView">
-                <h6 class="describe w-text-info">请根据您的系统版本选择：</h6>
+                <span class="describe w-text-info">请根据您的系统版本选择：</span>
                 <ul class="select systems w-cf">
                 <%
                     _.each(systems, function (system) {
@@ -84,16 +96,82 @@
 
                     <li class="u-shadow system howto">
                         <div class="top">
-                            <a target="_default"></a>
+                            <a target="_default" href=""></a>
                         </div>
                         <div class="h5 title">
-                             <a target="_default">如何识别手机系统是什么？</a>
+                             <a target="_default" href="">如何识别手机系统是什么？</a>
                         </div>
                     </li>
                 </ul>
         </script>
-        <script type="text/template" id="sliderView">
+        <script type="text/template" id="sliderViewHead">
+            <div class="header">
+                <span class="desc"></span>
+                <span class="return link">返回教程</span>
+                <span class="next link">教程不对，换一个</span>
+                <span class="mouse w-text-info">可用鼠标滚动</span>
+            </div>
+        </script>
+        <script type="text/template" id="sliderViewBody">
+            <div class="content view-box">
+                <ul class="slider overview">
+                <%
+                    _.each(guide_content, function (content) {
+                %>
+                    <li class="u-shadow">
+                        <img src="<%= content.img %>"></img>
+                    </li>
+                <%
+                    });
+                %>
 
+                    <li class="last_page u-shadow">
+                        <div class="wanxiaodou"></div>
+                        <div class="help">
+                            <h5>此教程是否能帮到您？</h5>
+                            <span class="link">
+                                <span class="img"></span>
+                                <span class="wording next">教程不对，换一个试试</span>
+                            </span>
+                            <span class="link">
+                                <span class="img"></span>
+                                <span class="wording download">没看懂，试试别的办法</span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="left-arrow u-shadow"></div>
+                <div class="right-arrow u-shadow"></div>
+            </div>
+            <div class="scrollbar">
+                <div class="track">
+                    <div class="thumb"></div>
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="sliderViewLastPage">
+            <div class="content last_page">
+                <div class="wanxiaodou"></div>
+                <div class="help">
+                    <h5>教程看完了还没有打开？</h5>
+                    <span class="link">
+                        <span class="img"></span>
+                        <span class="wording general">查看通用教程试试</span>
+                    </span>
+                    <% if (!showQQ) {%>
+                    <span class="link">
+                        <span class="img"></span>
+                        <span class="wording download">我不要看教程了，试试别的办法</span>
+                    </span>
+                    <% } else { %>
+                    <a class="link" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTAzMl85Mzk0NV80MDA2NTI4NzA2XzJf" target="_default">
+                        <span class="img"></span>
+                        <span class="wording download">QQ 联系豌豆们帮忙</span>
+                        <span class="qq"></span>
+                    </a>
+                    <% } %>
+                </div>
+            </div>
         </script>
         <script type="text/template" id="detailView">
             <h6 class="describe w-text-info">请将以下信息复制下来，粘贴到和豌豆工程师的聊天窗口中发给我们</h6>
@@ -106,6 +184,7 @@
         <script type="text/javascript" src="components/jquery/jquery.js"></script>
         <script type="text/javascript" src="components/underscore/underscore.js"></script>
         <script type="text/javascript" src="javascripts/usb-debug/usb-debug.js"></script>
+        <script type="text/javascript" src="javascripts/usb-debug/jquery.scrollbar.js"></script>
         <!-- endbuild -->
     </body>
 </html>
