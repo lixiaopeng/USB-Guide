@@ -8,407 +8,160 @@
 @import "compass/css3";
 @import "compass/css3/user-interface";
 
-.w-btn {
-    @include background-image(linear-gradient($btnBgColorFrom, $btnBgColorTo));
-    @include border-radius(3px);
-    @include filter-gradient($btnBgColorFrom, $btnBgColorTo);
-    @include inline-block();
-    @include single-box-shadow(0, 1px, 0, false, #fff, true);
-    @include single-text-shadow(0, 1px, 0, false, #fff);
-
-    background-color: #EFEFEF;
-    border: 1px $btnBorderColor solid;
-    color: $btnTextColor;
-    cursor: pointer;
-    height: 30px;
-    min-width: 60px;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    -webkit-user-select: none;
-
-    *min-width : auto;
-    *border: 0px;
-    outline: none;
-
-    &:hover,
-    &.hover {
-        @include background-image(linear-gradient($btnHoverBgColorFrom, $btnHoverBgColorTo));
-        @include filter-gradient($btnHoverBgColorFrom, $btnHoverBgColorTo);
-
-        background-color: #F5F5F5;
-        color: #000;
-        text-decoration: none;
-    }
-
-    &:active,
-    &.active {
-        @include background-image(linear-gradient($btnActiveBgColorFrom, $btnActiveBgColorTo));
-        @include filter-gradient($btnActiveBgColorFrom, $btnActiveBgColorTo);
-        background-color: #E1E1E1;
-
-        color: #000;
-        text-decoration: none;
-    }
-
-    &:disabled,
-    &.disabled {
-        @include background-image(linear-gradient($btnBgColorFrom, $btnBgColorTo));
-        @include filter-gradient($btnBgColorFrom, $btnBgColorTo);
-        @include opacity($disabledOpacity);
-
-        color: $btnTextColor;
-        opacity: $disabledOpacity;
-    }
-
-
-    &.w-btn-primary {
-        @include background-image(linear-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo));
-        @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
-        @include single-box-shadow(0, 1px, 0, false, #72c261, true);
-        @include single-text-shadow(0, 1px, 0, false, rgba(0, 0, 0, .2));
-        background-color : #4CB038;
-
-        border-color: $btnPrimaryBorderColor;
-        color: $btnPrimaryTextColor;
-
-        &:hover,
-        &.hover {
-            @include background-image(linear-gradient($btnPrimaryHoverBgColorFrom, $btnPrimaryHoverBgColorTo));
-            @include single-box-shadow(0, 1px, 0, false, #79d367, true);
-            background-color : #57C83F;
-        }
-
-        &:active,
-        &.active {
-            @include background-image(linear-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo));
-            @include filter-gradient($btnPrimaryActiveBgColorFrom, $btnPrimaryActiveBgColorTo);
-            @include single-box-shadow(0, 1px, 0, false, #72c261, true);
-            background-color : #359921;
-        }
-
-
-        &:disabled,
-        &.disabled {
-            @include background-image(linear-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo));
-            @include filter-gradient($btnPrimaryBgColorFrom, $btnPrimaryBgColorTo);
-            @include single-box-shadow(0, 1px, 0, false, #72c261, true);
-
-            color: $btnPrimaryTextColor;
-        }
-    }
-}
 
 html,
-body,
-.wrap {
-   // @include user-select(none);
-
-    height: 100%;
+body {
+    background-color: #f6f6f6;
+    height: 399px;
     overflow: hidden;
-    width: 100%;
+    width: 680px;
 }
 
 a,
+span,
 .link {
+    &:hover {
+        text-decoration: none;
+    }
+
     &:focus {
         outline: none;
-    }
-}
-
-.wrap {
-    background-color: #f6f6f6;
-    position: relative;
-
-    .w-ui-loading {
-        display: block;
+        text-decoration: none;
     }
 }
 
 .u-shadow {
-    @include single-box-shadow(0, 1px, 10px, false, #999, false);
-}
-
-.u-footer {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-
-    .button-feedback,
-    .button-return,
-    .button-more,
-    .button-qq {
-        @include inline-block;
-
-        background-image: none;
-        cursor: pointer;
-        display: none;
-        float: right;
-        height: 30px;
-        line-height: 30px;
-        margin: 15px;
-    }
-
-    .button-qq {
-        .img {
-            @include usb-debug-sprite('qq');
-            float: left;
-            height: usb-debug-sprite-height('qq');
-            margin-top: 8px;
-            margin-right: 2px;
-            width: usb-debug-sprite-width('qq');
-        }
-
-        span {
-            float: left;
-        }
-    }
-
-    .button-check-usb-debug {
-        float: right;
-        margin: 15px;
-    }
-
-    .button-video {
-
-        @include usb-debug-sprite(video);
-
-        filter: none;
-        height: 31px;
-        padding: 0;
-        margin-left: 15px;
-        margin-top: 15px;
-        width: 99px;
-
-        &:hover {
-          @include usb-debug-sprite(video_hover);
-        }
-
-        &:active {
-          @include usb-debug-sprite(video_press);
-        }
-    }
+    @include single-box-shadow(0, 1px, 5px, false, #cacaca, false);
 }
 
 .u-select-view {
+    position: relative;
     display: none;
+    height: 349px;
+    padding-top: 10px;
 
     .describe {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0px 0px 10px;
-        width: 540px;
+        display: block;
+        margin-left: 20px;
+        margin-bottom: 10px;
     }
 
     .select {
         color: #505050;
         list-style: none;
         margin: 0 auto;
-        width: 540px;
+        width: 640px;
 
         li {
             cursor: pointer;
             float: left;
-            height: 108px;
+            height: 140px;
             overflow: hidden;
             position: relative;
-            width: 108px;
-
-            .top {
-
-                @include opacity(0.06);
-
-                /*background: #000;*/
-                height: 100%;
-                position: absolute;
-                top: 0;
-                width: 100%;
-                -webkit-transition: opacity .2s;
-            }
-
-            .logo {
-                height: 50px;
-                margin: 13px auto 0;
-                width: 110px;
-
-                @each $logo in htc, huawei, lenovo, xiaomi,
-                        motorola, nexus, samsung, sony, zte, ktouch, vivo {
-                    &.#{$logo} {
-                        @include usb-debug-sprite(#{$logo});
-                    }
-                }
-            }
-
-            .system-logo {
-                height: 62px;
-                margin: 6px auto 0;
-                width: 110px;
-            }
-
-            .title {
-                @include single-text-shadow(0, 2px, 3px, false, rgba(0, 0, 0, .21));
-
-                margin-top: 5px;
-                text-align: center;
-            }
-
-            .check-course {
-
-                @include opacity(0.7);
-
-                background-color: #000;
-                bottom: -25px;
-                color: #fff;
-                height: 25px;
-                line-height: 25px;
-                position: absolute;
-                text-align: center;
-                vertical-align: middle;
-                width: 100%;
-                -webkit-transition: all .2s linear;
-
-                .play {
-                    @include inline-block();
-                    @include usb-debug-sprite(play);
-
-                    height: 16px;
-                    margin-right: 5px;
-                    overflow: hidden;
-                    position: relative;
-                    top: 4px;
-                    vertical-align: top;
-                    width: 16px;
-                }
-
-                .info {
-                    @include inline-block();
-                }
-            }
-
-            &.hover {
-                .top {
-                    @include opacity(0);
-                }
-
-                .check-course {
-                    bottom: 0;
-                }
-            }
+            width: 200px;
 
             &.system {
-                height: 50px;
+
+                @each $logo in gingerbread, ics, jeallybean, miuios, meizu, howto{
+                    &.#{$logo} {
+                        .top {
+                            @include usb-debug-sprite(#{$logo});
+                            position: absolute;
+                            height: usb-debug-sprite-height(#{$logo});
+                            width: usb-debug-sprite-width(#{$logo});
+                        }
+                    }
+                }
+
+                &.gingerbread, &.miuios, &.ics, &.meizu{
+                    margin-right: 20px;
+                }
+
+                &.gingerbread, &.ics, &.jeallybean {
+                    margin-bottom: 20px;
+                }
+
+                &.howto {
+                    a {
+                        color: #505050;
+                        display: block;
+                        height: 100%;
+                        font-size: 14px;
+                        width: 100%;
+                    }
+                }
 
                 .title {
-                    line-height: 1.3em;
-                    margin-top: 7px;
-
-                    &.signle-line {
-                        margin-top: 0;
-                    }
-                }
-
-                &.gingerbread,
-                &.ics,
-                &.jeallybean,
-                &.meizu {
-                    background-color: #f9fbfc;
-                    background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
-                }
-
-                &.meizu,
-                &.miuios {
-                    .title {
-                        margin-top: 15px;
-                    }
-                }
-
-                &.miuios {
-                    background-color: #ffa43b;
-                    background-image: -webkit-radial-gradient(85% 15%, #ffa43b 3%, #fa6b06 100%);
-                    color: white;
-                }
-            }
-
-            &.brand {
-                color: #fff;
-
-                &.nobrands {
-                    background-color: #f8f8f8;
-                    background-image: -webkit-radial-gradient(85% 15%, #f8f8f8 7%, #dfdfdf 100%);
-                    cursor: default;
-                }
-
-                &.samsung {
-                    background-color: #4ba1fe;
-                    background-image: -webkit-radial-gradient(85% 15%, #4ba1fe 0%, #375dbf 100%);
-                }
-
-                &.lenovo {
-                    background-color: #6c6c6c;
-                    background-image: -webkit-radial-gradient(85% 15%, #6c6c6c 19%, #4a4a4a 100%);
-                }
-
-                &.huawei,
-                &.ktouch {
-                    background-color: #f9fbfc;
-                    background-image: -webkit-radial-gradient(85% 15%, #f9fbfc 7%, #f3f3f3 100%);
-                    color: #505050;
-                }
-
-                &.xiaomi {
-                    background-color: #ffa43b;
-                    background-image: -webkit-radial-gradient(85% 15%, #ffa43b 3%, #fa6b06 100%);
-                }
-
-                &.sony {
-                    background-color: #6c6c6c;
-                    background-image: -webkit-radial-gradient(85% 15%, #6c6c6c 17%, #525252 100%);
-                }
-
-                &.zte {
-                    background-color: #47f7ff;
-                    background-image: -webkit-radial-gradient(85% 15%, #47f7ff 7%, #1498ef 100%);
-                }
-
-                &.htc {
-                    background-color: #22dc00;
-                    background-image: -webkit-radial-gradient(85% 15%, #afff5c 12%, #22dc00 100%);
-                }
-
-                &.motorola {
-                    background-color: #ff8063;
-                    background-image: -webkit-radial-gradient(85% 15%, #ff8063 0%, #dd3c44 100%);
-                }
-
-                &.vivo{
-                    background-color: #6ec8fb;
-                    background-image: -webkit-radial-gradient(85% 15%, #6ec8fb 7%, #0084ce 100%);
+                    background-color: white;
+                    height: 30px;
+                    line-height: 30px;
+                    top: 110px;
+                    position: relative;
+                    text-align: center;
                 }
             }
         }
+    }
+}
 
-        &.systems {
-            margin-top: 20px;
+
+.u-footer-view {
+    display: none;
+    height: 50px;
+    padding-right: 20px;
+    vertical-align: top;
+    width: 680px;
+
+    .feedback,
+    .button-return {
+        @include inline-block();
+
+        cursor: pointer;
+        float: right;
+    }
+
+    .feedback {
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .button-return {
+        @include usb-debug-sprite(return);
+        display: none;
+        height: usb-debug-sprite-height(return);
+        line-height: 30px;
+        margin-left: 10px;
+        margin-top: 5px;
+        *margin-right: 20px;
+        _margin-right:10px;
+        text-align: center;
+        width: usb-debug-sprite-width(return);
+
+        &.hover {
+            @include usb-debug-sprite(return-hover);
+        }
+
+        &.press {
+            @include usb-debug-sprite(return-press);
         }
     }
 }
 
 .u-feedback-ctn {
-    display: none;
-    height: 345px;
-    margin: 15px auto;
-    padding: 15px;
     position: relative;
+    display: none;
+    height: 334px;
+    margin: 15px auto 0;
+    *margin-top: 25px;
     width: 600px;
 
-    .describe,
-    .return {
+    .describe {
         @include inline-block();
     }
 
     .left {
-        float: left;
+        @include inline-block();
+        vertical-align: top;
         width: 205px;
 
         .bg {
@@ -419,15 +172,13 @@ a,
     }
 
     .right {
-
-        margin-left: 205px;
+        @include inline-block();
         padding-top: 30px;
+        vertical-align: top;
 
         .message {
-            margin-bottom: 25px;
 
             .body {
-                float: left;
                 margin-bottom: 20px;
                 margin-top: 20px;
 
@@ -437,8 +188,9 @@ a,
                 }
 
                 .qr {
-                    float: left;
+                    @include inline-block();
                     height: 130px;
+                    vertical-align: top;
                     width: 150px;
 
                     p {
@@ -456,16 +208,18 @@ a,
 
                 .huo {
                     @include usb-debug-sprite(huo);
-                    float: left;
+                    @include inline-block();
                     height: 130px;
+                    vertical-align: top;
                     width: 34px;
 
                 }
 
                 .short-url {
-                    float: left;
+                    @include inline-block();
                     font-size: 14px;
                     height: 130px;
+                    vertical-align: top;
                     width: 165px;
                     *width: 195px;
 
@@ -499,12 +253,12 @@ a,
 
                 .img {
                     @include inline-block();
-                    @include usb-debug-sprite(bullet_arrow);
+                    @include usb-debug-sprite(bullet-arrow);
 
-                    height: usb-debug-sprite-height(bullet_arrow);
+                    height: usb-debug-sprite-height(bullet-arrow);
                     margin-right: 10px;
                     vertical-align: middle;
-                    width: usb-debug-sprite-width(bullet_arrow);
+                    width: usb-debug-sprite-width(bullet-arrow);
 
                     _font-size: 10px;
                     _line-height: 10px;
@@ -514,210 +268,23 @@ a,
                     @include inline-block();
                     vertical-align: middle;
                 }
-            }
-        }
-    }
-}
 
-.u-slider-view {
-    display: none;
-    margin: 0px auto;
-    padding: 15px;
-    position: relative;
-    width: 540px;
-
-    .title {
-        height: 22px;
-        line-height: 22px;
-        text-align: center;
-    }
-
-    .describe {
-        font-size: 16px;
-        line-height: 22px;
-    }
-
-    .connect-error {
-        height: 369px;
-        text-align: center;
-
-        .w-ui-loading {
-            left: 50%;
-            margin: -23px 0 0 -23px;
-            position: absolute;
-            top: 50%;
-
-            img {
-                @include inline-block;
-            }
-        }
-
-        .error-des {
-            bottom: 15px;
-            left: 0;
-            position: absolute;
-            text-align: center;
-            width: 100%;
-        }
-
-        .button-reload {
-            margin: 10px;
-        }
-    }
-
-    .slider-container {
-        display: none;
-        margin-top: 10px;
-        position: relative;
-        width: 522px;
-
-        .button {
-            cursor: pointer;
-            height: 280px;
-            position: absolute;
-            width: 174px;
-            z-index: 10000;
-
-
-            .icon {
-                height: 42px;
-                position: absolute;
-                top: 119px;
-                width: 24px;
-            }
-
-            &.left {
-                left: 0;
-
-                .icon {
-                    @include usb-debug-sprite(switch_default_left);
-                    left: 0;
+                .qq {
+                    @include inline-block();
+                    @include usb-debug-sprite(qq);
+                    height: usb-debug-sprite-height(qq);
+                    margin-left: 5px;
+                    margin-top: -4px;
+                    vertical-align: middle;
+                    width: usb-debug-sprite-width(qq);
                 }
-
-                &.hov {
-                    .icon {
-                        @include usb-debug-sprite(switch_hover_left);
-                    }
-                }
-
-                &.act {
-                    .icon {
-                        @include usb-debug-sprite(switch_press_left);
-                    }
-                }
-
-                &.dis {
-                    .icon {
-                        @include usb-debug-sprite(switch_disable_left);
-                    }
-                }
-            }
-
-            &.right {
-                right: 0;
-
-                .icon {
-                    @include usb-debug-sprite(switch_default);
-                    right: 0;
-                }
-
-                &.hov {
-                    .icon {
-                        @include usb-debug-sprite(switch_hover);
-                    }
-                }
-
-                &.act {
-                    .icon {
-                       @include usb-debug-sprite(switch_press);
-                   }
-                }
-
-                &.dis {
-                    .icon {
-                        @include usb-debug-sprite(switch_disable);
-                    }
-                }
-            }
-        }
-    }
-
-    .warp {
-        display: block;
-        height: 280px;
-        position: relative;
-        white-space: nowrap;
-
-        .course-li {
-            @include inline-block;
-
-            position: absolute;
-
-            img {
-                -webkit-transition: all .3s linear;
-            }
-
-            &.init {
-                background: #f6f6f6;
-                left: 333px;
-                top: 20px;
-
-                img {
-                    @include opacity(0.6);
-                    height: 240px;
-                }
-            }
-        }
-    }
-
-    .navigation {
-        margin-top: 10px;
-
-        .number {
-            @include usb-debug-sprite(bullet_list);
-            @include inline-block();
-
-            color: #fff;
-            height: usb-debug-sprite-height(bullet_list);
-            line-height: 27px;
-            margin-left: 160px;
-            margin-right: 5px;
-            text-align: center;
-            vertical-align: middle;
-            width: usb-debug-sprite-width(bullet_list);
-        }
-
-        .steps-describe {
-            margin-left: 5px;
-        }
-
-        .page {
-            color: #c0c0c0;
-            margin-left: 5px;
-        }
-    }
-
-    .ul-container {
-        overflow: hidden;
-        position: relative;
-
-        .pointer {
-            @include usb-debug-sprite(arrow);
-
-            display: none;
-            height: usb-debug-sprite-height(arrow);
-            position: absolute;
-            width: usb-debug-sprite-width(arrow);
-            z-index: 1000;
-
-            &.up {
-                @include usb-debug-sprite(arrow-up);
             }
         }
     }
 }
 
 .u-detail-view {
+    position: relative;
     display: none;
     height: 399px;
     margin: 15px auto;
@@ -746,3 +313,196 @@ input {
     _width: 140px;
 }
 
+.u-slider-view {
+    background-color: #EAEAEA;
+    display: none;
+    height: 399px;
+    position: relative;
+
+    .header {
+        height: 45px;
+        vertical-align: top;
+
+        .desc {
+            display: inline-block;
+            font-size: 14px;
+            margin-left: 15px;
+            margin-top: 15px;
+        }
+
+        .next, .return, .general{
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .general {
+            display: none;
+        }
+
+        .return {
+            margin-top: 15px;
+        }
+
+        .checkusb {
+
+            @include usb-debug-sprite(return);
+            cursor: pointer;
+            height: usb-debug-sprite-height(return);
+            line-height: 30px;
+            *margin-right: 20px;
+            _margin-right:10px;
+            position: absolute;
+            text-align: center;
+            width: usb-debug-sprite-width(return);
+            right: 10px;
+            top: 10px;
+
+            &.hover {
+                @include usb-debug-sprite(return-hover);
+            }
+
+            &.press {
+                @include usb-debug-sprite(return-press);
+            }
+        }
+    }
+
+    .content {
+        height: 347px;
+        overflow: hidden;
+        vertical-align: top;
+        width: 680px;
+
+        @each $arrow in right-arrow, left-arrow{
+            .#{$arrow} {
+                @include usb-debug-sprite(#{$arrow});
+                cursor: pointer;
+                height: usb-debug-sprite-height(#{$arrow});
+                width: usb-debug-sprite-width(#{$arrow});
+                position: absolute;
+                right: 0;
+                _right: -1px;
+                top: 140px;
+            }
+
+            .#{$arrow}-hover {
+                @include usb-debug-sprite(#{$arrow}-hover);
+            }
+
+            .#{$arrow}-press {
+                @include usb-debug-sprite(#{$arrow}-press);
+            }
+        }
+
+        .left-arrow {
+            display: none;
+            left: 0;
+            _left: -1px;
+        }
+
+        .slider {
+            display: block;
+            height: 344px;
+            list-style: none;
+            position: relative;
+
+            li {
+                background-color: #FFF;
+                float: left;
+                height: 334px;
+                margin: 5px 5px;
+                overflow: hidden;
+                position: relative;
+                text-align: center;
+                width: 250px;
+
+                img {
+                    height: 334px;
+                    vertical-align: top;
+                    width: 250px;
+                }
+
+                .loading {
+                    height: 46px;
+                    margin-top: 140px;
+                    vertical-align: top;
+                    width: 46px;
+                }
+            }
+
+            .last_page {
+                background-color: #f6f6f6;
+            }
+        }
+
+        .last_page,
+        &.last_page {
+
+            text-align: center;
+
+            .wanxiaodou {
+                @include usb-debug-sprite(doubt);
+                height: usb-debug-sprite-height(doubt);
+                margin: 50px auto 0;
+                width: usb-debug-sprite-width(doubt);
+            }
+
+            span, a {
+                cursor: pointer;
+                display: block;
+                line-height: 25px;
+
+                .img {
+                    @include inline-block();
+                    @include usb-debug-sprite(bullet-arrow);
+
+                    height: usb-debug-sprite-height(bullet-arrow);
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    width: usb-debug-sprite-width(bullet-arrow);
+
+                    _font-size: 10px;
+                    _line-height: 10px;
+                }
+
+                .wording {
+                    @include inline-block();
+                    vertical-align: middle;
+                }
+
+                .qq {
+                    @include inline-block();
+                    @include usb-debug-sprite(qq);
+                    height: usb-debug-sprite-height(qq);
+                    margin-left: 5px;
+                    margin-top: -4px;
+                    vertical-align: middle;
+                    width: usb-debug-sprite-width(qq);
+                }
+            }
+        }
+    }
+
+    .scrollbar {
+        position: relative;
+        height: 8px;
+
+        .track {
+
+            background: #D8D8D8;
+            width: 100%;
+            height: 8px;
+            position: relative;
+
+            .thumb {
+                background: #9B9B9B;
+                height: 7px;
+                cursor: pointer;
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+}
