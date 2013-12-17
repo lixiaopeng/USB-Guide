@@ -3,27 +3,25 @@
 //log
 (function () {
 
-    try {
-        window.external.call('{cmd:""}');
-        window.log = function (data) {
-            data = data || {};
+    window.log = function (data) {
+        data = data || {};
 
-            var url = "wdj://window/log.json",
-                datas = [],
-                d;
+        var url = "wdj://window/log.json",
+            datas = [],
+            d;
 
-            for (d in data) {
-                if (data.hasOwnProperty(d)) {
-                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
-                }
+        for (d in data) {
+            if (data.hasOwnProperty(d)) {
+                datas.push(d + '=' + window.encodeURIComponent(data[d]));
             }
+        }
 
+        try {
             window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
-        };
-
-    } catch (e) {
-        window.log = function () {};
-    }
+        } catch (e) {
+            console && console.log && console.log(data);
+        }
+    };
 
 }(this));
 
@@ -47,24 +45,43 @@
 
 //getCourseByVidPid
 (function () {
-    var getCourseByVidPid = function (vid_pid, success, fail) {
-        $.ajax('http://vmap.wandoujia.com/query', {
-            'data' : {
-                'data' : vid_pid
-            },
-            'dataType': 'jsonp',
-            'success' : function (resp) {
-                if (resp.data.length > 0) {
-                    isMatchVid = true;
-                }
-                success(resp);
-            },
-            'fail' : fail || function () {}
-        });
+
+    //临时方案
+    var backupMap = {
+        'general_gingerbread' : {"msg": "", "data": [{"guide_id": "31142338", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-1.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-2.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-3.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-4.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-5.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-6.png"}], "desc": "\u901a\u7528 2.3"}], "ret": 0},
+        'general_ics' : {"msg": "", "data": [{"guide_id": "31748416", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-7.jpg"}], "desc": "4.0-4.1 \u65b0"}], "ret": 0},
+        'general_jeallybean' : {"msg": "", "data": [{"guide_id": "31125977", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_9.jpg"}], "desc": "\u901a\u75284.2_ 4.4-nexus4-4.4"}], "ret": 0},
+        'general_miuios' : {"msg": "", "data": [{"guide_id": "31182513", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_6.jpg"}], "desc": "xiaomi-mi3-4.2.1"}], "ret": 0},
+        'general_meizu' : {"msg": "", "data": [{"guide_id": "31749146", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/1-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/2-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/3-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/4-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/5-meizu-mx3.jpg"}], "desc": "meizu mx3 flyme3"}, {"guide_id": "31182263", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_5.jpg"}], "desc": "meizu-mx2-flyme2.4.1"}], "ret": 0}
+    };
+
+    var getCourseByVidPid = function (vid_pid, success, error) {
+
+        window.vmapCallBack = function(resp) {
+            if (resp.data.length > 0) {
+                isMatchVid = true;
+            }
+            success(resp);
+        };
+
+        var data = backupMap[vid_pid];
+        if (data) {
+            vmapCallBack(data);
+            return;
+        }
+
+        var sc = document.createElement('script');
+        var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
+
+        sc.setAttribute('src', url);
+        sc.onerror = error
+
+        document.head.appendChild(sc);
     }
 
     window.getCourseByVidPid = getCourseByVidPid;
     window.isMatchVid = false;
+
 }(this));
 
 //showView
@@ -308,6 +325,19 @@
                 });
             });
 
+            this.$el.find('.qq').on('click', function () {
+                log({
+                    'event' : 'ui.click.v3_click_qq',
+                    'position' : 'feedback_Page'
+                });
+
+                showNextView(detailView);
+                detailView.setContent({
+                    'vid' : decodeURIComponent(device_id),
+                    'pid' : decodeURIComponent(product_id)
+                });
+            });
+
             return this;
         },
         hide : function () {
@@ -345,7 +375,11 @@
             return this;
         },
         setContent : function (content) {
-            this.$el.find('.user-detail').val(content);
+            var text = '';
+            $.each(content, function (key, value) {
+                text += key + " : " + value + "\n";
+            });
+            this.$el.find('.user-detail').val(text);
         },
         hide : function () {
             this.$el.hide();
@@ -441,6 +475,13 @@
                 me.showCourse();
             });
 
+            me.$el.find('.header .qq').hide().on('click', function () {
+                log({
+                    'event' : 'ui.click.v3_click_qq',
+                    'position' : 'header'
+                });
+            });
+
             me.$el.find('.return').hide();
             return this;
         },
@@ -475,11 +516,11 @@
             var me = this;
             if (me.scrollbar) {
                 log({
-                    'event' : 'ui.click.v3_course',
+                    'event' : 'ui.click.v3_course_clear',
                     'page'  : -(parseInt(me.$el.find('.slider').css('left')) || 0) / 250,
-                    'total_page' : me.data[me.currentIndex].guide_content.length,
-                    'clickArrow' : true,
-                    'wheel' : me.scrollbar ? me.scrollbar.getIsUsedWheel() : 0,
+                    'total_page' : me.data[me.currentIndex] ? me.data[me.currentIndex].guide_content.length : 0,
+                    'clickArrow' : me.clickArrow,
+                    'wheel' : me.scrollbar.getIsUsedWheel(),
                     'guide_id' : me.data[me.currentIndex].guide_id,
                     'device_id' : device_id
                 });
@@ -493,13 +534,11 @@
             var me = this;
             var data;
 
-            me.switchHeader(true);
-
             me.currentIndex ++;
             data = me.data[me.currentIndex];
+            me.switchHeader(true, me.currentIndex === me.data.length - 1);
 
             me.clearContent();
-
 
             me.$el.append(me.bodyTemplate({
                 'pic_length' : data.guide_content.length,
@@ -532,6 +571,13 @@
                     });
                 });
             }
+
+            log({
+                'event' : 'ui.click.v3_course',
+                'total_page' : me.data[me.currentIndex].guide_content.length,
+                'guide_id' : me.data[me.currentIndex].guide_id,
+                'device_id' : device_id
+            });
         },
         loadPics : function (datas) {
             var me = this;
@@ -639,13 +685,14 @@
             this.$el.find('.thumb').css('left', -left / this.scrollbar.getRatio());
             this.scrollbar.updateN(-left);
         },
-        switchHeader : function (isCourse) {
+        switchHeader : function (isCourse, isLast) {
 
             var returnBtn =  this.$el.find('.return');
             var nextBtn = this.$el.find('.next');
             var mouseTip = this.$el.find('.mouse');
             var descTip = this.$el.find('.desc');
             var generalBtn = this.$el.find('.general');
+            var qqBtn = this.$el.find('.qq');
 
             returnBtn.toggle(!isCourse);
             if (this.data.length === 1) {
@@ -653,7 +700,8 @@
                 generalBtn.show();
             } else {
                 generalBtn.hide();
-                nextBtn.toggle(isCourse);
+                qqBtn.toggle(isLast && showQQ && isCourse);
+                nextBtn.toggle(!(isLast && showQQ) && isCourse);
             }
 
             mouseTip.toggle(isCourse);
@@ -662,7 +710,7 @@
         showLastPage : function () {
             var me = this;
             me.clearContent();
-            me.switchHeader(false);
+            me.switchHeader(false, false);
 
             me.$el.append(me.lastTemplate({}));
 
@@ -682,6 +730,19 @@
                     'position' : 'final_Page'
                 });
                 showNextView(selectView);
+            });
+
+            me.$el.find('.last_page .qq').off('click').on('click', function () {
+                log({
+                    'event' : 'ui.click.v3_click_qq',
+                    'position' : 'final_Page'
+                });
+
+                showNextView(detailView);
+                detailView.setContent({
+                    'vid' : decodeURIComponent(device_id),
+                    'pid' : decodeURIComponent(product_id)
+                });
             });
 
             if (window.DD_belatedPNG) {

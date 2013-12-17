@@ -54,10 +54,20 @@
     </script>
     <script type="text/template" id="installing-credit">
         <div class="g-ctn g-installing-credit">
-            <div class="bg">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.NOT_TRUSTED_TIP %></div>
+            <div class="g-tips">
+              <button class="w-btn w-btn-primary w-btn-large retry-credit"><%= i18n.CLICK%></button>
             </div>
+        </div>
+    </script>
+    <script type="text/template" id="publisher-not-trusted">
+        <div class="g-ctn g-publisher-not-trusted">
+            <div class="bg"></div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.CREDIT_TIP %></div>
-            <div class="g-fallback link button-fallback"><%= i18n.CREDIT_FALLBACK_TIP %></div>
+            <div class="g-tips">
+              <button class="w-btn w-btn-primary w-btn-large retry-trust"><%= i18n.CLICK%></button>
+            </div>
         </div>
     </script>
     <script type="text/template" id="install_driver_canceled">
@@ -180,7 +190,7 @@
             </div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.UAC_CANCELED %></div>
             <div class="g-tips">
-                <button class="w-btn w-btn-primary w-btn-large click_uac"><%= i18n.CLICK_UAC %></button>
+                <button class="w-btn w-btn-primary w-btn-large click_uac"><%= i18n.CLICK %></button>
             </div>
         </div>
     </script>

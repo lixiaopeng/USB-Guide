@@ -4,7 +4,7 @@ define({
     DOWNLOADING_TIP : '下载驱动的速度可能取决于您的网络状况，请耐心等候',
     SPEED_TIP : '{1}% &bull; {2}/s',
     INSTALLING_TIP : '驱动安装过程中不要重启电脑，请耐心等候',
-    CREDIT_TIP : '请按照提示点击「始终安装此驱动软件程序」保证驱动正确安装',
+    CREDIT_TIP : '请您在看到这个窗口时点击「始终安装此驱动程序」，继续安装手机驱动',
     CREDIT_FALLBACK_TIP : '电脑上没出现这个提示',
     RESET_USB : '重新插拔 USB 线',
     RESTART_PHONE : '重新启动手机',
@@ -31,7 +31,8 @@ define({
     ASK_WANDOUJIA : '始终安装不上？QQ联系豌豆公主帮您解答',
     NO_CDROM_TIP : '电脑上没出现这个提示，试试别的办法',
     UAC_CANCELED : '请点击「是」，以允许豌豆荚继续帮助您安装手机驱动',
-    CLICK_UAC : '去点一下',
+    NOT_TRUSTED_TIP : '请您在看到这个窗口时点击「安装」，继续安装手机驱动',
+    CLICK : '去点一下',
 
     USB_GUIDE_LOCAL_TITLE : '请打开「USB 调试」开关',
     USB_GUIDE_LOCAL_NEED_OPEN_DEBUG : '豌豆荚需要您打开手机上的「USB 调试」开关才能连接',

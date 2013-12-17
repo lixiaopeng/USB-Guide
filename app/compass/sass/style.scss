@@ -168,15 +168,26 @@ html, body {
         @include sprite-sprite(credit);
 
         height: sprite-sprite-height(credit);
-        margin: 50px auto;
+        margin: 50px auto 25px;
         width: sprite-sprite-width(credit);
+    }
 
-        .wording {
-            color: #fff;
-            font-size: 10px;
-            margin-top: 90px;
-            text-align: center;
-        }
+    .g-tips {
+        margin-top: 20px;
+    }
+}
+
+.g-publisher-not-trusted {
+    .bg {
+        @include sprite-sprite(not-trusted);
+
+        height: sprite-sprite-height(not-trusted);
+        margin: 50px auto 25px;
+        width: sprite-sprite-width(not-trusted);
+    }
+
+    .g-tips {
+        margin-top: 20px;
     }
 }
 

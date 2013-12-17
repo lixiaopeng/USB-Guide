@@ -128,8 +128,14 @@
             case STATE.RECOVER:
                 connectingError(obj);
                 break;
-            case STATE.UAC_CANCELED:
+            case STATE.INSTALL_DRIVER_UAC_CANCEL:
                 uacCanceled(obj);
+                break;
+            case STATE.PUBLISHER_NOT_TRUSTED:
+                publisherNotTrusted(obj);
+                break;
+            case STATE.DRIVERSIGN_VERIFY_FAILED:
+                driversignVerifyFailed(obj);
                 break;
             default:
                 if (obj.state >= 0) {
@@ -323,6 +329,20 @@
         var uacCanceled = function (data) {
             show('uac_canceled');
             $(".click_uac").one('click', function () {
+                window.external.call('{"cmd":"retry", "param":""}');
+            });
+        };
+
+        var publisherNotTrusted = function (data) {
+            show('publisher-not-trusted');
+            $(".retry-trust").one('click', function () {
+                window.external.call('{"cmd":"retry", "param":""}');
+            });
+        };
+
+        var driversignVerifyFailed = function (data) {
+            show('installing-credit');
+            $(".retry-credit").one('click', function () {
                 window.external.call('{"cmd":"retry", "param":""}');
             });
         };

@@ -370,6 +370,22 @@ input {
                 @include usb-debug-sprite(return-press);
             }
         }
+
+        a {
+            display: inline-block;
+            line-height: 25px;
+            margin-left: 5px;
+
+            .qq {
+                @include inline-block();
+                @include usb-debug-sprite(qq);
+                height: usb-debug-sprite-height(qq);
+                margin-left: 5px;
+                margin-top: -4px;
+                vertical-align: middle;
+                width: usb-debug-sprite-width(qq);
+            }
+        }
     }
 
     .content {
