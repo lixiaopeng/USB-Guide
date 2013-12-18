@@ -227,7 +227,7 @@
                 $('#usb-guide-iframe').attr('src', src).show();
             }).one('error', function () {
                 usbGuideLocal();
-            }).attr('src', "http://www.wandoujia.com/favicon.ico?t=" + new Date().valueOf());
+            }).attr('src', "http://conn.wandoujia.com/usb-engine/test.gif?t=" + new Date().valueOf());
         };
 
         var usbGuideLocal = function (data) {
