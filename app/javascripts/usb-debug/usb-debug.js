@@ -17,9 +17,16 @@
         }
 
         try {
+            $.ajax({
+                url : 'http://vmap.wandoujia.com/log',
+                data : datas.join('&'),
+                dataType : 'jsonp'
+            });
             window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
         } catch (e) {
-            console && console.log && console.log(data);
+            if (window.console && window.console.log) {
+                window.console.log(data);
+            }
         }
     };
 
@@ -48,36 +55,39 @@
 
     //临时方案
     var backupMap = {
-        'general_gingerbread' : {"msg": "", "data": [{"guide_id": "31142338", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-1.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-2.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-3.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-4.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-5.png"}, {"img": "http://img.wdjimg.com/helpcenter/usb/2.3/2.3-6.png"}], "desc": "\u901a\u7528 2.3"}], "ret": 0},
-        'general_ics' : {"msg": "", "data": [{"guide_id": "31748416", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/4.0_4.1/4.0-7.jpg"}], "desc": "4.0-4.1 \u65b0"}], "ret": 0},
-        'general_jeallybean' : {"msg": "", "data": [{"guide_id": "31125977", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/Nexus_4_android_4.4/Nexus-4-android-4.4_9.jpg"}], "desc": "\u901a\u75284.2_ 4.4-nexus4-4.4"}], "ret": 0},
-        'general_miuios' : {"msg": "", "data": [{"guide_id": "31182513", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/MI3_android_4.2.1/MI3-android-4.2.1_6.jpg"}], "desc": "xiaomi-mi3-4.2.1"}], "ret": 0},
-        'general_meizu' : {"msg": "", "data": [{"guide_id": "31749146", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/1-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/2-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/3-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/4-meizu-mx3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX3_flyme_3/5-meizu-mx3.jpg"}], "desc": "meizu mx3 flyme3"}, {"guide_id": "31182263", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/meizu_MX2_flyme_2.4.1/MX2-flyme-2.4.1_5.jpg"}], "desc": "meizu-mx2-flyme2.4.1"}], "ret": 0}
+        'general_gingerbread' : {"msg": "", "data": [{"add_ts": 1387287199.193094, "guide_name": "new_2.3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-6.jpg"}], "guide_id": "31606897", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
+        'general_ics' : {"msg": "", "data": [{"add_ts": 1387287225.532392, "guide_name": "new_4.0-4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-7.jpg"}], "guide_id": "31610507", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
+        'general_jeallybean' : {"msg": "", "data": [{"add_ts": 1387287211.792048, "guide_name": "new_Nexus4-4.4", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_9.jpg"}], "guide_id": "32141806", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
+        'general_miuios' : {"msg": "", "data": [{"add_ts": 1387287181.3277631, "guide_name": "new_MI-2SC-4.1.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---7.jpg"}], "guide_id": "31638167", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}, {"add_ts": 1387287119.5765641, "guide_name": "new_MI3-4.2.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-9.jpg"}], "guide_id": "32140716", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
+        'general_meizu' : {"msg": "", "data": [{"add_ts": 1387287164.7930119, "guide_name": "new_meizu-MX2-flyme2.4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-5.jpg"}], "guide_id": "31637137", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}, {"add_ts": 1387287151.4678991, "guide_name": "new_meizu-MX3-flyme3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-5.jpg"}], "guide_id": "31637867", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0}
     };
 
     var getCourseByVidPid = function (vid_pid, success, error) {
+
+        var handler = setTimeout(function () {
+            var data = backupMap[vid_pid];
+            if (data) {
+                vmapCallBack(data);
+                return;
+            }
+
+            error && error();
+        }, 2000);
 
         window.vmapCallBack = function(resp) {
             if (resp.data.length > 0) {
                 isMatchVid = true;
             }
             success(resp);
+            clearTimeout(handler);
         };
-
-        var data = backupMap[vid_pid];
-        if (data) {
-            vmapCallBack(data);
-            return;
-        }
 
         var sc = document.createElement('script');
         var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
 
         sc.setAttribute('src', url);
-        sc.onerror = error
-
-        document.head.appendChild(sc);
-    }
+        document.getElementsByTagName('head')[0].appendChild(sc);
+    };
 
     window.getCourseByVidPid = getCourseByVidPid;
     window.isMatchVid = false;
@@ -103,7 +113,7 @@
 
         current = viewQueue[viewQueue.length - 1];
         current.show();
-    }
+    };
 
     window.showLastView = showLastView;
     window.showNextView = showNextView;
@@ -514,17 +524,15 @@
         clearContent : function () {
 
             var me = this;
-            if (me.scrollbar) {
-                log({
-                    'event' : 'ui.click.v3_course_clear',
-                    'page'  : -(parseInt(me.$el.find('.slider').css('left')) || 0) / 250,
-                    'total_page' : me.data[me.currentIndex] ? me.data[me.currentIndex].guide_content.length : 0,
-                    'clickArrow' : me.clickArrow,
-                    'wheel' : me.scrollbar.getIsUsedWheel(),
-                    'guide_id' : me.data[me.currentIndex].guide_id,
-                    'device_id' : device_id
-                });
-            }
+            log({
+                'event' : 'ui.click.v3_course_clear',
+                'page'  : -(parseInt(me.$el.find('.slider').css('left')) || 0) / 250,
+                'total_page' : me.data[me.currentIndex] ? me.data[me.currentIndex].guide_content.length : 0,
+                'clickArrow' : me.clickArrow,
+                'wheel' : me.scrollbar ? me.scrollbar.getIsUsedWheel() : 0,
+                'guide_id' : me.data[me.currentIndex].guide_id,
+                'device_id' : device_id
+            });
 
             me.$el.find('.content').remove();
             me.$el.find('.scrollbar').remove();

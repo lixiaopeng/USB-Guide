@@ -147,10 +147,6 @@
             animation();
         };
 
-        var connectingError = function (data) {
-             show('connecting-error');
-        };
-
         var connectingStart = function (data) {
             show('connecting-start');
             if (data.screen_name !== undefined && data.screen_name !== "") {

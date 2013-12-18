@@ -149,9 +149,8 @@ module.exports = function (grunt) {
             },
             server : {
                 options : {
-                    cssDir : '<%= paths.tmp %>/stylesheets',
-                    httpGeneratedImagesPath : '../images',
-                    debugInfo : false
+                    generatedImagesDir : '<%= paths.tmp %>/images',
+                    debugInfo : true
                 }
             }
         },

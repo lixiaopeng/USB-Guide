@@ -14,7 +14,7 @@ body {
     background-color: #f6f6f6;
     height: 399px;
     overflow: hidden;
-    width: 680px;
+    width: 100%;
 }
 
 a,
@@ -36,14 +36,14 @@ span,
 
 .u-select-view {
     display: none;
-    height: 349px;
+    height: 354px;
     position: relative;
     padding-top: 10px;
 
     .describe {
         display: block;
         margin-bottom: 10px;
-        margin-left: 20px;
+        padding-left: 20px;
     }
 
     .select {
@@ -107,7 +107,7 @@ span,
 
 .u-footer-view {
     display: none;
-    height: 50px;
+    height: 45px;
     padding-right: 20px;
     vertical-align: top;
     width: 680px;
@@ -121,8 +121,8 @@ span,
     }
 
     .feedback {
-        height: 40px;
-        line-height: 40px;
+        height: 35px;
+        line-height: 35px;
     }
 
     .button-return {
@@ -131,7 +131,6 @@ span,
         height: usb-debug-sprite-height(return);
         line-height: 30px;
         margin-left: 10px;
-        margin-top: 5px;
         text-align: center;
         width: usb-debug-sprite-width(return);
 
@@ -150,7 +149,7 @@ span,
 
 .u-feedback-ctn {
     display: none;
-    height: 334px;
+    height: 339px;
     position: relative;
     margin: 15px auto 0;
     width: 600px;
@@ -163,7 +162,7 @@ span,
 
     .left {
         @include inline-block();
-        vertical-align: top;
+        float: left;
         width: 205px;
 
         .bg {
@@ -181,6 +180,8 @@ span,
         .message {
 
             .body {
+                height: 130px;
+                line-height: 130px;
                 margin-bottom: 20px;
                 margin-top: 20px;
 
@@ -189,50 +190,38 @@ span,
                     display: none;
                 }
 
-                .qr {
+                .qrbg {
                     @include inline-block();
-                    height: 130px;
-                    vertical-align: top;
-                    width: 150px;
+                    @include usb-debug-sprite(qr);
+                    height: usb-debug-sprite-height(qr);
+                    margin-left: 25px;
+                    width: usb-debug-sprite-width(qr);
 
-                    p {
-                        margin-left: 45px;
-                    }
-
-                    .bg {
-                        @include usb-debug-sprite(qr);
-                        height: 101px;
-                        margin-left: 25px;
-                        margin-top: 10px;
-                        width: 101px;
-                    }
+                    *vertical-align: top;
+                    *margin-top: 15px;
                 }
 
                 .huo {
                     @include usb-debug-sprite(huo);
                     @include inline-block();
-                    height: 130px;
-                    vertical-align: top;
-                    width: 34px;
-
+                    height: usb-debug-sprite-height(huo);
+                    margin-left: 25px;
+                    width: usb-debug-sprite-width(huo);
                 }
 
                 .short-url {
                     @include inline-block();
                     font-size: 14px;
-                    height: 130px;
-                    vertical-align: top;
-                    width: 165px;
+                    height: 40px;
+                    line-height: 20px;
+                    margin-left: 20px;
+                    width: 156px;
 
-                    *width: 195px;
+                    *vertical-align: top;
+                    *margin-top: 40px;
 
-                    .w-text-info {
-                        margin-top: 40px;
-                        margin-left: 20px;
-                    }
-
-                    .url {
-                        margin-left: 20px;
+                    .w-text-info, .url {
+                        @include inline-block();
                     }
                 }
             }
