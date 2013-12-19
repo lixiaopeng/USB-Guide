@@ -85,6 +85,9 @@
         var sc = document.createElement('script');
         var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
 
+        //var data = window.external.call('{"cmd":"getData", "param":' + vid_pid + '}')
+        //var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  data;
+
         sc.setAttribute('src', url);
         document.getElementsByTagName('head')[0].appendChild(sc);
     };
@@ -466,8 +469,7 @@
             }).on('mouseenter', function () {
                 $(this).addClass('hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('hover');
-                $(this).removeClass('press');
+                $(this).removeClass('hover press');
             }).on('mousedown', function () {
                 $(this).addClass('press');
             }).on('mouseup', function () {
@@ -634,8 +636,7 @@
             me.$el.find('.left-arrow').on('mouseenter', function () {
                 $(this).addClass('left-arrow-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('left-arrow-hover');
-                $(this).removeClass('left-arrow-press');
+                $(this).removeClass('left-arrow-hover left-arrow-press');
             }).on('mousedown', function () {
                 $(this).addClass('left-arrow-press');
             }).on('mouseup', function () {
@@ -648,8 +649,7 @@
             me.$el.find('.right-arrow').on('mouseenter', function () {
                 $(this).addClass('right-arrow-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('right-arrow-hover');
-                $(this).removeClass('right-arrow-press');
+                $(this).removeClass('right-arrow-hover right-arrow-press');
             }).on('mousedown', function () {
                 $(this).addClass('right-arrow-press');
             }).on('mouseup', function () {
@@ -786,8 +786,7 @@
             me.$el.find('.button-return').on('mouseenter', function () {
                 $(this).addClass('hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('hover');
-                $(this).removeClass('press');
+                $(this).removeClass('hover press');
             }).on('mousedown', function () {
                 $(this).addClass('press');
             }).on('mouseup', function () {
