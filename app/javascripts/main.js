@@ -86,9 +86,6 @@
         window.call = function (obj) {
 
             switch (obj.state) {
-            case STATE.APK_INSTALL_CANCELED_BY_USER:
-                allowInstall(obj);
-                break;
             case STATE.DOWNLOAD_DRIVER_SUCCESS:
             case STATE.INSTALL_DRIVER:
                 installing(obj);
@@ -98,9 +95,6 @@
                 break;
             case STATE.OFFLINE:
                 offLine(obj);
-                break;
-            case STATE.STORAGE_INSUFFICIENT:
-                storageInsufficient(obj);
                 break;
             case STATE.ADB_DEBUG_CLOSE:
                 usbGuide(obj);
@@ -125,7 +119,8 @@
                 break;
             case STATE.ADB_SERVER_ERROR_WDJ:
             case STATE.PHONE_POWEROFF:
-            case STATE.RECOVER:
+            case STATE.RECOVERY:
+            case STATE.INSTALL_DRIVER_SUCCESS_BUT_SHOULD_RESTART:
                 connectingError(obj);
                 break;
             case STATE.INSTALL_DRIVER_UAC_CANCEL:
@@ -136,6 +131,9 @@
                 break;
             case STATE.DRIVERSIGN_VERIFY_FAILED:
                 driversignVerifyFailed(obj);
+                break;
+            case STATE.OFFLINE_OTHER:
+                offlineOther(obj);
                 break;
             default:
                 if (obj.state >= 0) {
@@ -156,16 +154,6 @@
             } else {
                 $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, "手机"));
             }
-        };
-
-        var allowInstall = function (data) {
-            show('allow-install');
-            $('.allow-install').one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
-                log({
-                    'event' : 'ui.click.allow_install'
-                });
-            });
         };
 
         var installing = function (data) {
@@ -204,12 +192,12 @@
             });
         };
 
-        var storageInsufficient = function (data) {
-            show('storage_insufficient');
-            $('.button-retry-storage-insufficient').one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+        var offlineOther = function (data) {
+            show('offline-other');
+            $('.button-fallback-tip').on('click', function () {
+                connectingError();
                 log({
-                    'event' : 'ui.click.storage_insufficient'
+                    'event' : 'ui.click.fallback_tip'
                 });
             });
         };
@@ -220,6 +208,7 @@
 
             src += '?device_id=' + encodeURIComponent(data.device_id);
             src += '&product_id=' + data.product_id;
+            src += '&device_key=' + data.device_key;
             src += '&user_detail=' + data.user_detail;
 
             var img = new window.Image();

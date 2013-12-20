@@ -111,12 +111,12 @@
             <a class="g-fallback link button-show-detail" target="_blank" href="https://androidfeedback.zendesk.com/entries/26187067"><%= i18n.SHOW_DETAIL_RESULT %></a>
         </div>
     </script>
-    <script type="text/template" id="storage_insufficient">
-        <div class="g-ctn g-error-storage">
-            <div class="bg">
-            </div>
-            <div class="g-tips h5 w-text-secondary"><%= i18n.ERROR_STORAGE %></div>
-            <button class="button-retry-storage-insufficient w-btn w-btn-primary w-btn-kaiju"><%= i18n.RETRY %></button>
+    <script type="text/template" id="offline-other">
+        <div class="g-ctn g-error-debug">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.USB_DEBUG %></div>
+            <div class="g-tips button-container"><button class="button-retry-offline w-btn w-btn-primary"><%= i18n.OFFLINE_OHTER %></button></div>
+            <a class="g-fallback link button-fallback-tip"><%= i18n.USB_FALLBACK_TIP %></a>
         </div>
     </script>
     <script type="text/template" id="offline">
@@ -149,16 +149,6 @@
             <div class="g-tips h5 w-text-secondary"></div>
             <div class="g-tips">
               <button class="w-btn w-btn-primary w-btn-large retry-kill-adb"><%= i18n.RETRY %></button>
-            </div>
-        </div>
-    </script>
-    <script type="text/template" id='allow-install'>
-        <div class="g-ctn g-allow-install">
-            <div class="bg">
-            </div>
-            <div class="g-tips h5 w-text-secondary"><%= i18n.ALLOW_INSTALL %></div>
-            <div class="g-tips">
-                <button class="w-btn w-btn-primary w-btn-large allow-install"><%= i18n.RETRY %></button>
             </div>
         </div>
     </script>

@@ -121,21 +121,6 @@ html, body {
     }
 }
 
-.g-allow-install {
-    .bg {
-        @include sprite-sprite(allowinstall);
-
-        height: sprite-sprite-height(allowinstall);
-        position: relative;
-        margin: 50px auto;
-        width: sprite-sprite-width(allowinstall);
-    }
-
-    .w-btn {
-      margin-top: 10px;
-    }
-}
-
 .g-downloading,
 .g-installing {
     .bg {
@@ -218,22 +203,6 @@ html, body {
         .tip3 {
             margin-left: 115px;
         }
-    }
-}
-
-.g-error-storage {
-    text-align: center;
-
-    .bg {
-        @include sprite-sprite(storage);
-
-        height: sprite-sprite-height(storage);
-        margin: 60px auto;
-        width: sprite-sprite-width(storage);
-    }
-
-    .button-retry {
-        margin-top: 20px;
     }
 }
 

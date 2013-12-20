@@ -29,6 +29,7 @@
             STORAGE_INSUFFICIENT : -27,  // storage is insufficient
             NOT_ALLOW_INSTALL_APK : -32,  // used by snappea
             APK_INSTALL_CANCELED_BY_USER : -33,
+            OFFLINE_OTHER : -40,
             // ////////////////////////////////////////////////////////////////////////
             // All Processing State, bigger than 1, lowwer than 100
             // ////////////////////////////////////////////////////////////////////////
