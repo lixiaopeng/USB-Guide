@@ -14,7 +14,7 @@ define({
     USB_DEBUG : '请在手机弹窗勾选「一律允许使用这台计算机进行调试」，并按下「确定」',
     USB_FALLBACK_TIP : '一直没看到这个提示，试试别的办法',
     OFFLINE_RETRY : '没有弹窗，再试一次',
-    OFFLINE_OHTER : '请重新拔插 USB 线',
+    OFFLINE_OHTER : '没有弹窗，请重新拔插 USB 线',
     INSTALL_DRIVER_FAILED : '呃，驱动好像没安装成功，请您尝试重新安装驱动。',
     DOWNLOAD_DRIVER_FAILED : '呃，服务器好像有一些故障...请过几分钟再试吧',
     RETRY_INSTALL_DRIVER : '重新安装',
