@@ -30,6 +30,8 @@
         }
     };
 
+    window.external.call('{"cmd":"debug-start-log"}');
+
 }(this));
 
 //device_id, product_id
@@ -84,7 +86,11 @@
         };
 
         var sc = document.createElement('script');
-        var url = 'http://vmap.wandoujia.com:8888/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid) + '&device_key=' + encodeURIComponent(device_key);
+        var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
+
+        if (device_key) {
+            url +=  '&device_key=' + encodeURIComponent(device_key);
+        }
 
         //var data = window.external.call('{"cmd":"getData", "param":' + vid_pid + '}')
         //var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  data;
