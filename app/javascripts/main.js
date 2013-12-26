@@ -120,8 +120,10 @@
             case STATE.ADB_SERVER_ERROR_WDJ:
             case STATE.PHONE_POWEROFF:
             case STATE.RECOVERY:
-            case STATE.INSTALL_DRIVER_SUCCESS_BUT_SHOULD_RESTART:
                 connectingError(obj);
+                break;
+            case STATE.INSTALL_DRIVER_SUCCESS_BUT_SHOULD_RESTART:
+                rebootComputer(obj);
                 break;
             case STATE.INSTALL_DRIVER_UAC_CANCEL:
                 uacCanceled(obj);
@@ -154,6 +156,10 @@
             } else {
                 $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, "手机"));
             }
+        };
+
+        var rebootComputer = function (data) {
+            show('reboot-computer');
         };
 
         var installing = function (data) {
