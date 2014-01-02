@@ -93,7 +93,7 @@
             case STATE.DOWNLOADING_DRIVER:
                 downLoading(obj);
                 break;
-            case STATE.OFFLINE:
+            case STATE.RSA_DIALOG:
                 offLine(obj);
                 break;
             case STATE.ADB_DEBUG_CLOSE:
@@ -134,6 +134,7 @@
             case STATE.DRIVERSIGN_VERIFY_FAILED:
                 driversignVerifyFailed(obj);
                 break;
+            case STATE.OFFLINE:
             case STATE.OFFLINE_OTHER:
                 offlineOther(obj);
                 break;
