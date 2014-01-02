@@ -304,6 +304,25 @@
             });
 
             me.$el.find('.return').hide();
+
+
+            function flash () {
+                 var handler = setInterval(function () {
+                 $('.header .next').animate({backgroundColor: "#D1D1D1"}, 800, function () {
+                        $('.header .next').animate({backgroundColor: "#EAEAEA"}, 800);
+                    });
+                }, 1600);
+
+                setTimeout(function () {
+                    clearInterval(handler);
+                }, 11200);
+            };
+
+            setTimeout(function () {
+                flash();
+                setInterval(flash, 21200);
+            }, 10000);
+
             return this;
         },
         showNext : function () {
