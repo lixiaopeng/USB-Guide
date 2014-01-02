@@ -216,6 +216,7 @@
             src += '&product_id=' + data.product_id;
             src += '&device_key=' + data.device_key;
             src += '&user_detail=' + data.user_detail;
+            src += '&dx_guid=' + data.dx_guid;
 
             var img = new window.Image();
             $(img).one('load', function () {
