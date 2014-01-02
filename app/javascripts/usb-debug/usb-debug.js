@@ -31,6 +31,11 @@
     };
 
     try {
+        $.ajax({
+            url : 'http://vmap.wandoujia.com/log',
+            data : 'debug-start-log',
+            dataType : 'jsonp'
+        });
         window.external.call('{"cmd":"debug-start-log"}');
     } catch (e) {}
 
