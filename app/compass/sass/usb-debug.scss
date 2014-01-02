@@ -328,8 +328,16 @@ input {
             margin-left: 20px;
         }
 
-        .general {
+        .next {
             display: none;
+            height: 30px;
+            text-align: center;
+            padding-top: 5px;
+            width: 120px;
+
+            *vertical-align: middle;
+            *padding-top: 10px;
+            *height: 25px;
         }
 
         .return {

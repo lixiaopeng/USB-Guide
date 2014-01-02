@@ -30,7 +30,9 @@
         }
     };
 
-    window.external.call('{"cmd":"debug-start-log"}');
+    try {
+        window.external.call('{"cmd":"debug-start-log"}');
+    } catch (e) {}
 
 }(this));
 
@@ -502,6 +504,25 @@
             });
 
             me.$el.find('.return').hide();
+
+
+            function flash () {
+                 var handler = setInterval(function () {
+                 $('.header .next').animate({backgroundColor: "#D1D1D1"}, 800, function () {
+                        $('.header .next').animate({backgroundColor: "#EAEAEA"}, 800);
+                    });
+                }, 1600);
+
+                setTimeout(function () {
+                    clearInterval(handler);
+                }, 11200);
+            };
+
+            setTimeout(function () {
+                flash();
+                setInterval(flash, 21200);
+            }, 10000);
+
             return this;
         },
         showNext : function () {
@@ -716,7 +737,11 @@
             } else {
                 generalBtn.hide();
                 qqBtn.toggle(isLast && showQQ && isCourse);
-                nextBtn.toggle(!(isLast && showQQ) && isCourse);
+                if (!(isLast && showQQ) && isCourse) {
+                    nextBtn.css('display', 'inline-block');
+                } else {
+                    nextBtn.hide();
+                }
             }
 
             mouseTip.toggle(isCourse);
