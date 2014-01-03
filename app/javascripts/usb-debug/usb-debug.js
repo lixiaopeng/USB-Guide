@@ -10,6 +10,8 @@
             datas = [],
             d;
 
+        data.dx_guid = dx_guid;
+
         for (d in data) {
             if (data.hasOwnProperty(d)) {
                 datas.push(d + '=' + window.encodeURIComponent(data[d]));
@@ -57,6 +59,7 @@
     window.device_id = getUrlParam('device_id');
     window.product_id = getUrlParam('product_id');
     window.device_key = getUrlParam('device_key');
+    window.dx_guid = getUrlParam('dx_guid');
 
 }(this));
 
@@ -462,6 +465,14 @@
                     'total_page' : me.data[me.currentIndex].guide_content.length
                 });
                 me.showNext();
+            }).on('mouseenter', function () {
+                $(this).addClass('hover');
+            }).on('mouseleave', function () {
+                $(this).removeClass('hover press');
+            }).on('mousedown', function () {
+                $(this).addClass('press');
+            }).on('mouseup', function () {
+                $(this).removeClass('press');
             });
 
             me.$el.find('.header .general').on('click', function () {
@@ -510,8 +521,7 @@
 
             me.$el.find('.return').hide();
 
-
-            function flash () {
+            /*function flash () {
                  var handler = setInterval(function () {
                  $('.header .next').animate({backgroundColor: "#D1D1D1"}, 800, function () {
                         $('.header .next').animate({backgroundColor: "#EAEAEA"}, 800);
@@ -526,7 +536,7 @@
             setTimeout(function () {
                 flash();
                 setInterval(flash, 21200);
-            }, 10000);
+            }, 10000);*/
 
             return this;
         },
