@@ -171,13 +171,13 @@ input {
             margin-top: 15px;
         }
 
-        .next, .return, .general{
+        /*.next,*/ .return, .general{
             cursor: pointer;
             display: inline-block;
             margin-left: 20px;
         }
 
-        .next {
+        /*.next {
             display: none;
             height: 30px;
             text-align: center;
@@ -187,6 +187,29 @@ input {
             *vertical-align: middle;
             *padding-top: 10px;
             *height: 25px;
+        }*/
+
+        .next {
+            @include usb-debug-sprite(next);
+            cursor: pointer;
+            height: usb-debug-sprite-height(next);
+            left: 195px;
+            line-height: 30px;
+            position: absolute;
+            text-align: center;
+            top: 10px;
+            width: usb-debug-sprite-width(next);
+
+            *margin-right: 20px;
+            _margin-right:10px;
+
+            &.hover {
+                @include usb-debug-sprite(next-hover);
+            }
+
+            &.press {
+                @include usb-debug-sprite(next-press);
+            }
         }
 
         .return {
