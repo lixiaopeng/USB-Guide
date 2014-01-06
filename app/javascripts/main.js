@@ -1,4 +1,7 @@
 (function (window, document) {
+
+    var is_i18n_version = window.external.is_snappea();
+
     require.config({
         paths : {
             $ : '../components/jquery/jquery',
@@ -12,7 +15,8 @@
             _ : {
                 exports : '_'
             }
-        }
+        },
+        locale : is_i18n_version ? 'en' : 'root'
     });
 
     require([
@@ -29,6 +33,9 @@
         FormatString
     ) {
         window.i18n = lang;
+        if (is_i18n_version) {
+            $('body').addClass('locale-en-us');
+        }
 
         var show = function (id, data) {
             if ($('div#' + id).length === 0) {
@@ -115,7 +122,11 @@
                 killADBError(obj);
                 break;
             case STATE.START_CDROM_FAILED:
-                startDdromFailed(obj);
+                if (is_i18n_version) {
+                    connectingError();
+                } else {
+                    startDdromFailed(obj);
+                }
                 break;
             case STATE.ADB_SERVER_ERROR_WDJ:
             case STATE.PHONE_POWEROFF:
@@ -210,17 +221,23 @@
 
         var usbGuide = function (data) {
             show('usb-guide');
-            var src = 'http://conn.wandoujia.com/usb-engine/';
 
-            src += '?device_id=' + encodeURIComponent(data.device_id);
-            src += '&product_id=' + data.product_id;
-            src += '&device_key=' + data.device_key;
-            src += '&user_detail=' + data.user_detail;
-            src += '&dx_guid=' + data.dx_guid;
+            var src = 'http://conn.wandoujia.com/usb-engine/';
+            var args = '?device_id=' + encodeURIComponent(data.device_id);
+            args += '&product_id=' + data.product_id;
+            args += '&device_key=' + data.device_key;
+            args += '&user_detail=' + data.user_detail;
+            args += '&dx_guid=' + data.dx_guid;
+
+            if (is_i18n_version) {
+                src = 'http://s3.amazonaws.com/snappea/static/conn_v3/usb-debug.html';
+                $('#usb-guide-iframe').attr('src', src + args).show();
+                return;
+            }
 
             var img = new window.Image();
             $(img).one('load', function () {
-                $('#usb-guide-iframe').attr('src', src).show();
+                $('#usb-guide-iframe').attr('src', src + args).show();
             }).one('error', function () {
                 usbGuideLocal();
             }).attr('src', "http://conn.wandoujia.com/usb-engine/test.gif?t=" + new Date().valueOf());

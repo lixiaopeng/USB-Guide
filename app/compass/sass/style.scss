@@ -5,7 +5,13 @@
 @import "../../thirdparty/Adonis/sass/form";
 
 @import "sprite/*.png";
+@import "snappea/*.png";
 @import "compass/css3";
+
+/**
+ * Localization styles
+ */
+@import "locale-en";
 
 html, body {
     background-color: #f6f6f6;
