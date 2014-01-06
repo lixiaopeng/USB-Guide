@@ -18,7 +18,7 @@
 
         try {
             $.ajax({
-                url : 'http://vmap.wandoujia.com/log',
+                url : 'http://vmap.snappea.com/log',
                 data : datas.join('&'),
                 dataType : 'jsonp'
             });
@@ -32,7 +32,7 @@
 
     try {
         $.ajax({
-            url : 'http://vmap.wandoujia.com/log',
+            url : 'http://vmap.snappea.com/log',
             data : 'debug-start-log',
             dataType : 'jsonp'
         });
@@ -68,8 +68,8 @@
         'general_gingerbread' : {"msg": "", "data": [{"add_ts": 1387287199.193094, "guide_name": "new_2.3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-6.jpg"}], "guide_id": "31606897", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
         'general_ics' : {"msg": "", "data": [{"add_ts": 1387287225.532392, "guide_name": "new_4.0-4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-7.jpg"}], "guide_id": "31610507", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
         'general_jeallybean' : {"msg": "", "data": [{"add_ts": 1387287211.792048, "guide_name": "new_Nexus4-4.4", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_4_new.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_9.jpg"}], "guide_id": "32141806", "guide_model": "", "guide_brand": "new_Nexus4", "model_name": "", "api_level": "4.4"}], "ret": 0},
-        'general_miuios' : {"msg": "", "data": [{"add_ts": 1387287181.3277631, "guide_name": "new_MI-2SC-4.1.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---7.jpg"}], "guide_id": "31638167", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}, {"add_ts": 1387287119.5765641, "guide_name": "new_MI3-4.2.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-4_new.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-9.jpg"}], "guide_id": "32140716", "guide_model": "", "guide_brand": "new_MI3", "model_name": "", "api_level": "4.2.1"}], "ret": 0},
-        'general_meizu' : {"msg": "", "data": [{"add_ts": 1387287164.7930119, "guide_name": "new_meizu-MX2-flyme2.4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu_MX2--flyme-2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-5.jpg"}], "guide_id": "31637137", "guide_model": "", "guide_brand": "new_meizu-MX2-flyme2.4.1", "model_name": "", "api_level": ""}, {"add_ts": 1387287151.4678991, "guide_name": "new_meizu-MX3-flyme3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu_MX2--flyme-2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-5.jpg"}], "guide_id": "31637867", "guide_model": "", "guide_brand": "new_meizu-MX3-flyme3", "model_name": "", "api_level": ""}], "ret": 0}
+        'general_samsung' : {"msg": "", "data": [{"add_ts": 1387287181.3277631, "guide_name": "new_MI-2SC-4.1.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---7.jpg"}], "guide_id": "31638167", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}, {"add_ts": 1387287119.5765641, "guide_name": "new_MI3-4.2.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-4_new.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-9.jpg"}], "guide_id": "32140716", "guide_model": "", "guide_brand": "new_MI3", "model_name": "", "api_level": "4.2.1"}], "ret": 0},
+        'general_htc' : {"msg": "", "data": [{"add_ts": 1387287164.7930119, "guide_name": "new_meizu-MX2-flyme2.4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu_MX2--flyme-2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-5.jpg"}], "guide_id": "31637137", "guide_model": "", "guide_brand": "new_meizu-MX2-flyme2.4.1", "model_name": "", "api_level": ""}, {"add_ts": 1387287151.4678991, "guide_name": "new_meizu-MX3-flyme3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu_MX2--flyme-2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-5.jpg"}], "guide_id": "31637867", "guide_model": "", "guide_brand": "new_meizu-MX3-flyme3", "model_name": "", "api_level": ""}], "ret": 0}
     };
 
     var getCourseByVidPid = function (vid_pid, success, error) {
@@ -93,7 +93,7 @@
         };
 
         var sc = document.createElement('script');
-        var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
+        var url = 'http://vmap.snappea.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
 
         if (device_key) {
             url +=  '&device_key=' + encodeURIComponent(device_key);
@@ -136,26 +136,6 @@
     window.showNextView = showNextView;
 }(this));
 
-//get qq state
-(function () {
-    var getQQState = function () {
-        $.ajax('http://conn-feedback.wandoujia.com/request', {
-            data : {
-                'device_id' : device_id
-            },
-            'dataType' : 'jsonp',
-            'success' : function (resp) {
-                if (resp.ret > 0) {
-                    showQQ = true;
-                }
-            }
-        });
-    };
-    getQQState();
-
-    window.showQQ = false;
-}(this));
-
 //select view;
 (function () {
     var data = {
@@ -169,11 +149,11 @@
             name : 'Android 4.2 - 4.4',
             className : 'jeallybean'
         }, {
-            name : 'MIUI',
-            className : 'miuios'
+            name : 'Samsung',
+            className : 'samsung'
         }, {
-            name : '魅族 Flyme',
-            className : 'meizu'
+            name : 'HTC',
+            className : 'htc'
         }]
     };
 
@@ -247,184 +227,6 @@
     };
 
     window.selectView = new SelectView();
-}(this));
-
-//feedback view
-(function () {
-    var FeedbackView = function () {
-        this.$el = $('.tmp_feedback').addClass(this.className);
-        return this;
-    };
-
-    FeedbackView.prototype = {
-        className : 'u-feedback-ctn',
-        template : _.template($('#feedBackView').html()),
-        isShow : false,
-        eventName : '',
-        render: function () {
-            var self = this;
-
-            this.$el.html(this.template({}));
-
-            var smsPanel = this.$el.find('.sms');
-            var qrPanel = this.$el.find('.qr');
-
-            /*if (Math.floor(Math.random()*2)) {
-                this.eventName = 'ui.show.smsPanel';
-                qrPanel.hide();
-            } else {*/
-            this.eventName = 'ui.show.qrPanel';
-            smsPanel.hide();
-            /*}*/
-
-            var $numTip = this.$el.find('.body .not-a-number');
-            var $connectTip = this.$el.find('.body .connect-error');
-            var $numInput = this.$el.find('.body input');
-            var $dis = this.$el.find('.body .tip');
-            var $btn = this.$el.find('.button-send');
-
-            $btn.click(function () {
-                var num = $.trim($numInput.val());
-
-                if (num) {
-                    if (/1\d{10}/.test(num)) {
-                        $numTip.hide();
-                        $dis.show();
-                    } else {
-                        $numTip.show();
-                        $dis.hide();
-                        return;
-                    }
-                } else {
-                    $numTip.hide();
-                    $dis.show();
-                    return;
-                }
-
-                $connectTip.hide();
-
-                log({
-                    'event': 'ui.click.new_usb_debug_send_message'
-                });
-
-                $.ajax('http://www.wandoujia.com/sms', {
-                    data : {
-                        type : 'USB_SETUP',
-                        action : 'send',
-                        phone : num
-                    },
-                    dataType: "jsonp",
-                    error : function () {
-                        $connectTip.show();
-                        $dis.hide();
-                    },
-                    success : function () {
-                        log({
-                            'event': 'ui.click.new_usb_debug_send_message_success'
-                        });
-                    }
-                });
-
-                $btn.prop('disabled', true);
-
-                var index = 60;
-                $btn.html('重新发送(' + index-- + ')');
-                var handler = setInterval(function () {
-                    if (index < 0) {
-                        clearInterval(handler);
-                        $btn.html('重新发送').prop('disabled', false);
-                        return;
-                    }
-                    $btn.html('重新发送(' + index-- + ')');
-                }, 1000);
-
-            });
-
-            this.$el.find('.usb-help').on('click', function () {
-                log({
-                    'event': 'ui.click.new_usb_debug_feed_back_usb_help'
-                });
-            });
-
-            this.$el.find('.usb-bbs').on('click', function () {
-                log({
-                    'event': 'ui.click.new_usb_debug_feed_back_usb_bbs'
-                });
-            });
-
-            this.$el.find('.qq').on('click', function () {
-                log({
-                    'event' : 'ui.click.v3_click_qq',
-                    'position' : 'feedback_Page'
-                });
-
-                showNextView(detailView);
-                detailView.setContent({
-                    'vid' : decodeURIComponent(device_id),
-                    'pid' : decodeURIComponent(product_id)
-                });
-            });
-
-            return this;
-        },
-        hide : function () {
-            this.$el.hide();
-            this.isShow = false;
-        },
-        show : function () {
-            if (!this.isRender) {
-                this.render();
-            }
-            this.$el.show();
-            this.isShow = true;
-            footerView.show();
-            footerView.toggleReturn(true);
-            footerView.toggleFeedBack(false);
-        }
-    };
-
-    window.feedbackView = new FeedbackView();
-}(this));
-
-//detail view
-(function () {
-    var DetailView = function () {
-        this.$el = $('.tmp_detail').addClass(this.className);
-        return this;
-    };
-
-    DetailView.prototype = {
-        className : 'u-detail-view',
-        template : _.template($('#detailView').html()),
-        isShow : false,
-        render : function () {
-            this.$el.html(this.template({}));
-            return this;
-        },
-        setContent : function (content) {
-            var text = '';
-            $.each(content, function (key, value) {
-                text += key + " : " + value + "\n";
-            });
-            this.$el.find('.user-detail').val(text);
-        },
-        hide : function () {
-            this.$el.hide();
-            this.isShow = false;
-        },
-        show : function () {
-
-            if (!this.isRender) {
-                this.render();
-            }
-
-            this.$el.show();
-            this.isShow = true;
-        }
-    };
-
-    window.detailView = new DetailView();
-
 }(this));
 
 //slider view
@@ -501,33 +303,7 @@
                 me.showCourse();
             });
 
-            me.$el.find('.header .qq').hide().on('click', function () {
-                log({
-                    'event' : 'ui.click.v3_click_qq',
-                    'position' : 'header'
-                });
-            });
-
             me.$el.find('.return').hide();
-
-
-            function flash () {
-                 var handler = setInterval(function () {
-                 $('.header .next').animate({backgroundColor: "#D1D1D1"}, 800, function () {
-                        $('.header .next').animate({backgroundColor: "#EAEAEA"}, 800);
-                    });
-                }, 1600);
-
-                setTimeout(function () {
-                    clearInterval(handler);
-                }, 11200);
-            };
-
-            setTimeout(function () {
-                flash();
-                setInterval(flash, 21200);
-            }, 10000);
-
             return this;
         },
         showNext : function () {
@@ -648,13 +424,12 @@
                 me.showNext();
             });
 
-            me.$el.find('.slider li .download').one('click', function () {
+            me.$el.find('.slider li .zendesk').one('click', function () {
 
                 log({
-                    'event' : 'ui.click.v3_show_feedback',
+                    'event' : 'ui.click.v3_show_zendesk',
                     'position' : 'lastPage'
                 });
-                showNextView(feedbackView);
             });
 
             me.$el.find('.slider li .general').one('click', function () {
@@ -733,7 +508,6 @@
             var mouseTip = this.$el.find('.mouse');
             var descTip = this.$el.find('.desc');
             var generalBtn = this.$el.find('.general');
-            var qqBtn = this.$el.find('.qq');
 
             returnBtn.toggle(!isCourse);
             if (this.data.length === 1) {
@@ -741,8 +515,7 @@
                 generalBtn.show();
             } else {
                 generalBtn.hide();
-                qqBtn.toggle(isLast && showQQ && isCourse);
-                if (!(isLast && showQQ) && isCourse) {
+                if (!isLast && isCourse) {
                     nextBtn.css('display', 'inline-block');
                 } else {
                     nextBtn.hide();
@@ -775,19 +548,6 @@
                     'position' : 'final_Page'
                 });
                 showNextView(selectView);
-            });
-
-            me.$el.find('.last_page .qq').off('click').on('click', function () {
-                log({
-                    'event' : 'ui.click.v3_click_qq',
-                    'position' : 'final_Page'
-                });
-
-                showNextView(detailView);
-                detailView.setContent({
-                    'vid' : decodeURIComponent(device_id),
-                    'pid' : decodeURIComponent(product_id)
-                });
             });
 
             if (window.DD_belatedPNG) {

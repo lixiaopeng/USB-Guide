@@ -62,7 +62,7 @@ span,
 
             &.system {
 
-                @each $logo in gingerbread, ics, jeallybean, miuios, meizu, howto{
+                @each $logo in gingerbread, ics, jeallybean, samsung, htc{
                     &.#{$logo} {
                         .top {
                             @include usb-debug-sprite(#{$logo});
@@ -73,7 +73,7 @@ span,
                     }
                 }
 
-                &.gingerbread, &.miuios, &.ics, &.meizu{
+                &.gingerbread, &.samsung, &.ics, &.htc{
                     margin-right: 20px;
                 }
 
@@ -144,157 +144,6 @@ span,
         &.press {
             @include usb-debug-sprite(return-press);
         }
-    }
-}
-
-.u-feedback-ctn {
-    display: none;
-    height: 339px;
-    position: relative;
-    margin: 15px auto 0;
-    width: 600px;
-
-    *margin-top: 25px;
-
-    .describe {
-        @include inline-block();
-    }
-
-    .left {
-        @include inline-block();
-        float: left;
-        width: 205px;
-
-        .bg {
-            @include usb-debug-sprite(usb-quick);
-            height: 310px;
-            width: 180px;
-        }
-    }
-
-    .right {
-        @include inline-block();
-        padding-top: 30px;
-        vertical-align: top;
-
-        .message {
-
-            .body {
-                height: 130px;
-                line-height: 130px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-
-                .not-a-number,
-                .connect-error,{
-                    display: none;
-                }
-
-                .qrbg {
-                    @include inline-block();
-                    @include usb-debug-sprite(qr);
-                    height: usb-debug-sprite-height(qr);
-                    margin-left: 25px;
-                    width: usb-debug-sprite-width(qr);
-
-                    *vertical-align: top;
-                    *margin-top: 15px;
-                }
-
-                .huo {
-                    @include usb-debug-sprite(huo);
-                    @include inline-block();
-                    height: usb-debug-sprite-height(huo);
-                    margin-left: 25px;
-                    width: usb-debug-sprite-width(huo);
-                }
-
-                .short-url {
-                    @include inline-block();
-                    font-size: 14px;
-                    height: 40px;
-                    line-height: 20px;
-                    margin-left: 20px;
-                    width: 156px;
-
-                    *vertical-align: top;
-                    *margin-top: 40px;
-
-                    .w-text-info, .url {
-                        @include inline-block();
-                    }
-                }
-            }
-
-            .send-message {
-                height: 45px;
-
-                *left: 10px;
-                *position: relative;
-                *width: 380px;
-
-                .button-send {
-                    *margin-left: 10px;
-                }
-            }
-        }
-
-        .href-container {
-            .href {
-                display: block;
-                line-height: 25px;
-
-                .img {
-                    @include inline-block();
-                    @include usb-debug-sprite(bullet-arrow);
-
-                    height: usb-debug-sprite-height(bullet-arrow);
-                    margin-right: 10px;
-                    vertical-align: middle;
-                    width: usb-debug-sprite-width(bullet-arrow);
-
-                    _font-size: 10px;
-                    _line-height: 10px;
-                }
-
-                .wording {
-                    @include inline-block();
-                    vertical-align: middle;
-                }
-
-                .qq {
-                    @include inline-block();
-                    @include usb-debug-sprite(qq);
-                    height: usb-debug-sprite-height(qq);
-                    margin-left: 5px;
-                    margin-top: -4px;
-                    vertical-align: middle;
-                    width: usb-debug-sprite-width(qq);
-                }
-            }
-        }
-    }
-}
-
-.u-detail-view {
-    display: none;
-    height: 399px;
-    margin: 15px auto;
-    padding: 15px;
-    position: relative;
-    width: 680px;
-
-    .describe,
-    .return {
-        @include inline-block();
-        color: $textNormal;
-        font-size: 14px;
-    }
-
-    .user-detail {
-        font-size: 14px;
-        height: 280px;
-        width: 650px;
     }
 }
 
@@ -372,16 +221,6 @@ input {
             display: inline-block;
             line-height: 25px;
             margin-left: 5px;
-
-            .qq {
-                @include inline-block();
-                @include usb-debug-sprite(qq);
-                height: usb-debug-sprite-height(qq);
-                margin-left: 5px;
-                margin-top: -4px;
-                vertical-align: middle;
-                width: usb-debug-sprite-width(qq);
-            }
         }
     }
 
@@ -488,16 +327,6 @@ input {
                 .wording {
                     @include inline-block();
                     vertical-align: middle;
-                }
-
-                .qq {
-                    @include inline-block();
-                    @include usb-debug-sprite(qq);
-                    height: usb-debug-sprite-height(qq);
-                    margin-left: 5px;
-                    margin-top: -4px;
-                    vertical-align: middle;
-                    width: usb-debug-sprite-width(qq);
                 }
             }
         }
