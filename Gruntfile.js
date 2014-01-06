@@ -76,7 +76,8 @@ module.exports = function (grunt) {
                 '<%= paths.dist %>/index.html',
                 '<%= paths.dist %>/images/progress.png',
                 '<%= paths.dist %>/images/connecting.png',
-                '<%= paths.dist %>/images/sprite-*.png'
+                '<%= paths.dist %>/images/sprite-*.png',
+                '<%= paths.dist %>/images/snappea-*.png'
             ]
         },
         useminPrepare : {
@@ -126,7 +127,8 @@ module.exports = function (grunt) {
                         'index.html',
                         'images/progress.png',
                         'images/connecting.png',
-                        'images/sprite-*.png'
+                        'images/sprite-*.png',
+                        'images/snappea-*.png'
                     ]
                 }]
             }
@@ -204,6 +206,7 @@ module.exports = function (grunt) {
                             exports : '_'
                         }
                     },
+                    locale : 'en',
                     preserveLicenseComments : true,
                     useStrict : false,
                     wrap : true,
