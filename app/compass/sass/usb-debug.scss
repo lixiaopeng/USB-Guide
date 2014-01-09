@@ -329,6 +329,13 @@ input {
                 width: usb-debug-sprite-width(doubt);
             }
 
+            .help {
+                .link {
+                    padding-left: 30px;
+                    text-align: left;
+                }
+            }
+
             span, a {
                 cursor: pointer;
                 display: block;
@@ -350,6 +357,15 @@ input {
                 .wording {
                     @include inline-block();
                     vertical-align: middle;
+                }
+            }
+        }
+
+        &.last_page {
+            .help {
+                .link {
+                    padding-left: 265px;
+                    text-align: left;
                 }
             }
         }
