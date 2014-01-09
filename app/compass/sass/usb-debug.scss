@@ -490,6 +490,13 @@ input {
                 width: usb-debug-sprite-width(doubt);
             }
 
+            .help {
+                .link {
+                    padding-left: 33px;
+                    text-align: left;
+                }
+            }
+
             span, a {
                 cursor: pointer;
                 display: block;
@@ -521,6 +528,15 @@ input {
                     margin-top: -4px;
                     vertical-align: middle;
                     width: usb-debug-sprite-width(qq);
+                }
+            }
+        }
+
+        &.last_page {
+            .help {
+                .link {
+                    padding-left: 241px;
+                    text-align: left;
                 }
             }
         }
