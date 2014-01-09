@@ -212,10 +212,10 @@
 
         var offlineOther = function (data) {
             show('offline-other');
-            $('.button-fallback-tip').on('click', function () {
+            $('.button-retry-offline').on('click', function () {
                 connectingError();
                 log({
-                    'event' : 'ui.click.fallback_tip'
+                    'event' : 'ui.click.retry_debug'
                 });
             });
         };
