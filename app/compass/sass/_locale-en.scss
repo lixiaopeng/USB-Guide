@@ -78,28 +78,28 @@
     }
 
     .g-error {
-    .bg {
-        @include snappea-sprite(error);
+        .bg {
+            @include snappea-sprite(error);
 
-        height: snappea-sprite-height(error);
-        width: snappea-sprite-width(error);
-    }
-
-    .tip {
-
-        width: snappea-sprite-width(error);
-
-        .tip1 {
-            margin-left: -15px;
+            height: snappea-sprite-height(error);
+            width: snappea-sprite-width(error);
         }
 
-        .tip2 {
-            margin-left: 25px;
-        }
+        .tip {
 
-        .tip3 {
-            margin-left: 85px;
+            width: snappea-sprite-width(error);
+
+            .tip1 {
+                margin-left: -15px;
+            }
+
+            .tip2 {
+                margin-left: 25px;
+            }
+
+            .tip3 {
+                margin-left: 85px;
+            }
         }
     }
 }
- }
