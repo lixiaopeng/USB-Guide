@@ -163,9 +163,9 @@
             if (data.screen_name !== undefined && data.screen_name !== "") {
                 $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.screen_name));
             } else if (data.screen_name !== undefined && data.brand_name !== "") {
-                $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, data.brand_name + "手机"));
+                $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, $.trim(data.brand_name) + " device"));
             } else {
-                $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, "手机"));
+                $(".g-tips.h5").html(FormatString(lang.CONNECTION_START, "Android device"));
             }
         };
 
