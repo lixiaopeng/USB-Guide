@@ -4,10 +4,10 @@
 @import "../../thirdparty/Adonis/sass/typography";
 @import "../../thirdparty/Adonis/sass/form";
 
+$disable-magic-sprite-selectors:true;
 @import "usb-debug/*.png";
 @import "compass/css3";
 @import "compass/css3/user-interface";
-
 
 html,
 body {
@@ -136,14 +136,14 @@ span,
 
         *margin-right: 20px;
         _margin-right:10px;
+    }
 
-        &.hover {
-            @include usb-debug-sprite(return-hover);
-        }
+    .button-return-hover {
+        @include usb-debug-sprite(return-hover);
+    }
 
-        &.press {
-            @include usb-debug-sprite(return-press);
-        }
+    .button-return-press {
+        @include usb-debug-sprite(return-press);
     }
 }
 
@@ -353,14 +353,14 @@ input {
 
             *margin-right: 20px;
             _margin-right:10px;
+        }
 
-            &.hover {
-                @include usb-debug-sprite(next-hover);
-            }
+        .next-hover {
+            @include usb-debug-sprite(next-hover);
+        }
 
-            &.press {
-                @include usb-debug-sprite(next-press);
-            }
+        .next-press {
+            @include usb-debug-sprite(next-press);
         }
 
         .return {
@@ -381,14 +381,14 @@ input {
 
             *margin-right: 20px;
             _margin-right:10px;
+        }
 
-            &.hover {
-                @include usb-debug-sprite(return-hover);
-            }
+        .checkusb-hover {
+            @include usb-debug-sprite(return-hover);
+        }
 
-            &.press {
-                @include usb-debug-sprite(return-press);
-            }
+        .checkusb-press {
+            @include usb-debug-sprite(return-press);
         }
 
         a {
@@ -443,103 +443,129 @@ input {
             _left: -1px;
         }
 
-        .slider {
-            display: block;
-            height: 344px;
-            list-style: none;
+        .overview {
+            float: left;
             position: relative;
+        }
 
-            li {
-                background-color: #FFF;
+        .start {
+                @include usb-debug-sprite(start);
+
+                .help {
+                    position: relative;
+                    top: 200px;
+
+                    span {
+                        cursor: default;
+                        display: block;
+                    }
+
+                    h5 {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            .slider {
+                display: block;
                 float: left;
-                height: 334px;
-                margin: 5px 5px;
+                height: 344px;
+                list-style: none;
                 overflow: hidden;
                 position: relative;
-                text-align: center;
-                width: 250px;
 
-                img {
+                li {
+                    background-color: #FFF;
+                    float: left;
                     height: 334px;
-                    vertical-align: top;
+                    margin: 5px 5px;
+                    overflow: hidden;
+                    position: relative;
+                    text-align: center;
                     width: 250px;
+
+                    img {
+                        height: 334px;
+                        vertical-align: top;
+                        width: 250px;
+                    }
+
+                    .loading {
+                        height: 46px;
+                        margin-top: 140px;
+                        vertical-align: top;
+                        width: 46px;
+                    }
                 }
 
-                .loading {
-                    height: 46px;
-                    margin-top: 140px;
-                    vertical-align: top;
-                    width: 46px;
-                }
-            }
-
-            .last_page {
-                background-color: #f6f6f6;
-            }
-        }
-
-        .last_page,
-        &.last_page {
-
-            text-align: center;
-
-            .wanxiaodou {
-                @include usb-debug-sprite(doubt);
-                height: usb-debug-sprite-height(doubt);
-                margin: 50px auto 0;
-                width: usb-debug-sprite-width(doubt);
-            }
-
-            .help {
-                .link {
-                    padding-left: 33px;
-                    text-align: left;
+                .last_page {
+                    background-color: #f6f6f6;
                 }
             }
 
-            span, a {
-                cursor: pointer;
-                display: block;
-                line-height: 25px;
+            .last_page,
+            &.last_page {
 
-                .img {
-                    @include inline-block();
-                    @include usb-debug-sprite(bullet-arrow);
+                text-align: center;
 
-                    height: usb-debug-sprite-height(bullet-arrow);
-                    margin-right: 10px;
-                    vertical-align: middle;
-                    width: usb-debug-sprite-width(bullet-arrow);
-
-                    _font-size: 10px;
-                    _line-height: 10px;
+                .wanxiaodou {
+                    @include usb-debug-sprite(doubt);
+                    height: usb-debug-sprite-height(doubt);
+                    margin: 50px auto 0;
+                    width: usb-debug-sprite-width(doubt);
                 }
 
-                .wording {
-                    @include inline-block();
-                    vertical-align: middle;
+                .help {
+                    .link {
+                        padding-left: 33px;
+                        text-align: left;
+                    }
                 }
 
-                .qq {
-                    @include inline-block();
-                    @include usb-debug-sprite(qq);
-                    height: usb-debug-sprite-height(qq);
-                    margin-left: 5px;
-                    margin-top: -4px;
-                    vertical-align: middle;
-                    width: usb-debug-sprite-width(qq);
+                span, a {
+                    cursor: pointer;
+                    display: block;
+                    line-height: 25px;
+
+                    .img {
+                        @include inline-block();
+                        @include usb-debug-sprite(bullet-arrow);
+
+                        height: usb-debug-sprite-height(bullet-arrow);
+                        margin-right: 10px;
+                        vertical-align: middle;
+                        width: usb-debug-sprite-width(bullet-arrow);
+
+                        _font-size: 10px;
+                        _line-height: 10px;
+                    }
+
+                    .wording {
+                        @include inline-block();
+                        vertical-align: middle;
+                    }
+
+                    .qq {
+                        @include inline-block();
+                        @include usb-debug-sprite(qq);
+                        height: usb-debug-sprite-height(qq);
+                        margin-left: 5px;
+                        margin-top: -4px;
+                        vertical-align: middle;
+                        width: usb-debug-sprite-width(qq);
+                    }
                 }
             }
-        }
 
-        &.last_page {
-            .help {
-                .link {
-                    padding-left: 241px;
-                    text-align: left;
+            &.last_page {
+                .help {
+                    .link {
+                        padding-left: 241px;
+                        text-align: left;
+                    }
                 }
             }
-        }
+
     }
 
     .scrollbar {

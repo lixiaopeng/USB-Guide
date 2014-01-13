@@ -116,34 +116,49 @@
         </script>
         <script type="text/template" id="sliderViewBody">
             <div class="content view-box">
-                <ul class="slider overview">
-                <% for(var i = 0; i < pic_length; i++ ) { %>
+                <div class="overview">
+                <% for(var n = 0; n < data.length; n ++ ) { %>
+                     <ul class="slider">
+                        <% if (n > 0) {%>
+                            <li class="start">
+                                <div class="help">
+                                    <h5>教程 <%= n + 1 %></h5>
+                                    <span class="link">
+                                        <span class="wording w-text-info">前一个教程不对？</span>
+                                    </span>
+                                    <span class="link">
+                                        <span class="wording w-text-info">第 <%= n + 1%> 个教程开始咯~</span>
+                                    </span>
+                                </div>
+                            </li>
+                        <% } %>
+                        <% for(var i = 0; i < data[n].guide_content.length; i++ ) { %>
 
-                    <li class="u-shadow">
-                        <img src="images/loading.gif" class="loading"></img>
-                    </li>
+                            <li class="u-shadow">
+                                <img src="images/loading.gif" class="loading"></img>
+                            </li>
 
-                <% } %>
+                        <% } %>
 
-                    <li class="last_page u-shadow">
-                        <div class="wanxiaodou"></div>
-                        <div class="help">
-                            <h5>此教程是否能帮到您？</h5>
-                            <span class="link">
-                                <span class="img"></span>
-                                <% if (course_length === 1) { %>
-                                <span class="wording general">查看通用教程</span>
-                                <% } else { %>
-                                <span class="wording next">教程不对，换一个试试</span>
-                                <% } %>
-                            </span>
-                            <span class="link">
-                                <span class="img"></span>
-                                <span class="wording download">没看懂，试试别的办法</span>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
+                        <% if (n === data.length - 1) { %>
+                            <li class="last_page u-shadow">
+                                <div class="wanxiaodou"></div>
+                                <div class="help">
+                                    <h5>此教程是否能帮到您？</h5>
+                                    <span class="link">
+                                        <span class="img"></span>
+                                        <span class="wording general">查看通用教程</span>
+                                    </span>
+                                    <span class="link">
+                                        <span class="img"></span>
+                                        <span class="wording download">没看懂，试试别的办法</span>
+                                    </span>
+                                </div>
+                            </li>
+                        <% } %>
+                        </ul>
+                    <% } %>
+                </div>
                 <div class="left-arrow u-shadow"></div>
                 <div class="right-arrow u-shadow"></div>
             </div>

@@ -447,9 +447,10 @@
         currentIndex : -1,
         data : null,
         imageWidth : 260,
-        ulWidth : 0,
+        overviewWidth : 0,
         contentWidth : 680,
         clickArrow : false,
+        prefixArr : [],
         render : function () {
             var me = this;
             me.isRender = true;
@@ -466,13 +467,13 @@
                 });
                 me.showNext();
             }).on('mouseenter', function () {
-                $(this).addClass('hover');
+                $(this).addClass('next-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('hover press');
+                $(this).removeClass('next-hover next-press');
             }).on('mousedown', function () {
-                $(this).addClass('press');
+                $(this).addClass('next-press');
             }).on('mouseup', function () {
-                $(this).removeClass('press');
+                $(this).removeClass('next-press');
             });
 
             me.$el.find('.header .general').on('click', function () {
@@ -492,13 +493,13 @@
                 window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
 
             }).on('mouseenter', function () {
-                $(this).addClass('hover');
+                $(this).addClass('checkusb-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('hover press');
+                $(this).removeClass('checkusb-hover checkusb-press');
             }).on('mousedown', function () {
-                $(this).addClass('press');
+                $(this).addClass('checkusb-press');
             }).on('mouseup', function () {
-                $(this).removeClass('press');
+                $(this).removeClass('checkusb-press');
             });
 
             me.$el.find('.header .return').on('click', function () {
@@ -540,11 +541,29 @@
 
             return this;
         },
+        moveTo : function (index) {
+            var $slider = this.$el.find('.overview');
+            var prefix = 0;
+
+            this.$el.find('.left-arrow').hide();
+            this.$el.find('.right-arrow').show();
+
+            if (index !== 0) {
+                prefix = this.prefixArr[--index] + 260;
+                this.$el.find('.left-arrow').show();
+            }
+
+            $slider.css('left', -prefix);
+
+            this.$el.find('.thumb').css('left', prefix / this.scrollbar.getRatio());
+            this.scrollbar.updateN(prefix);
+        },
         showNext : function () {
-            if (this.currentIndex < this.data.length -1 ) {
-                this.showCourse();
+            if (this.currentIndex === this.data.length - 1 ) {
+                this.moveTo(0);
+                this.currentIndex = 0;
             } else {
-                this.showLastPage();
+                this.moveTo(++this.currentIndex);
             }
         },
         hide : function () {
@@ -585,26 +604,44 @@
         showCourse : function () {
 
             var me = this;
-            var data;
 
             me.currentIndex ++;
-            data = me.data[me.currentIndex];
             me.switchHeader(true, me.currentIndex === me.data.length - 1);
 
             me.clearContent();
+            me.prefixArr = [];
+            me.overviewWidth = 0;
 
             me.$el.append(me.bodyTemplate({
-                'pic_length' : data.guide_content.length,
-                'course_length' : me.data.length
+                'data' : me.data
             }));
-            me.loadPics(data.guide_content);
+            me.loadPics();
 
-            me.ulWidth = (data.guide_content.length + 1) * this.imageWidth + 5;
-            me.$el.find('.slider').css('width', me.ulWidth);
+            _.each(me.data, function (data, index) {
+                var ulWidth = 0;
+                var length = data.guide_content.length;
+
+                if (index > 0) {
+                    length ++;
+                }
+
+                if (index === me.data.length - 1) {
+                    length ++;
+                }
+                var ulWidth = length * me.imageWidth + 5;
+                me.$el.find('.slider:eq(' + index + ')').css('width', ulWidth);
+
+                me.overviewWidth += ulWidth;
+
+                me.prefixArr.push(me.overviewWidth);
+            });
+
+            me.$el.find('.overview').css('width', me.overviewWidth);
+
             me.scrollbar = me.$el.scrollbar({
                 axis: 'x',
                 handler : function (left) {
-                    var width = me.ulWidth - me.contentWidth;
+                    var width = me.overviewWidth - me.contentWidth;
                     if (left === 0) {
                         me.$el.find('.left-arrow').hide();
                     } else if (left >= width){
@@ -613,8 +650,10 @@
                         me.$el.find('.left-arrow').show();
                         me.$el.find('.right-arrow').show();
                     }
+
+                    me.updateCurrent(left);
                 }
-            });
+            })
             me.bindEvent();
 
             if (window.DD_belatedPNG) {
@@ -632,15 +671,28 @@
                 'instance_id' : device_id
             });
         },
-        loadPics : function (datas) {
+        updateCurrent : function (left) {
+            for(var i = 0; i < this.prefixArr.length; i++) {
+                if (left < this.prefixArr[i]) {
+                    this.currentIndex = i;
+                    break;
+                }
+            }
+        },
+        loadPics : function () {
             var me = this;
-            _.each(datas, function (data, index) {
-                var img = new Image();
-                img.onload = function () {
-                    me.$el.find('li:eq(' + index + ') img').removeClass('loading').attr('src', data.img);
-                };
+            _.each(me.data, function (data, index) {
+                _.each(data.guide_content, function (guide, i) {
+                    var img = new Image();
+                    img.onload = function () {
+                        if (index > 0) {
+                            i++;
+                        }
+                        me.$el.find('ul:eq(' + index + ') li:eq(' + i + ') img').removeClass('loading').attr('src', guide.img);
+                    };
 
-                img.src = data.img;
+                    img.src = guide.img;
+                });
             });
         },
         bindEvent : function () {
@@ -686,6 +738,7 @@
                 $(this).removeClass('left-arrow-press');
             }).on('click', function () {
                 me.goLeft();
+
                 me.clickArrow = true;
             });
 
@@ -704,8 +757,8 @@
         },
         goRight : function () {
 
-            var width = this.ulWidth - this.contentWidth;
-            var $slider = this.$el.find('.slider');
+            var width = this.overviewWidth - this.contentWidth;
+            var $slider = this.$el.find('.overview');
 
             this.$el.find('.left-arrow').show();
             var left = parseInt($slider.css('left'));
@@ -719,9 +772,11 @@
 
             this.$el.find('.thumb').css('left', -left / this.scrollbar.getRatio());
             this.scrollbar.updateN(-left);
+
+            this.updateCurrent(-left);
         },
         goLeft : function () {
-            var $slider = this.$el.find('.slider');
+            var $slider = this.$el.find('.overview');
             this.$el.find('.right-arrow').show();
 
             var left = parseInt($slider.css('left'));
@@ -735,6 +790,8 @@
 
             this.$el.find('.thumb').css('left', -left / this.scrollbar.getRatio());
             this.scrollbar.updateN(-left);
+
+            this.updateCurrent(-left);
         },
         switchHeader : function (isCourse, isLast) {
 
@@ -831,13 +888,13 @@
             me.$el.html(me.template());
 
             me.$el.find('.button-return').on('mouseenter', function () {
-                $(this).addClass('hover');
+                $(this).addClass('button-return-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('hover press');
+                $(this).removeClass('button-return-hover button-return-press');
             }).on('mousedown', function () {
-                $(this).addClass('press');
+                $(this).addClass('button-return-press');
             }).on('mouseup', function () {
-                $(this).removeClass('press');
+                $(this).removeClass('button-return-press');
             }).on('click', function () {
 
                 log({

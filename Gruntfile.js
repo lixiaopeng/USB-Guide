@@ -151,8 +151,7 @@ module.exports = function (grunt) {
             },
             server : {
                 options : {
-                    generatedImagesDir : '<%= paths.tmp %>/images',
-                    debugInfo : true
+                    generatedImagesDir : '<%= paths.tmp %>/images'
                 }
             }
         },
