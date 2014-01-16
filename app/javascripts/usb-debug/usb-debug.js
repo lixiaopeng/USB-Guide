@@ -560,8 +560,7 @@
         },
         showNext : function () {
             if (this.currentIndex === this.data.length - 1 ) {
-                this.moveTo(0);
-                this.currentIndex = 0;
+                this.showLastPage();
             } else {
                 this.moveTo(++this.currentIndex);
             }
@@ -688,7 +687,7 @@
                         if (index > 0) {
                             i++;
                         }
-                        me.$el.find('ul:eq(' + index + ') li:eq(' + i + ') img').removeClass('loading').attr('src', guide.img);
+                        me.$el.find('ul:eq(' + index + ') li:eq(' + i + ')').css('background-image', 'url(' + guide.img + ')').find('img').remove();
                     };
 
                     img.src = guide.img;
