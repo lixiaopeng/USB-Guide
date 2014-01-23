@@ -131,10 +131,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
-
-
-
         compass : {
             options : {
                 sassDir : '<%= paths.app %>/compass/sass',
@@ -164,6 +160,7 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         '<%= paths.dist %>/javascripts/usb-debug.js',
+                        '<%= paths.dist %>/javascripts/jquery.scrollbar.js',
                         '<%= paths.dist %>/stylesheets/usb-debug.css',
                         '<%= paths.dist %>/stylesheets/ie6.css',
                         '<%= paths.dist %>/stylesheets/ie7.css'
@@ -305,12 +302,12 @@ module.exports = function (grunt) {
                 deployCDN : {
                     src : '<%= paths.dist %>',
                     target : 'usb-engine'
-                },
+                }/*,
                 deployStatic : {
                     src : '<%= paths.dist %>',
                     target : 'usb-engine',
                     product : true
-                }
+                }*/
             }
         }
     });

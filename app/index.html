@@ -113,7 +113,8 @@
         <div class="g-ctn g-error-debug">
             <div class="bg"></div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.USB_DEBUG %></div>
-            <div class="g-fallback link button-fallback" id="fallback_tip"><%= i18n.USB_FALLBACK_TIP %></div>
+            <div class="g-tips button-container"><button class="button-retry-offline w-btn w-btn-primary"><%= i18n.OFFLINE_RETRY %></button></div>
+            <a class="g-fallback link button-fallback-tip"><%= i18n.USB_FALLBACK_TIP %></a>
         </div>
     </script>
     <script type="text/template" id="usb-guide">
@@ -141,27 +142,6 @@
             </div>
         </div>
     </script>
-    <script type="text/template" id='adb-server-error'>
-        <div class="g-ctn g-kill-app">
-            <div class="bg">
-            </div>
-            <div class="g-tips h5 w-text-secondary"><%= i18n.ADB_SERVER_ERROR %></div>
-            <div class="g-tips">
-                <button class="w-btn w-btn-primary w-btn-large reboot-wdj"><%= i18n.REBOOT_WDJ %></button>
-            </div>
-        </div>
-    </script>
-    <script type="text/template" id="no-solution">
-        <div class="g-ctn g-error">
-            <div class="bg"></div>
-            <div class="tip w-text-secondary h5">
-              <span><%= i18n.RESET_USB %></span>
-              <span class="tip2"><%= i18n.RESTART_PHONE %></span>
-              <span class="tip3"><%= i18n.RESTART_PC %></span>
-            </div>
-            <a class="g-fallback link button-no-solution" id="fallback_tip" target="_blank" href="http://help.wandoujia.com/home"><%= i18n.NO_SOLUTION %></a>
-        </div>
-    </script>
     <script type="text/template" id='allow-install'>
         <div class="g-ctn g-allow-install">
             <div class="bg">
@@ -172,7 +152,6 @@
             </div>
         </div>
     </script>
-
     <script  type="text/template" id='usb-guide-local'>
         <div class="usb-guide-local g-ctn">
             <div>
@@ -184,6 +163,25 @@
                 </ul>
             </div>
             <div class="content"><div class="img-wrap guide"></div></div>
+        </div>
+    </script>
+    <script type="text/template" id='start_cdrom_failed'>
+        <div class="g-ctn start_cdrom_failed">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.CDROM %></div>
+            <a class="link button-qq link g-fallback" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA3NzExM184NDAzMl80MDA2NTI4NzA1XzJf" target="_default"><div class="img"></div><span class="wording"><%= i18n.ASK_WANDOUJIA %></span></a>
+            <a class="link button-no-solution g-fallback"><%= i18n.NO_CDROM_TIP %></a>
+        </div>
+    </script>
+    <script type="text/template" id='uac_canceled'>
+        <div class="g-ctn uac_canceled">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.UAC_CANCELED %></div>
+            <div class="g-tips">
+                <button class="w-btn w-btn-primary w-btn-large click_uac"><%= i18n.CLICK_UAC %></button>
+            </div>
         </div>
     </script>
 
