@@ -7,12 +7,11 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/usb-debug.css" />
     </head>
     <body>
-
-            <div class="tmp_select" onselectstart="javascript:return false;"></div>
-            <div class="tmp_feedback" onselectstart="javascript:return false;"></div>
-            <div class="tmp_silder" onselectstart="javascript:return false;"></div>
-            <div class="tmp_detail"></div>
-            <div class="tmp_footer w-cf"  onselectstart="javascript:return false;"></div>
+        <div class="tmp_select" onselectstart="javascript:return false;"></div>
+        <div class="tmp_feedback" onselectstart="javascript:return false;"></div>
+        <div class="tmp_silder" onselectstart="javascript:return false;"></div>
+        <div class="tmp_detail"></div>
+        <div class="tmp_footer w-cf"  onselectstart="javascript:return false;"></div>
         <script type="text/template" id="footerView">
             <div class="button-return">返回</div>
             <span class="feedback link">还是连不上，试试别的办法！</span>
@@ -41,20 +40,18 @@
                     <div class="describe">访问豌豆荚帮助中心，获取更多帮助：</div>
                     <div class="href-container">
                         <a class="href usb-help" href="http://help.wandoujia.com/entries/21550377-usb" target="_default"><div class="img"></div><span class="wording">查看打开「USB 调试」的帮助</span></a>
-                        <a class="href usb-bbs" href="http://help.wandoujia.com/anonymous_requests/new?guid=null&clientVersion=null" target="_default"><div class="img"></div><span class="wording">发帖求助，让专业的豌豆们帮您解答</span></a>
+                        <a class="href usb-bbs" href="http://www.wandoujia.com/help/?do=topic&id=23884668" target="_default"><div class="img"></div><span class="wording">发帖求助，让专业的豌豆们帮您解答</span></a>
                     </div>
                 </div>
                 <div class="right qr">
                     <div class="message">
                         <div class="describe">下载「USB 调试快速设置器」到手机</div>
                         <div class="body">
-                            <div class="qr">
-                                <div class="bg"></div>
-                            </div>
+                            <div class="qrbg"></div>
                             <div class="huo"></div>
                             <div class="short-url">
-                                <p class="w-text-info">在手机浏览器中输入 :</p>
-                                <p class="url">http://wandou.im/wusb</p>
+                                <span class="w-text-info">在手机浏览器中输入 :</span>
+                                <span class="url">http://wandou.im/wusb</span>
                             </div>
                         </div>
                     </div>
@@ -65,7 +62,7 @@
                             <span class="wording">查看打开「USB 调试」的帮助</span>
                         </a>
                         <% if (!showQQ) {%>
-                        <a class="href usb-bbs" href="http://help.wandoujia.com/anonymous_requests/new?guid=null&clientVersion=null" target="_default">
+                        <a class="href usb-bbs" href="http://www.wandoujia.com/help/?do=topic&id=23884668" target="_default">
                             <span class="img"></span>
                             <span class="wording">发帖求助，让专业的豌豆们帮您解答</span>
                         </a>
@@ -75,7 +72,7 @@
                             <span class="wording">QQ 联系豌豆们帮忙</span>
                             <span class="qq"></span>
                         </a>
-                        <% } %>
+                       <% } %>
                     </div>
                 </div>
             </div>
@@ -96,34 +93,37 @@
 
                     <li class="u-shadow system howto">
                         <div class="top">
-                            <a target="_default" href=""></a>
+                            <a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=31556506"></a>
                         </div>
                         <div class="h5 title">
-                             <a target="_default" href="">如何识别手机系统是什么？</a>
+                             <a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=31556506">如何识别手机系统是什么？</a>
                         </div>
                     </li>
                 </ul>
         </script>
         <script type="text/template" id="sliderViewHead">
             <div class="header">
-                <span class="desc"></span>
+                <span class="desc">请按提示打开USB调试开关</span>
                 <span class="return link">返回教程</span>
-                <span class="next link">教程不对，换一个</span>
-                <span class="mouse w-text-info">可用鼠标滚动</span>
+                <span class="next">教程不对，换一个</span>
+                <a class="link qq" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTAzMl85Mzk0NV80MDA2NTI4NzA2XzJf" target="_default">
+                    <span class="wording download">QQ 联系豌豆们帮忙</span>
+                    <span class="qq"></span>
+                </a>
+                <span class="general link">查看通用教程</span>
+                <span class="checkusb">我已打开</span>
             </div>
         </script>
         <script type="text/template" id="sliderViewBody">
             <div class="content view-box">
                 <ul class="slider overview">
-                <%
-                    _.each(guide_content, function (content) {
-                %>
+                <% for(var i = 0; i < pic_length; i++ ) { %>
+
                     <li class="u-shadow">
-                        <img src="<%= content.img %>"></img>
+                        <img src="images/loading.gif" class="loading"></img>
                     </li>
-                <%
-                    });
-                %>
+
+                <% } %>
 
                     <li class="last_page u-shadow">
                         <div class="wanxiaodou"></div>
@@ -131,7 +131,11 @@
                             <h5>此教程是否能帮到您？</h5>
                             <span class="link">
                                 <span class="img"></span>
+                                <% if (course_length === 1) { %>
+                                <span class="wording general">查看通用教程</span>
+                                <% } else { %>
                                 <span class="wording next">教程不对，换一个试试</span>
+                                <% } %>
                             </span>
                             <span class="link">
                                 <span class="img"></span>
@@ -164,7 +168,7 @@
                         <span class="wording download">我不要看教程了，试试别的办法</span>
                     </span>
                     <% } else { %>
-                    <a class="link" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTAzMl85Mzk0NV80MDA2NTI4NzA2XzJf" target="_default">
+                    <a class="link qq" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAwMTAzMl85Mzk0NV80MDA2NTI4NzA2XzJf" target="_default">
                         <span class="img"></span>
                         <span class="wording download">QQ 联系豌豆们帮忙</span>
                         <span class="qq"></span>
@@ -182,6 +186,7 @@
         <![endif]-->
         <!-- build:js javascripts/usb-debug.js -->
         <script type="text/javascript" src="components/jquery/jquery.js"></script>
+        <script type="text/javascript" src="javascripts/usb-debug/jquery.color.js"></script>
         <script type="text/javascript" src="components/underscore/underscore.js"></script>
         <script type="text/javascript" src="javascripts/usb-debug/usb-debug.js"></script>
         <script type="text/javascript" src="javascripts/usb-debug/jquery.scrollbar.js"></script>

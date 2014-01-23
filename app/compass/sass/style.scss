@@ -5,7 +5,13 @@
 @import "../../thirdparty/Adonis/sass/form";
 
 @import "sprite/*.png";
+@import "snappea/*.png";
 @import "compass/css3";
+
+/**
+ * Localization styles
+ */
+@import "locale-en";
 
 html, body {
     background-color: #f6f6f6;
@@ -121,21 +127,6 @@ html, body {
     }
 }
 
-.g-allow-install {
-    .bg {
-        @include sprite-sprite(allowinstall);
-
-        height: sprite-sprite-height(allowinstall);
-        position: relative;
-        margin: 50px auto;
-        width: sprite-sprite-width(allowinstall);
-    }
-
-    .w-btn {
-      margin-top: 10px;
-    }
-}
-
 .g-downloading,
 .g-installing {
     .bg {
@@ -168,15 +159,40 @@ html, body {
         @include sprite-sprite(credit);
 
         height: sprite-sprite-height(credit);
-        margin: 50px auto;
+        margin: 50px auto 25px;
         width: sprite-sprite-width(credit);
+    }
 
-        .wording {
-            color: #fff;
-            font-size: 10px;
-            margin-top: 90px;
-            text-align: center;
-        }
+    .g-tips {
+        margin-top: 20px;
+    }
+}
+
+.g-publisher-not-trusted {
+    .bg {
+        @include sprite-sprite(not-trusted);
+
+        height: sprite-sprite-height(not-trusted);
+        margin: 50px auto 25px;
+        width: sprite-sprite-width(not-trusted);
+    }
+
+    .g-tips {
+        margin-top: 20px;
+    }
+}
+
+.g-reboot-computer {
+    .bg {
+        @include sprite-sprite(reboot-computer);
+
+        height: sprite-sprite-height(reboot-computer);
+        margin: 50px auto 25px;
+        width: sprite-sprite-width(reboot-computer);
+    }
+
+    .g-tips {
+        margin-top: 20px;
     }
 }
 
@@ -207,22 +223,6 @@ html, body {
         .tip3 {
             margin-left: 115px;
         }
-    }
-}
-
-.g-error-storage {
-    text-align: center;
-
-    .bg {
-        @include sprite-sprite(storage);
-
-        height: sprite-sprite-height(storage);
-        margin: 60px auto;
-        width: sprite-sprite-width(storage);
-    }
-
-    .button-retry {
-        margin-top: 20px;
     }
 }
 

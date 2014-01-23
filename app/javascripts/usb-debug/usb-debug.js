@@ -3,27 +3,43 @@
 //log
 (function () {
 
-    try {
-        window.external.call('{cmd:""}');
-        window.log = function (data) {
-            data = data || {};
+    window.log = function (data) {
+        data = data || {};
 
-            var url = "wdj://window/log.json",
-                datas = [],
-                d;
+        var url = "wdj://window/log.json",
+            datas = [],
+            d;
 
-            for (d in data) {
-                if (data.hasOwnProperty(d)) {
-                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
-                }
+        data.dx_guid = dx_guid;
+
+        for (d in data) {
+            if (data.hasOwnProperty(d)) {
+                datas.push(d + '=' + window.encodeURIComponent(data[d]));
             }
+        }
 
+        try {
+            $.ajax({
+                url : 'http://vmap.wandoujia.com/log',
+                data : datas.join('&'),
+                dataType : 'jsonp'
+            });
             window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
-        };
+        } catch (e) {
+            if (window.console && window.console.log) {
+                window.console.log(data);
+            }
+        }
+    };
 
-    } catch (e) {
-        window.log = function () {};
-    }
+    try {
+        $.ajax({
+            url : 'http://vmap.wandoujia.com/log',
+            data : 'debug-start-log',
+            dataType : 'jsonp'
+        });
+        window.external.call('{"cmd":"debug-start-log"}');
+    } catch (e) {}
 
 }(this));
 
@@ -40,34 +56,62 @@
         return null;
     };
 
-    //window.device_id = getUrlParam('device_id');
-    //window.product_id = getUrlParam('product_id');
-
-    window.device_id = 'VID_1234';
-    window.product_id = 'PID_1234';
+    window.device_id = getUrlParam('device_id');
+    window.product_id = getUrlParam('product_id');
+    window.device_key = getUrlParam('device_key');
+    window.dx_guid = getUrlParam('dx_guid');
 
 }(this));
 
 //getCourseByVidPid
 (function () {
-    var getCourseByVidPid = function (vid_pid, success, fail) {
-        $.ajax('http://vmap.wandoujia.com/query', {
-            'data' : {
-                'data' : vid_pid
-            },
-            'dataType': 'jsonp',
-            'success' : function (resp) {
-                if (resp.data.length > 0) {
-                    isMatchVid = true;
-                }
-                success(resp);
-            },
-            'fail' : fail || function () {}
-        });
-    }
+
+    //临时方案
+    var backupMap = {
+        'general_gingerbread' : {"msg": "", "data": [{"add_ts": 1387287199.193094, "guide_name": "new_2.3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_2.3/2.3-6.jpg"}], "guide_id": "31606897", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
+        'general_ics' : {"msg": "", "data": [{"add_ts": 1387287225.532392, "guide_name": "new_4.0-4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_4.0-4.1/4.0-4.1-7.jpg"}], "guide_id": "31610507", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}], "ret": 0},
+        'general_jeallybean' : {"msg": "", "data": [{"add_ts": 1387287211.792048, "guide_name": "new_Nexus4-4.4", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_4_new.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_Nexus4-4.4/Nexus-4-android-4.4_9.jpg"}], "guide_id": "32141806", "guide_model": "", "guide_brand": "new_Nexus4", "model_name": "", "api_level": "4.4"}], "ret": 0},
+        'general_miuios' : {"msg": "", "data": [{"add_ts": 1387287181.3277631, "guide_name": "new_MI-2SC-4.1.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI-2SC-4.1.1/MI-2SC---7.jpg"}], "guide_id": "31638167", "guide_model": "", "guide_brand": "", "model_name": "", "api_level": 0}, {"add_ts": 1387287119.5765641, "guide_name": "new_MI3-4.2.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-4_new.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-5.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-6.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-7.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-8.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_MI3-4.2.1/mi3-4.2.2-9.jpg"}], "guide_id": "32140716", "guide_model": "", "guide_brand": "new_MI3", "model_name": "", "api_level": "4.2.1"}], "ret": 0},
+        'general_meizu' : {"msg": "", "data": [{"add_ts": 1387287164.7930119, "guide_name": "new_meizu-MX2-flyme2.4.1", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu_MX2--flyme-2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu-mx2-flyme2.4-5.jpg"}], "guide_id": "31637137", "guide_model": "", "guide_brand": "new_meizu-MX2-flyme2.4.1", "model_name": "", "api_level": ""}, {"add_ts": 1387287151.4678991, "guide_name": "new_meizu-MX3-flyme3", "guide_desc": "", "guide_content": [{"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX2-flyme2.4.1/meizu_MX2--flyme-2.4-1.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-2.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-3.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-4.jpg"}, {"img": "http://img.wdjimg.com/helpcenter/usb/new_meizu-MX3-flyme3/meizu-mx3-flyme3-5.jpg"}], "guide_id": "31637867", "guide_model": "", "guide_brand": "new_meizu-MX3-flyme3", "model_name": "", "api_level": ""}], "ret": 0}
+    };
+
+    var getCourseByVidPid = function (vid_pid, success, error) {
+
+        var handler = setTimeout(function () {
+            var data = backupMap[vid_pid];
+            if (data) {
+                vmapCallBack(data);
+                return;
+            }
+
+            error && error();
+        }, 2000);
+
+        window.vmapCallBack = function(resp) {
+            if (resp.data.length > 0) {
+                isMatchVid = true;
+            }
+            success(resp);
+            clearTimeout(handler);
+        };
+
+        var sc = document.createElement('script');
+        var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  encodeURIComponent(vid_pid);
+
+        if (device_key) {
+            url +=  '&device_key=' + encodeURIComponent(device_key);
+        }
+
+        //var data = window.external.call('{"cmd":"getData", "param":' + vid_pid + '}')
+        //var url = 'http://vmap.wandoujia.com/query?callback=vmapCallBack&data=' +  data;
+
+        sc.setAttribute('src', url);
+        document.getElementsByTagName('head')[0].appendChild(sc);
+    };
 
     window.getCourseByVidPid = getCourseByVidPid;
     window.isMatchVid = false;
+
 }(this));
 
 //showView
@@ -89,7 +133,7 @@
 
         current = viewQueue[viewQueue.length - 1];
         current.show();
-    }
+    };
 
     window.showLastView = showLastView;
     window.showNextView = showNextView;
@@ -131,7 +175,7 @@
             name : 'MIUI',
             className : 'miuios'
         }, {
-            name : 'Meizu Flyme',
+            name : '魅族 Flyme',
             className : 'meizu'
         }]
     };
@@ -160,17 +204,31 @@
                 }, 100, 'linear');
             });
 
+            this.$el.find('.howto').click(function () {
+                log({
+                    'event' : 'ui.click.v3_open_find_version'
+                });
+            });
+
             return this;
         },
         clickSelect : function (evt) {
             var tmp = /(\w+)\s(\w+)\s(\w+)/.exec(evt.currentTarget.className);
             var version = tmp[3];
 
+            log({
+                'event' : 'ui.click.v3_general',
+                'version' : version
+            });
+
             getCourseByVidPid('general_' + version, function (resp) {
                 if (resp.data.length === 0) {
                     showNextView(selectView);
                     return;
                 }
+
+                sliderView.data = null;
+                sliderView.currentIndex = -1;
 
                 showNextView(sliderView);
                 sliderView.data = resp.data;
@@ -218,8 +276,8 @@
                 this.eventName = 'ui.show.smsPanel';
                 qrPanel.hide();
             } else {*/
-                this.eventName = 'ui.show.qrPanel';
-                smsPanel.hide();
+            this.eventName = 'ui.show.qrPanel';
+            smsPanel.hide();
             /*}*/
 
             var $numTip = this.$el.find('.body .not-a-number');
@@ -297,13 +355,18 @@
                 });
             });
 
-            if (window.DD_belatedPNG) {
-                setTimeout(function () {
-                    self.$el.find('.number, .img').each(function () {
-                        window.DD_belatedPNG.fixPng(this);
-                    });
+            this.$el.find('.qq').on('click', function () {
+                log({
+                    'event' : 'ui.click.v3_click_qq',
+                    'position' : 'feedback_Page'
                 });
-            }
+
+                showNextView(detailView);
+                detailView.setContent({
+                    'vid' : decodeURIComponent(device_id),
+                    'pid' : decodeURIComponent(product_id)
+                });
+            });
 
             return this;
         },
@@ -342,7 +405,11 @@
             return this;
         },
         setContent : function (content) {
-            this.$el.find('.user-detail').val(content);
+            var text = '';
+            $.each(content, function (key, value) {
+                text += key + " : " + value + "\n";
+            });
+            this.$el.find('.user-detail').val(text);
         },
         hide : function () {
             this.$el.hide();
@@ -382,22 +449,94 @@
         imageWidth : 260,
         ulWidth : 0,
         contentWidth : 680,
+        clickArrow : false,
         render : function () {
             var me = this;
             me.isRender = true;
             me.$el.html(me.headTemplate({}));
 
             me.$el.find('.header .next').on('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_course_next',
+                    'position' : 'header',
+                    'instance_id' :  device_id,
+                    'guide_id' : me.data[me.currentIndex].guide_id,
+                    'total_page' : me.data[me.currentIndex].guide_content.length
+                });
                 me.showNext();
+            }).on('mouseenter', function () {
+                $(this).addClass('hover');
+            }).on('mouseleave', function () {
+                $(this).removeClass('hover press');
+            }).on('mousedown', function () {
+                $(this).addClass('press');
+            }).on('mouseup', function () {
+                $(this).removeClass('press');
+            });
+
+            me.$el.find('.header .general').on('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_show_general',
+                    'position' : 'header'
+                });
+                showNextView(selectView);
+            });
+
+            me.$el.find('.header .checkusb').on('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_checkusb'
+                });
+                window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
+
+            }).on('mouseenter', function () {
+                $(this).addClass('hover');
+            }).on('mouseleave', function () {
+                $(this).removeClass('hover press');
+            }).on('mousedown', function () {
+                $(this).addClass('press');
+            }).on('mouseup', function () {
+                $(this).removeClass('press');
             });
 
             me.$el.find('.header .return').on('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_return_course',
+                    'position' : 'header'
+                });
+
                 me.currentIndex = -1;
                 me.showCourse();
-                me.switchHeader(true);
+            });
+
+            me.$el.find('.header .qq').hide().on('click', function () {
+                log({
+                    'event' : 'ui.click.v3_click_qq',
+                    'position' : 'header'
+                });
             });
 
             me.$el.find('.return').hide();
+
+            /*function flash () {
+                 var handler = setInterval(function () {
+                 $('.header .next').animate({backgroundColor: "#D1D1D1"}, 800, function () {
+                        $('.header .next').animate({backgroundColor: "#EAEAEA"}, 800);
+                    });
+                }, 1600);
+
+                setTimeout(function () {
+                    clearInterval(handler);
+                }, 11200);
+            };
+
+            setTimeout(function () {
+                flash();
+                setInterval(flash, 21200);
+            }, 10000);*/
 
             return this;
         },
@@ -428,25 +567,37 @@
             }
         },
         clearContent : function () {
-            this.$el.find('.content').remove();
-            this.$el.find('.scrollbar').remove();
+
+            var me = this;
+            log({
+                'event' : 'ui.click.v3_course_clear',
+                'page'  : -(parseInt(me.$el.find('.slider').css('left')) || 0) / 250,
+                'total_page' : me.data[me.currentIndex] ? me.data[me.currentIndex].guide_content.length : 0,
+                'clickArrow' : me.clickArrow,
+                'wheel' : me.scrollbar ? me.scrollbar.getIsUsedWheel() : 0,
+                'guide_id' : me.data[me.currentIndex].guide_id,
+                'instance_id' : device_id
+            });
+
+            me.$el.find('.content').remove();
+            me.$el.find('.scrollbar').remove();
         },
         showCourse : function () {
 
             var me = this;
             var data;
 
-            me.switchHeader(true);
-
             me.currentIndex ++;
             data = me.data[me.currentIndex];
+            me.switchHeader(true, me.currentIndex === me.data.length - 1);
 
-            me.$el.find('.desc').html(data.desc);
             me.clearContent();
 
             me.$el.append(me.bodyTemplate({
-                'guide_content' : data.guide_content
+                'pic_length' : data.guide_content.length,
+                'course_length' : me.data.length
             }));
+            me.loadPics(data.guide_content);
 
             me.ulWidth = (data.guide_content.length + 1) * this.imageWidth + 5;
             me.$el.find('.slider').css('width', me.ulWidth);
@@ -465,42 +616,90 @@
                 }
             });
             me.bindEvent();
+
+            if (window.DD_belatedPNG) {
+                setTimeout(function () {
+                    me.$el.find('.wanxiaodou .img').each(function () {
+                        window.DD_belatedPNG.fixPng(this);
+                    });
+                });
+            }
+
+            log({
+                'event' : 'ui.click.v3_course',
+                'total_page' : me.data[me.currentIndex].guide_content.length,
+                'guide_id' : me.data[me.currentIndex].guide_id,
+                'instance_id' : device_id
+            });
+        },
+        loadPics : function (datas) {
+            var me = this;
+            _.each(datas, function (data, index) {
+                var img = new Image();
+                img.onload = function () {
+                    me.$el.find('li:eq(' + index + ') img').removeClass('loading').attr('src', data.img);
+                };
+
+                img.src = data.img;
+            });
         },
         bindEvent : function () {
 
             var me = this;
             me.$el.find('.slider li .next').one('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_course_next',
+                    'position' : 'lastPage',
+                    'instance_id' :  device_id,
+                    'guide_id' : me.data[me.currentIndex].guide_id,
+                    'total_page' : me.data[me.currentIndex].guide_content.length
+                });
                 me.showNext();
             });
 
             me.$el.find('.slider li .download').one('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_show_feedback',
+                    'position' : 'lastPage'
+                });
                 showNextView(feedbackView);
+            });
+
+            me.$el.find('.slider li .general').one('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_show_general',
+                    'position' : 'lastPage'
+                });
+                showNextView(selectView);
             });
 
             me.$el.find('.left-arrow').on('mouseenter', function () {
                 $(this).addClass('left-arrow-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('left-arrow-hover');
-                $(this).removeClass('left-arrow-press');
+                $(this).removeClass('left-arrow-hover left-arrow-press');
             }).on('mousedown', function () {
                 $(this).addClass('left-arrow-press');
             }).on('mouseup', function () {
                 $(this).removeClass('left-arrow-press');
             }).on('click', function () {
                 me.goLeft();
+                me.clickArrow = true;
             });
 
             me.$el.find('.right-arrow').on('mouseenter', function () {
                 $(this).addClass('right-arrow-hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('right-arrow-hover');
-                $(this).removeClass('right-arrow-press');
+                $(this).removeClass('right-arrow-hover right-arrow-press');
             }).on('mousedown', function () {
                 $(this).addClass('right-arrow-press');
             }).on('mouseup', function () {
                 $(this).removeClass('right-arrow-press');
             }).on('click', function () {
                 me.goRight();
+                me.clickArrow = true;
             });
         },
         goRight : function () {
@@ -516,7 +715,7 @@
                 left = -width;
                 this.$el.find('.right-arrow').hide();
             }
-                $slider.css('left', left);
+            $slider.css('left', left);
 
             this.$el.find('.thumb').css('left', -left / this.scrollbar.getRatio());
             this.scrollbar.updateN(-left);
@@ -537,30 +736,77 @@
             this.$el.find('.thumb').css('left', -left / this.scrollbar.getRatio());
             this.scrollbar.updateN(-left);
         },
-        switchHeader : function (isCourse) {
+        switchHeader : function (isCourse, isLast) {
 
             var returnBtn =  this.$el.find('.return');
             var nextBtn = this.$el.find('.next');
             var mouseTip = this.$el.find('.mouse');
+            var descTip = this.$el.find('.desc');
+            var generalBtn = this.$el.find('.general');
+            var qqBtn = this.$el.find('.qq');
 
             returnBtn.toggle(!isCourse);
-            nextBtn.toggle(isCourse);
+            if (this.data.length === 1) {
+                nextBtn.hide();
+                generalBtn.show();
+            } else {
+                generalBtn.hide();
+                qqBtn.toggle(isLast && showQQ && isCourse);
+                if (!(isLast && showQQ) && isCourse) {
+                    nextBtn.css('display', 'inline-block');
+                } else {
+                    nextBtn.hide();
+                }
+            }
+
             mouseTip.toggle(isCourse);
+            descTip.toggle(isCourse);
         },
         showLastPage : function () {
             var me = this;
             me.clearContent();
-            me.switchHeader(false);
+            me.switchHeader(false, false);
 
             me.$el.append(me.lastTemplate({}));
 
             me.$el.find('.last_page .download').one('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_show_feedback',
+                    'position' : 'final_Page'
+                });
                 showNextView(feedbackView);
             });
 
             me.$el.find('.last_page .general').one('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_show_general',
+                    'position' : 'final_Page'
+                });
                 showNextView(selectView);
             });
+
+            me.$el.find('.last_page .qq').off('click').on('click', function () {
+                log({
+                    'event' : 'ui.click.v3_click_qq',
+                    'position' : 'final_Page'
+                });
+
+                showNextView(detailView);
+                detailView.setContent({
+                    'vid' : decodeURIComponent(device_id),
+                    'pid' : decodeURIComponent(product_id)
+                });
+            });
+
+            if (window.DD_belatedPNG) {
+                setTimeout(function () {
+                    me.$el.find('.wanxiaodou, .img').each(function () {
+                        window.DD_belatedPNG.fixPng(this);
+                    });
+                });
+            }
         }
     };
 
@@ -587,17 +833,26 @@
             me.$el.find('.button-return').on('mouseenter', function () {
                 $(this).addClass('hover');
             }).on('mouseleave', function () {
-                $(this).removeClass('hover');
-                $(this).removeClass('press');
+                $(this).removeClass('hover press');
             }).on('mousedown', function () {
                 $(this).addClass('press');
             }).on('mouseup', function () {
                 $(this).removeClass('press');
             }).on('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_return',
+                    'position' : 'general'
+                });
                 showLastView();
             });
 
             me.$el.find('.feedback').on('click', function () {
+
+                log({
+                    'event' : 'ui.click.v3_show_feedback',
+                    'position' : 'general'
+                });
                 showNextView(feedbackView);
                 $(this).hide();
             });

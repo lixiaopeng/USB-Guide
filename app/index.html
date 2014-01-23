@@ -54,10 +54,20 @@
     </script>
     <script type="text/template" id="installing-credit">
         <div class="g-ctn g-installing-credit">
-            <div class="bg">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.NOT_TRUSTED_TIP %></div>
+            <div class="g-tips">
+              <button class="w-btn w-btn-primary w-btn-large retry-credit"><%= i18n.CLICK%></button>
             </div>
+        </div>
+    </script>
+    <script type="text/template" id="publisher-not-trusted">
+        <div class="g-ctn g-publisher-not-trusted">
+            <div class="bg"></div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.CREDIT_TIP %></div>
-            <div class="g-fallback link button-fallback"><%= i18n.CREDIT_FALLBACK_TIP %></div>
+            <div class="g-tips">
+              <button class="w-btn w-btn-primary w-btn-large retry-trust"><%= i18n.CLICK%></button>
+            </div>
         </div>
     </script>
     <script type="text/template" id="install_driver_canceled">
@@ -84,7 +94,7 @@
         <div class="g-ctn g-error">
             <div class="bg"></div>
             <div class="tip w-text-secondary h5">
-              <span><%= i18n.RESET_USB %></span>
+              <span class="tip1"><%= i18n.RESET_USB %></span>
               <span class="tip2"><%= i18n.RESTART_PHONE %></span>
               <span class="tip3"><%= i18n.RESTART_PC %></span>
             </div>
@@ -101,12 +111,11 @@
             <a class="g-fallback link button-show-detail" target="_blank" href="https://androidfeedback.zendesk.com/entries/26187067"><%= i18n.SHOW_DETAIL_RESULT %></a>
         </div>
     </script>
-    <script type="text/template" id="storage_insufficient">
-        <div class="g-ctn g-error-storage">
-            <div class="bg">
-            </div>
-            <div class="g-tips h5 w-text-secondary"><%= i18n.ERROR_STORAGE %></div>
-            <button class="button-retry-storage-insufficient w-btn w-btn-primary w-btn-kaiju"><%= i18n.RETRY %></button>
+    <script type="text/template" id="offline-other">
+        <div class="g-ctn g-error-debug">
+            <div class="bg"></div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.USB_DEBUG_OTHER %></div>
+            <div class="g-tips button-container"><button class="button-retry-offline w-btn w-btn-primary"><%= i18n.OFFLINE_OHTER %></button></div>
         </div>
     </script>
     <script type="text/template" id="offline">
@@ -142,16 +151,6 @@
             </div>
         </div>
     </script>
-    <script type="text/template" id='allow-install'>
-        <div class="g-ctn g-allow-install">
-            <div class="bg">
-            </div>
-            <div class="g-tips h5 w-text-secondary"><%= i18n.ALLOW_INSTALL %></div>
-            <div class="g-tips">
-                <button class="w-btn w-btn-primary w-btn-large allow-install"><%= i18n.RETRY %></button>
-            </div>
-        </div>
-    </script>
     <script  type="text/template" id='usb-guide-local'>
         <div class="usb-guide-local g-ctn">
             <div>
@@ -180,8 +179,15 @@
             </div>
             <div class="g-tips h5 w-text-secondary"><%= i18n.UAC_CANCELED %></div>
             <div class="g-tips">
-                <button class="w-btn w-btn-primary w-btn-large click_uac"><%= i18n.CLICK_UAC %></button>
+                <button class="w-btn w-btn-primary w-btn-large click_uac"><%= i18n.CLICK %></button>
             </div>
+        </div>
+    </script>
+    <script type="text/template" id='reboot-computer'>
+        <div class="g-ctn g-reboot-computer">
+            <div class="bg">
+            </div>
+            <div class="g-tips h5 w-text-secondary"><%= i18n.REBOOT_COMPUTER %></div>
         </div>
     </script>
 

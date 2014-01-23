@@ -1,4 +1,7 @@
 (function (window, document) {
+
+    var is_i18n_version = window.external.is_snappea();
+
     require.config({
         paths : {
             $ : '../components/jquery/jquery',
@@ -12,7 +15,8 @@
             _ : {
                 exports : '_'
             }
-        }
+        },
+        locale : is_i18n_version ? 'en' : 'root'
     });
 
     require([
@@ -29,6 +33,9 @@
         FormatString
     ) {
         window.i18n = lang;
+        if (is_i18n_version) {
+            $('body').addClass('locale-en-us');
+        }
 
         var show = function (id, data) {
             if ($('div#' + id).length === 0) {
@@ -86,9 +93,6 @@
         window.call = function (obj) {
 
             switch (obj.state) {
-            case STATE.APK_INSTALL_CANCELED_BY_USER:
-                allowInstall(obj);
-                break;
             case STATE.DOWNLOAD_DRIVER_SUCCESS:
             case STATE.INSTALL_DRIVER:
                 installing(obj);
@@ -96,11 +100,8 @@
             case STATE.DOWNLOADING_DRIVER:
                 downLoading(obj);
                 break;
-            case STATE.OFFLINE:
+            case STATE.RSA_DIALOG:
                 offLine(obj);
-                break;
-            case STATE.STORAGE_INSUFFICIENT:
-                storageInsufficient(obj);
                 break;
             case STATE.ADB_DEBUG_CLOSE:
                 usbGuide(obj);
@@ -121,15 +122,32 @@
                 killADBError(obj);
                 break;
             case STATE.START_CDROM_FAILED:
-                startDdromFailed(obj);
+                if (is_i18n_version) {
+                    connectingError();
+                } else {
+                    startDdromFailed(obj);
+                }
                 break;
             case STATE.ADB_SERVER_ERROR_WDJ:
             case STATE.PHONE_POWEROFF:
-            case STATE.RECOVER:
+            case STATE.RECOVERY:
                 connectingError(obj);
                 break;
-            case STATE.UAC_CANCELED:
+            case STATE.INSTALL_DRIVER_SUCCESS_BUT_SHOULD_RESTART:
+                rebootComputer(obj);
+                break;
+            case STATE.INSTALL_DRIVER_UAC_CANCEL:
                 uacCanceled(obj);
+                break;
+            case STATE.PUBLISHER_NOT_TRUSTED:
+                publisherNotTrusted(obj);
+                break;
+            case STATE.DRIVERSIGN_VERIFY_FAILED:
+                driversignVerifyFailed(obj);
+                break;
+            case STATE.OFFLINE:
+            case STATE.OFFLINE_OTHER:
+                offlineOther(obj);
                 break;
             default:
                 if (obj.state >= 0) {
@@ -139,10 +157,6 @@
                 }
             };
             animation();
-        };
-
-        var connectingError = function (data) {
-             show('connecting-error');
         };
 
         var connectingStart = function (data) {
@@ -156,14 +170,8 @@
             }
         };
 
-        var allowInstall = function (data) {
-            show('allow-install');
-            $('.allow-install').one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
-                log({
-                    'event' : 'ui.click.allow_install'
-                });
-            });
+        var rebootComputer = function (data) {
+            show('reboot-computer');
         };
 
         var installing = function (data) {
@@ -202,30 +210,38 @@
             });
         };
 
-        var storageInsufficient = function (data) {
-            show('storage_insufficient');
-            $('.button-retry-storage-insufficient').one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+        var offlineOther = function (data) {
+            show('offline-other');
+            $('.button-retry-offline').on('click', function () {
+                connectingError();
                 log({
-                    'event' : 'ui.click.storage_insufficient'
+                    'event' : 'ui.click.retry_debug'
                 });
             });
         };
 
         var usbGuide = function (data) {
             show('usb-guide');
-            var src = 'http://conn.wandoujia.com/usb-engine/';
 
-            src += '?device_id=' + encodeURIComponent(data.device_id);
-            src += '&product_id=' + data.product_id;
-            src += '&user_detail=' + data.user_detail;
+            var src = 'http://conn.wandoujia.com/usb-engine/';
+            var args = '?device_id=' + encodeURIComponent(data.device_id);
+            args += '&product_id=' + data.product_id;
+            args += '&device_key=' + data.device_key;
+            args += '&user_detail=' + data.user_detail;
+            args += '&dx_guid=' + data.dx_guid;
+
+            if (is_i18n_version) {
+                src = 'http://s3.amazonaws.com/snappea/static/conn_v3/usb-debug.html';
+                $('#usb-guide-iframe').attr('src', src + args).show();
+                return;
+            }
 
             var img = new window.Image();
             $(img).one('load', function () {
-                $('#usb-guide-iframe').attr('src', src).show();
+                $('#usb-guide-iframe').attr('src', src + args).show();
             }).one('error', function () {
                 usbGuideLocal();
-            }).attr('src', "http://www.wandoujia.com/favicon.ico?t=" + new Date().valueOf());
+            }).attr('src', "http://conn.wandoujia.com/usb-engine/test.gif?t=" + new Date().valueOf());
         };
 
         var usbGuideLocal = function (data) {
@@ -323,6 +339,20 @@
         var uacCanceled = function (data) {
             show('uac_canceled');
             $(".click_uac").one('click', function () {
+                window.external.call('{"cmd":"retry", "param":""}');
+            });
+        };
+
+        var publisherNotTrusted = function (data) {
+            show('publisher-not-trusted');
+            $(".retry-trust").one('click', function () {
+                window.external.call('{"cmd":"retry", "param":""}');
+            });
+        };
+
+        var driversignVerifyFailed = function (data) {
+            show('installing-credit');
+            $(".retry-credit").one('click', function () {
                 window.external.call('{"cmd":"retry", "param":""}');
             });
         };

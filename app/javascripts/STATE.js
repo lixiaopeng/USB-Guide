@@ -29,6 +29,7 @@
             STORAGE_INSUFFICIENT : -27,  // storage is insufficient
             NOT_ALLOW_INSTALL_APK : -32,  // used by snappea
             APK_INSTALL_CANCELED_BY_USER : -33,
+            OFFLINE_OTHER : -40,
             // ////////////////////////////////////////////////////////////////////////
             // All Processing State, bigger than 1, lowwer than 100
             // ////////////////////////////////////////////////////////////////////////
@@ -51,10 +52,13 @@
             INSTALL_DRIVER_CANCELED : 28,
             // Should Restart PC to continue
             INSTALL_DRIVER_SUCCESS_BUT_SHOULD_RESTART : 29,
-            UAC_CANCELED : 30,
+            INSTALL_DRIVER_UAC_CANCEL : 30,
+            PUBLISHER_NOT_TRUSTED : 1037,
+            DRIVERSIGN_VERIFY_FAILED : 1038,
             PHONE_POWEROFF : 36,  // some phone adb can be used when power off.
             ADB_SERVER_DONT_ACK : 37,  // adb server didn't ack, need to be killed.
             USB_DEVICE_MAY_BE_PLUGOUT : 39,
+            RSA_DIALOG : 40,
             // ////////////////////////////////////////////////////////////////////////
             // All internal state, bigger than 100
             // ////////////////////////////////////////////////////////////////////////
@@ -77,6 +81,7 @@
             REALY_INSTALL_APK_SUCCESS : 165,
             START_UPDATE_PROXY : 166,
             ADB_SERVER_KILL_SUCCESS : 167,  // kill other adb server success
+            DEVICE_FOUND : 168,
             ASK_ALLOW_INSTALL_APK : 1000,  // used by snappea
             RECOVERY : 1029,  // Phone enter recovery mode
             ADB_SERVER_ERROR_WDJ : 1034,  // The inner state of adb server is error, which is provided by wdj.

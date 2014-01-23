@@ -1,4 +1,4 @@
 define({
     root : true,
-    "en" : false
+    "en" : true
 });

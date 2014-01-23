@@ -76,7 +76,8 @@ module.exports = function (grunt) {
                 '<%= paths.dist %>/index.html',
                 '<%= paths.dist %>/images/progress.png',
                 '<%= paths.dist %>/images/connecting.png',
-                '<%= paths.dist %>/images/sprite-*.png'
+                '<%= paths.dist %>/images/sprite-*.png',
+                '<%= paths.dist %>/images/snappea-*.png'
             ]
         },
         useminPrepare : {
@@ -126,7 +127,8 @@ module.exports = function (grunt) {
                         'index.html',
                         'images/progress.png',
                         'images/connecting.png',
-                        'images/sprite-*.png'
+                        'images/sprite-*.png',
+                        'images/snappea-*.png'
                     ]
                 }]
             }
@@ -149,9 +151,8 @@ module.exports = function (grunt) {
             },
             server : {
                 options : {
-                    cssDir : '<%= paths.tmp %>/stylesheets',
-                    httpGeneratedImagesPath : '../images',
-                    debugInfo : false
+                    generatedImagesDir : '<%= paths.tmp %>/images',
+                    debugInfo : true
                 }
             }
         },
@@ -161,6 +162,10 @@ module.exports = function (grunt) {
                     src: [
                         '<%= paths.dist %>/javascripts/usb-debug.js',
                         '<%= paths.dist %>/javascripts/jquery.scrollbar.js',
+<<<<<<< HEAD
+                        '<%= paths.dist %>/javascripts/jquery.color.js',
+=======
+>>>>>>> upstream/master
                         '<%= paths.dist %>/stylesheets/usb-debug.css',
                         '<%= paths.dist %>/stylesheets/ie6.css',
                         '<%= paths.dist %>/stylesheets/ie7.css'
@@ -204,6 +209,7 @@ module.exports = function (grunt) {
                             exports : '_'
                         }
                     },
+                    locale : 'en',
                     preserveLicenseComments : true,
                     useStrict : false,
                     wrap : true,

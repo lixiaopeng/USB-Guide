@@ -36,7 +36,7 @@
                 b=a.event.fix(b);
 
                 b.preventDefault()
-
+                isUsedWheel = true;
                 c.handler(n);
             }
         }
@@ -136,6 +136,8 @@
         var n,o={start:0,now:0},
             p={};
 
+        var isUsedWheel = false;
+
         this.update=function(a){
                 f[c.axis]=f.obj[0]["offset"+m];
                 g[c.axis]=g.obj[0]["scroll"+m];
@@ -158,6 +160,10 @@
 
         this.updateN = function (left) {
             n = left;
+        }
+
+        this.getIsUsedWheel = function () {
+            return isUsedWheel;
         }
 
         return q();
