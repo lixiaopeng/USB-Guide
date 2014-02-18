@@ -205,7 +205,7 @@ module.exports = function (grunt) {
                             exports : '_'
                         }
                     },
-                    locale : 'en',
+                    locale : 'en-US',
                     preserveLicenseComments : true,
                     useStrict : false,
                     wrap : true,

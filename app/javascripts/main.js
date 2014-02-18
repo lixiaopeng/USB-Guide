@@ -1,7 +1,5 @@
 (function (window, document) {
 
-    var is_i18n_version = window.external.is_snappea();
-
     require.config({
         paths : {
             $ : '../components/jquery/jquery',
@@ -16,7 +14,7 @@
                 exports : '_'
             }
         },
-        locale : is_i18n_version ? 'en' : 'root'
+        locale : navigator.language
     });
 
     require([
@@ -33,9 +31,7 @@
         FormatString
     ) {
         window.i18n = lang;
-        if (is_i18n_version) {
-            $('body').addClass('locale-en-us');
-        }
+        $('body').addClass('locale-' + navigator.language);
 
         var show = function (id, data) {
             if ($('div#' + id).length === 0) {
@@ -75,7 +71,7 @@
                 }
             }
 
-            window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
+            window.externalCall('', 'connection-guide', '{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
         };
         window.log = log;
 
@@ -122,7 +118,7 @@
                 killADBError(obj);
                 break;
             case STATE.START_CDROM_FAILED:
-                if (is_i18n_version) {
+                if (navigator.language !== 'zh-CN') {
                     connectingError();
                 } else {
                     startDdromFailed(obj);
@@ -155,7 +151,7 @@
                 } else {
                     connectingError(obj);
                 }
-            };
+            }
             animation();
         };
 
@@ -196,7 +192,7 @@
         var offLine = function (data) {
             show('offline');
             $('.button-retry-offline').on('click', function () {
-                window.external.call('{"cmd":"show-rsa-on-device", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"show-rsa-on-device", "param":""}');
                 log({
                     'event' : 'ui.click.retry_debug'
                 });
@@ -230,7 +226,7 @@
             args += '&user_detail=' + data.user_detail;
             args += '&dx_guid=' + data.dx_guid;
 
-            if (is_i18n_version) {
+            if (navigator.language !== 'zh-CN') {
                 src = 'http://s3.amazonaws.com/snappea/static/conn_v3/usb-debug.html';
                 $('#usb-guide-iframe').attr('src', src + args).show();
                 return;
@@ -257,7 +253,7 @@
         var installDriverCanceled = function (data) {
             show('install_driver_canceled');
             $('.retry-install-driver').one('click', function () {
-                window.external.call('{"cmd":"retry-install-driver", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"retry-install-driver", "param":""}');
                 log({
                     'event' : 'ui.click.retry-install-driver'
                 });
@@ -267,7 +263,7 @@
         var downloadDriverFailed = function (data) {
             show('download_driver_failed');
             $('.retry-download-driver').one('click', function () {
-                window.external.call('{"cmd":"retry-download-driver", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"retry-download-driver", "param":""}');
                 log({
                     'event' : 'ui.click.retry-download-driver'
                 });
@@ -279,7 +275,7 @@
             $(".g-tips.h5").html(FormatString(lang.USER_KILL_ADB, data.adb_process_name));
 
             $('.kill-adb').one('click', function () {
-                window.external.call('{"cmd":"kill-adb", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"kill-adb", "param":""}');
                 log({
                     'event' : 'ui.click.kill-adb'
                 });
@@ -304,7 +300,7 @@
             $(".g-tips.h5").html(FormatString(lang.USER_KILL_ADB_ERROR, data.adb_process_name));
 
             $('.retry-kill-adb').one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"retry", "param":""}');
                 log({
                     'event' : 'ui.click.retry-kill-adb'
                 });
@@ -339,24 +335,24 @@
         var uacCanceled = function (data) {
             show('uac_canceled');
             $(".click_uac").one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"retry", "param":""}');
             });
         };
 
         var publisherNotTrusted = function (data) {
             show('publisher-not-trusted');
             $(".retry-trust").one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"retry", "param":""}');
             });
         };
 
         var driversignVerifyFailed = function (data) {
             show('installing-credit');
             $(".retry-credit").one('click', function () {
-                window.external.call('{"cmd":"retry", "param":""}');
+                window.externalCall('', 'connection-guide', '{"cmd":"retry", "param":""}');
             });
         };
 
-        window.external.call('ready');
+        window.externalCall('', 'connection-guide', 'ready');
     });
 }(this, this.document));

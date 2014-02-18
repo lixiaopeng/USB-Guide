@@ -3,6 +3,14 @@
 //log
 (function () {
 
+    window.execCmd = function (cmd) {
+        if (window.externalCall) {
+            window.externalCall('', 'connection-guide', cmd);
+        } else {
+            window.external.call(cmd);
+        }
+    };
+
     window.log = function (data) {
         data = data || {};
 
@@ -24,7 +32,8 @@
                 data : datas.join('&'),
                 dataType : 'jsonp'
             });
-            window.external.call('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
+
+            execCmd('{"cmd":"log", "param":"' + url + '?' + datas.join('&')  + '"}');
         } catch (e) {
             if (window.console && window.console.log) {
                 window.console.log(data);
@@ -38,7 +47,8 @@
             data : 'debug-start-log',
             dataType : 'jsonp'
         });
-        window.external.call('{"cmd":"debug-start-log"}');
+
+        execCmd('{"cmd":"debug-start-log"}');
     } catch (e) {}
 
 }(this));
@@ -490,7 +500,7 @@
                 log({
                     'event' : 'ui.click.v3_checkusb'
                 });
-                window.external.call('{"cmd":"retry", "param":"connection.detect_device"}');
+                execCmd('{"cmd":"retry", "param":"connection.detect_device"}');
 
             }).on('mouseenter', function () {
                 $(this).addClass('checkusb-hover');
