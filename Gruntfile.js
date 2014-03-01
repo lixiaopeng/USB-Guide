@@ -297,6 +297,15 @@ module.exports = function (grunt) {
                 command : './build.sh'
             }
         },
+        uglify : {
+            requirejs : {
+                files : {
+                    '<%= paths.dist %>/components/requirejs/require.js' : [
+                        '<%= paths.dist %>/components/requirejs/require.js'
+                    ]
+                }
+            }
+        },
         wandoulabs_deploy : {
             options : {
                 authKey : '.wdrc'
@@ -333,6 +342,7 @@ module.exports = function (grunt) {
         'concat',
         'uglify',
         'htmlmin',
+        'imagemin',
         'rev',
         'usemin',
         'replace:dist',
