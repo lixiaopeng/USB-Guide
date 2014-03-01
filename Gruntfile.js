@@ -162,10 +162,7 @@ module.exports = function (grunt) {
                     src: [
                         '<%= paths.dist %>/javascripts/usb-debug.js',
                         '<%= paths.dist %>/javascripts/jquery.scrollbar.js',
-<<<<<<< HEAD
                         '<%= paths.dist %>/javascripts/jquery.color.js',
-=======
->>>>>>> upstream/master
                         '<%= paths.dist %>/stylesheets/usb-debug.css',
                         '<%= paths.dist %>/stylesheets/ie6.css',
                         '<%= paths.dist %>/stylesheets/ie7.css'
