@@ -71,6 +71,9 @@
     window.device_key = getUrlParam('device_key');
     window.dx_guid = getUrlParam('dx_guid');
 
+    //checkABTest;
+    window.test = 'B';
+
 }(this));
 
 //getCourseByVidPid
@@ -169,6 +172,127 @@
     window.showQQ = false;
 }(this));
 
+//select brand view;
+(function () {
+    var data = {
+        brands: [{
+            name : '三星 Samsung',
+            className : 'samsung'
+        },
+        {
+            name : 'HTC',
+            className : 'htc'
+        },
+        {
+            name : '华为 Huawei',
+            className : 'huawei'
+        },{
+            name : '小米 Xiaomi',
+            className : 'xiaomi'
+        },{
+            name : 'OPPO',
+            className : 'oppo'
+        },{
+            name : '联想 Lenovo',
+            className : 'lenovo'
+        },{
+            name : '中兴 ZTE',
+            className : 'zte'
+        },{
+            name : '索尼 Sony',
+            className : 'sony'
+        },{
+            name : 'VIVO',
+            className : 'vivo'
+        },{
+            name : '酷派 Coolpad',
+            className : 'coolpad'
+        },{
+            name : '天语 K-Touch',
+            className : 'ktouch'
+        },{
+            name : '海信 Hisense',
+            className : 'hisense'
+        },{
+            name : 'LG',
+            className : 'lg'
+        },{
+            name : '摩托 Moto',
+            className : 'moto'
+        },{
+            name : '魅族 Meizu',
+            className : 'meizu'
+        }],
+        systems : [{
+            name : '安卓 Android 1.6 - 3.2',
+            className : 'gingerbread'
+        }, {
+            name : '安卓 Android 4.0 - 4.1',
+            className : 'ics'
+        }, {
+            name : '安卓 Android 4.2 - 4.4',
+            className : 'jeallybean'
+        }]
+    };
+
+    var SelectBrandView = function () {
+        this.$el = $('.tmp_select').addClass(this.className);
+        return this;
+    };
+
+    SelectBrandView.prototype = {
+        className : 'u-select-brand-view',
+        template : _.template($('#selectBrandView').html()),
+        isRender : false,
+        isShow : false,
+        render : function () {
+            this.isRender = true;
+            this.$el.html(this.template(data));
+
+            return this;
+        },
+        clickSelect : function (evt) {
+            var tmp = /(\w+)\s(\w+)\s(\w+)/.exec(evt.currentTarget.className);
+            var version = tmp[3];
+
+            log({
+                'event' : 'ui.click.v3_general',
+                'version' : version
+            });
+
+            getCourseByVidPid('general_' + version, function (resp) {
+                if (resp.data.length === 0) {
+                    showNextView(selectView);
+                    return;
+                }
+
+                sliderView.data = null;
+                sliderView.currentIndex = -1;
+
+                showNextView(sliderView);
+                sliderView.data = resp.data;
+                sliderView.showCourse();
+            });
+        },
+        hide : function () {
+            this.$el.hide();
+            this.isShow = false;
+        },
+        show : function () {
+            if (!this.isRender) {
+                this.render();
+            }
+            this.$el.show();
+            this.isShow = true;
+        }
+    };
+
+    if (window.test === 'B') {
+        window.selectView = new SelectBrandView();
+    }
+
+}(this));
+
 //select view;
 (function () {
     var data = {
@@ -259,7 +383,10 @@
         }
     };
 
-    window.selectView = new SelectView();
+    if (window.test === 'A') {
+        window.selectView = new SelectBrandView();
+    }
+
 }(this));
 
 //feedback view

@@ -34,19 +34,21 @@
         $('body').addClass('locale-' + navigator.language);
 
         var show = function (id, data) {
-            if ($('div#' + id).length === 0) {
-                var tpl = _.template($('#' + id).html());
-                var $dom = $(tpl({}));
-                $('.g-stage').append($dom.attr('id', id));
+            if ($('div#' + id).length ) {
+                $('div#' + id).remove();
+            }
 
-                if ($('.g-ctn').length > 1) {
-                    $('.g-ctn:not(:last)').animate({
-                        'margin-left' : '-100%',
-                        'opacity' : '0'
-                    }, 500, 'linear', function () {
-                        $('.g-ctn:not(:last)').remove();
-                    });
-                }
+            var tpl = _.template($('#' + id).html());
+            var $dom = $(tpl({}));
+            $('.g-stage').append($dom.attr('id', id));
+
+            if ($('.g-ctn').length > 1) {
+                $('.g-ctn:not(:last)').animate({
+                    'margin-left' : '-100%',
+                    'opacity' : '0'
+                }, 500, 'linear', function () {
+                    $('.g-ctn:not(:last)').remove();
+                });
             }
 
             if (window.DD_belatedPNG) {
@@ -148,11 +150,11 @@
             default:
                 if (obj.state >= 0) {
                     connectingStart(obj);
-                } else {
+                    animation();
+            } else {
                     connectingError(obj);
                 }
             }
-            animation();
         };
 
         var connectingStart = function (data) {
