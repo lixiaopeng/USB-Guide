@@ -72,10 +72,13 @@
     window.dx_guid = getUrlParam('dx_guid');
 
     window.test = 'A';
-    var guid = window.dx_guid.split('-')[4]
-    if (parseInt(guid, 16) % 2 ) {
-        window.test = 'B';
+    if (window.dx_guid) {
+        var guid = window.dx_guid.split('-')[4];
+        if (parseInt(guid, 16) % 2 ) {
+            window.test = 'B';
+        }
     }
+
 
 }(this));
 
