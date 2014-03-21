@@ -56,7 +56,7 @@
 //device_id, product_id
 (function () {
     var getUrlParam = function (name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var reg = new RegExp("(\\?|^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
 
         if (r) {
@@ -72,9 +72,24 @@
     window.dx_guid = getUrlParam('dx_guid');
 
     window.test = 'A';
-    if (window.dx_guid) {
+
+
+    var vid = decodeURIComponent(window.device_id);
+    vid = vid.match(/VID\_(\w{4})/)[1] + '_' +  vid.match(/PID\_(\w{4})/)[1];
+    var vid_arr = [
+        '0BB4_0001',
+        '1782_5D03',
+        '17EF_743A',
+        '1782_5D00',
+        '18D1_4E21',
+        '22DA_0001',
+        '0BB4_0C03',
+        '18D1_0001'
+    ];
+
+    if (_.contains(vid_arr, vid) && window.dx_guid) {
         var guid = window.dx_guid.split('-')[4];
-        if (parseInt(guid, 16) % 2 ) {
+        if (parseInt(guid, 16) % 2 === 0) {
             window.test = 'B';
         }
     }
@@ -184,12 +199,10 @@
         brands: [{
             name : '三星 Samsung',
             className : 'Samsung'
-        },
-        {
+        },{
             name : 'HTC',
             className : 'HTC'
-        },
-        {
+        },{
             name : '华为 Huawei',
             className : 'Huawei'
         },{
@@ -266,7 +279,8 @@
 
             log({
                 'event' : 'ui.click.v3_general_By_test',
-                'version' : version
+                'version' : version,
+                'instance_id' :  device_id
             });
 
             getCourseByVidPid('general_' + version, function (resp) {
@@ -289,7 +303,8 @@
 
             log({
                 'event' : 'ui.click.v3_brand',
-                'version' : version
+                'version' : version,
+                'instance_id' :  device_id
             });
 
             getCourseByVidPid('brand_' + version, function (resp) {
@@ -384,7 +399,8 @@
 
             log({
                 'event' : 'ui.click.v3_general',
-                'version' : version
+                'version' : version,
+                'instance_id' : device_id
             });
 
             getCourseByVidPid('general_' + version, function (resp) {
@@ -1111,6 +1127,11 @@
 
 //main function
 $(document).ready(function (){
+
+    if (window.test === 'B') {
+        showNextView(selectView);
+        return;
+    }
 
     getCourseByVidPid(device_id + '_' + product_id, function (resp) {
         if (resp.data.length === 0) {

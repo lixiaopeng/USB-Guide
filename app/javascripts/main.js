@@ -43,12 +43,10 @@
             $('.g-stage').append($dom.attr('id', id));
 
             if ($('.g-ctn').length > 1) {
-                $('.g-ctn:not(:last)').animate({
-                    'margin-left' : '-100%',
-                    'opacity' : '0'
-                }, 500, 'linear', function () {
+                $('.g-ctn:not(:last)').addClass('go-left');
+                setTimeout(function (){
                     $('.g-ctn:not(:last)').remove();
-                });
+                }, 500);
             }
 
             if (window.DD_belatedPNG) {

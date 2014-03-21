@@ -69,6 +69,11 @@ html, body {
     overflow: hidden;
     position: relative;
     width: 680px;
+    -webkit-transition: margin-left .5s;
+
+    &.go-left {
+        margin-left: -100%;
+    }
 }
 
 .g-tips {
